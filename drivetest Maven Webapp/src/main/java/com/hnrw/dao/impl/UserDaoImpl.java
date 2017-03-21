@@ -10,11 +10,11 @@ public class UserDaoImpl extends BaseDaoImpl<ExaminationUser> implements IUser{
 	
 		@Override
 		public ExaminationUser isExistUser(ExaminationUser validateUser) {
-				String queryHql = "FROM ExaminationUser WHERE userAccountName=USERNAME " +
-								  "AND userAccountPassword=USERPASSWORD AND userRole=ROLE";
-				Query query = getSession().createQuery(queryHql).setString("USERNAME", validateUser.getUserAccountName())
-														        .setString("USERPASSWORD", validateUser.getUserAccountPassword())
-														        .setString("ROLE", validateUser.getUserRole());
+				String queryHql = "FROM ExaminationUser WHERE userAccountName=? " +
+								  "AND userAccountPassword=? AND userRole=?";
+				Query query = getSession().createQuery(queryHql).setString(0, validateUser.getUserAccountName())
+															        .setString(1, validateUser.getUserAccountPassword())
+															        .setString(2, validateUser.getUserRole());
 				ExaminationUser user = (ExaminationUser) query.uniqueResult();
 			return user == null ? null:user;
 	}

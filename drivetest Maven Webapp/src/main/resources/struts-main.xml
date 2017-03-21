@@ -2,9 +2,10 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 	<package name="main" namespace="/" extends="drivetest">
-		<action name="index" class="com.hnrw.action.IndexAction" method="index">
+		<action name="index" class="indexAction" method="index">
 			<result name="success">/WEB-INF/index.jsp</result>
 			<interceptor-ref name="myLoginStack"></interceptor-ref>
 		</action>
+		<action name="login" class="userAction" method="userLogin"></action>
 	</package>
 </struts>    

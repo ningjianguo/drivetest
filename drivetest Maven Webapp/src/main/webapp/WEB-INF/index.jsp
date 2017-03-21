@@ -35,7 +35,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand fa fa-taxi" href="index.html">&nbsp;DRIVER
+				<a class="navbar-brand fa fa-taxi" href="index">&nbsp;DRIVER
 					TEST</a>
 			</div>
 
@@ -60,7 +60,7 @@
 							</div>
 						</div>
 					</li>
-					<li><a class="active-menu" href="index.html"><i
+					<li><a class="active-menu" href="index"><i
 							class="fa fa-dashboard "></i>主页</a>
 					</li>
 
@@ -168,18 +168,18 @@
 					<h4 class="modal-title" id="myModalLabel">登录&nbsp;|&nbsp;<a onclick="registeUser()">注册</a></h4>
 				</div>
 				<div class="modal-body">
-					<form class="form-horizontal">
+					<form class="form-horizontal" id="loginForm" action="login" method="post">
 						<div class="form-group">
 							<label class="col-sm-2 control-label">用户名:</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="userName"
+								<input type="text" class="form-control" id="userAccountName" name="userAccountName"
 									placeholder="用户名">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label">密&nbsp;&nbsp;&nbsp;码:</label>
 							<div class="col-sm-10">
-								<input type="password" class="form-control" id="userPassword"
+								<input type="password" class="form-control" id="userAccountPassword" name="userAccountPassword"
 									placeholder="密码">
 							</div>
 						</div>
@@ -187,10 +187,10 @@
 							<label class="col-sm-2 control-label">身&nbsp;&nbsp;&nbsp;份:</label>
 							<div class="col-sm-10">
 								<label class="radio-inline">
-								  <input type="radio" name="inlineRadioOptions"  checked="checked" id="inlineRadio1" value="option1">普通用户
+								  <input type="radio" name="userRole"  checked="checked" id="inlineRadio1" value="0">普通用户
 								</label>
 								<label class="radio-inline">
-								  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">管理员
+								  <input type="radio" name="userRole" id="inlineRadio2" value="1">管理员
 								</label>
 							</div>
 						</div>
@@ -198,7 +198,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-					<button type="button" class="btn btn-info">登录</button>
+					<button type="button" class="btn btn-info" onclick="loginFormSubmit()">登录</button>
 				</div>
 			</div>
 		</div>
@@ -290,6 +290,10 @@
 	function loginUser(){
 		$('#registeModal').modal('toggle');
 		$('#loginModal').modal('show');
+	}
+	//提交登录表单
+	function loginFormSubmit(){
+		$('#loginForm').submit();
 	}
 </script>
 </html>

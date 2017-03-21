@@ -11,7 +11,6 @@ import com.hnrw.service.IUserService;
 @Controller
 @Scope("prototype")
 public class UserAction extends BaseAction<ExaminationUser> {
-
 	private static final long serialVersionUID = -7484732053197251028L;
 	
 	@Resource
@@ -21,7 +20,7 @@ public class UserAction extends BaseAction<ExaminationUser> {
 	 * 用户登录
 	 */
 	@SuppressWarnings("unchecked")
-	public String adminLogin(){
+	public String userLogin(){
 		ExaminationUser user = userServiceImpl.login(getModel());
 		 if(getModel().getUserAccountName() == null || getModel().getUserAccountPassword() == null){
 			request.setAttribute("loginerr", "请登录后再进入后台管理系统!");

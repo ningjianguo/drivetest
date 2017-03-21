@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.hnrw.entity.ExaminationUser" table="examination_user" catalog="jiakaosys">
+        <id name="userId" type="java.lang.Integer">
+            <column name="user_id" />
+            <generator class="native" />
+        </id>
+        <property name="userAccountName" type="java.lang.String">
+            <column name="user_account_name" length="50" not-null="true">
+            </column>
+        </property>
+        <property name="userAccountPassword" type="java.lang.String">
+            <column name="user_account_password" length="50" not-null="true">
+            </column>
+        </property>
+        <property name="userRole" type="java.lang.String">
+            <column name="user_role" length="1" not-null="true">
+            </column>
+        </property>
+        <property name="userName" type="java.lang.String">
+            <column name="user_name" length="50">
+            </column>
+        </property>
+        <property name="userEmail" type="java.lang.String">
+            <column name="user_email" length="50">
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

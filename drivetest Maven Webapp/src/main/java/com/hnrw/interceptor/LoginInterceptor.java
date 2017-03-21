@@ -22,7 +22,7 @@ public class LoginInterceptor extends AbstractInterceptor {
 			ac.put("loginerr", 0);
 			return "login";
 		} else {
-			User user = (User) session.get("admin");
+			User user = (User) session.get("user");
 			if (user == null) {
 				ac.put("loginerr", 0);
 				return "login";

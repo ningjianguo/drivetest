@@ -12,36 +12,27 @@
 
 	<package name="drivetest" namespace="/" extends="struts-default,json-default">
 
-		<!-- <interceptors>
-			拦截器加载
-			<interceptor name="login" class="com.interceptor.LoginInterceptor" />
-			自定义拦截器堆栈
+		<interceptors>
+			<!-- 拦截器加载 -->
+			<interceptor name="loginInterceptor" class="com.hnrw.interceptor.LoginInterceptor" />
+			<!-- 自定义拦截器堆栈 -->
 			<interceptor-stack name="myLoginStack">
-				<interceptor-ref name="login" />
-				引用默认的拦截器堆栈
+				<interceptor-ref name="loginInterceptor" />
+				<!-- 引用默认的拦截器堆栈 -->
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
 		</interceptors>
 
-		配置404页面
-		<default-action-ref name="404"></default-action-ref>
-
-		配置全局转发页面
+		<!-- 配置全局转发页面 -->
 		<global-results>
-			<result name="exception">/WEB-INF/admin/error.jsp</result>
-			<result name="login">/WEB-INF/admin/adminlogin.jsp </result>
+			<result name="exception">/WEB-INF/error.jsp</result>
 		</global-results>
 
-		配置异常页面
+		<!-- 配置异常页面 -->
 		<global-exception-mappings>
 			<exception-mapping result="exception" exception="java.lang.Exception"></exception-mapping>
 		</global-exception-mappings>
 
-		<action name="404">
-			<result>/WEB-INF/admin/404.jsp</result>
-		</action> -->
-		<action name="index" class="com.hnrw.action.IndexAction" method="index">
-			<result name="success">/WEB-INF/index.jsp</result>
-		</action>
 	</package>
+	<include file="struts-main.xml"></include>
 </struts>    

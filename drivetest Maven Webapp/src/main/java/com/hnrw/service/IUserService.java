@@ -11,4 +11,11 @@ public interface IUserService {
 		 * @return 用户对象
 		 */
 		public ExaminationUser login(ExaminationUser user);
+		
+		/**
+		 * 用户注册
+		 * @param user 前台传入参数
+		 * @return 注册反馈信息
+		 */
+		public String registe(ExaminationUser user);
 }

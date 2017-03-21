@@ -102,21 +102,21 @@
 				<!-- /. ROW  -->
 				<div class="row">
 					<div class="col-md-4">
-						<div class="main-box mb-green">
+						<div class="main-box mb-green" align="center">
 							<a href="drivertest1.html"> <i
 								class="fa fa-pencil-square-o fa-5x"></i>
 								<h5>科一模拟</h5> </a>
 						</div>
 					</div>
 					<div class="col-md-4">
-						<div class="main-box mb-orange">
+						<div class="main-box mb-orange" align="center">
 							<a href="analogtest.html"> <i
 								class="fa fa-pencil-square fa-5x"></i>
 								<h5>模拟练习</h5> </a>
 						</div>
 					</div>
 					<div class="col-md-4">
-						<div class="main-box mb-yellow">
+						<div class="main-box mb-yellow" align="center">
 							<a href="mygrade.html"> <i class="fa fa-graduation-cap fa-5x"></i>
 								<h5>我的成绩</h5> </a>
 						</div>
@@ -125,20 +125,20 @@
 				<!-- /. ROW  -->
 				<div class="row">
 					<div class="col-md-4">
-						<div class="main-box mb-litte-green">
+						<div class="main-box mb-litte-green" align="center">
 							<a href="drivertest4.html"> <i
 								class="fa fa-pencil-square-o fa-5x"></i>
 								<h5>科四模拟</h5> </a>
 						</div>
 					</div>
 					<div class="col-md-4">
-						<div class="main-box mb-zi">
+						<div class="main-box mb-zi" align="center">
 							<a href="testreview.html"> <i class="fa fa-book fa-5x"></i>
 								<h5>试题复习</h5> </a>
 						</div>
 					</div>
 					<div class="col-md-4">
-						<div class="main-box mb-blue">
+						<div class="main-box mb-blue" align="center">
 							<a href="personsetting.html"> <i class="fa fa-cogs fa-5x"></i>
 								<h5>个人设置</h5> </a>
 						</div>
@@ -173,14 +173,14 @@
 							<label class="col-sm-2 control-label">用户名:</label>
 							<div class="col-sm-10">
 								<input type="text" class="form-control" id="userAccountName" name="userAccountName"
-									placeholder="用户名">
+									placeholder="请输入用户名">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label">密&nbsp;&nbsp;&nbsp;码:</label>
 							<div class="col-sm-10">
 								<input type="password" class="form-control" id="userAccountPassword" name="userAccountPassword"
-									placeholder="密码">
+									placeholder="请输入密码">
 							</div>
 						</div>
 						<div class="form-group">
@@ -216,40 +216,41 @@
 					<h4 class="modal-title" id="myModalLabel"><a onclick="loginUser()">登录</a>&nbsp;|&nbsp;注册</h4>
 				</div>
 				<div class="modal-body">
-					<form class="form-horizontal">
+					<form class="form-horizontal" id="registeForm" action="registe" method="post">
 						<div class="form-group">
 							<label class="col-sm-2 control-label">用户名:</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="userName"
-									placeholder="用户名">
+								<input type="text" class="form-control" id="_userAccountName" name="userAccountName"
+									placeholder="不少于4个字符">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label">密&nbsp;&nbsp;&nbsp;码:</label>
 							<div class="col-sm-10">
-								<input type="password" class="form-control" id="userPassword"
-									placeholder="密码">
+								<input type="password" class="form-control" id="_userAccountPassword" name="userAccountPassword"
+									placeholder="不少于6个字符">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label">姓&nbsp;&nbsp;&nbsp;名:</label>
 							<div class="col-sm-10">
-								<input type="password" class="form-control" id="userPassword"
-									placeholder="姓名">
+								<input type="password" class="form-control" id="_userName" name="userName"
+									placeholder="例 :张小明    (选填)">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label">邮&nbsp;&nbsp;&nbsp;箱:</label>
 							<div class="col-sm-10">
-								<input type="email" class="form-control" id="userPassword"
-									placeholder="邮箱">
+								<input type="email" class="form-control" id="_userEmail" name="userEmail"
+									placeholder="例 :1195726908@qq.com   (选填)">
 							</div>
 						</div>
 					</form>
 				</div>
 				<div class="modal-footer">
+					<span style="font-size: large; color: red;margin-right: 100px;" id="errinfo"></span>
 					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-					<button type="button" class="btn btn-info">注册</button>
+					<button type="button" class="btn btn-info" onclick="registeFormSubmit()">注册</button>
 				</div>
 			</div>
 		</div>
@@ -291,9 +292,28 @@
 		$('#registeModal').modal('toggle');
 		$('#loginModal').modal('show');
 	}
-	//提交登录表单
+	//登录表单提交
 	function loginFormSubmit(){
 		$('#loginForm').submit();
+	}
+	//注册表单格式验证
+	function validataRegisteForm(){
+		var userAccountName = $('#_userAccountName').val().replace(/[ ]/g,"");
+		var userAccountPassword = $('#_userAccountPassword').val().replace(/[ ]/g,"");
+		if(userAccountName.length < 4){
+			$('#errinfo').text("用户名不得少于4位字符");
+		}else if(userAccountPassword.length < 6){
+			$('#errinfo').text("密码不得少于6位字符");
+		}else{
+			$('#errinfo').text("");
+			return true;
+		}
+	}
+	//注册表单提交
+	function registeFormSubmit(){
+		if(validataRegisteForm()){
+			$('#registeForm').submit();
+		}
 	}
 </script>
 </html>

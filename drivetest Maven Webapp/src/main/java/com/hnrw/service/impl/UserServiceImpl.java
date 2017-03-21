@@ -19,4 +19,24 @@ public class UserServiceImpl implements IUserService {
 		 return userDaoImpl.isExistUser(user);
 	}
 
+	@Override
+	public String registe(ExaminationUser user) {
+		String userName = user.getUserName();
+		String userAccountName = user.getUserAccountName();
+		try {
+			if(!userDaoImpl.isExistUserByUserAccountName(userAccountName)){
+				if("".equals(userName) || userName == null){
+					user.setUserName(userAccountName);
+				}
+				userDaoImpl.saveUser(user);
+				return "注册成功!";
+			}else{
+				return "该用户名已被占用!";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "系统内部错误,注册失败!";
+		}
+	}
+	
 }

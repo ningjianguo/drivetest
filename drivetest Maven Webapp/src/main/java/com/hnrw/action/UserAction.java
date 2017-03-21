@@ -44,4 +44,12 @@ public class UserAction extends BaseAction<ExaminationUser> {
 		}
 		return "login";
 	}
+	
+	/**
+	 * 用户注册
+	 */
+	public String userRegiste(){
+		request.setAttribute("info", userServiceImpl.registe(getModel()));
+		return null;
+	}
 }

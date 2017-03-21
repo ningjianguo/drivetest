@@ -15,7 +15,6 @@ public class LoginInterceptor extends AbstractInterceptor {
 
 	@Override
 	public String intercept(ActionInvocation invocation) throws Exception {
-		// 取得Session。
 		ActionContext ac = invocation.getInvocationContext();
 		Map session = (Map) ac.get(ServletActionContext.SESSION);
 		if (session.isEmpty()) {

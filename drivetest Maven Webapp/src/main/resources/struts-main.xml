@@ -4,6 +4,7 @@
 	<package name="main" namespace="/" extends="drivetest">
 		<action name="index" class="com.hnrw.action.IndexAction" method="index">
 			<result name="success">/WEB-INF/index.jsp</result>
+			<interceptor-ref name="myLoginStack"></interceptor-ref>
 		</action>
 	</package>
 </struts>    

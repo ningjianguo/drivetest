@@ -42,7 +42,7 @@
 			</div>
 
 			<div class="header-right">
-
+				<span id="current-time" style="float: left;font-weight: bolder;margin-right: 15px;margin-top: 10px;"></span>
 				<a href="message-task.html" class="btn btn-info" title="New Message"><i
 					class="fa fa-envelope-o fa-2x"></i>&nbsp;邮件列表</a> <a href="loginOut"
 					class="btn btn-danger" title="Logout"><i
@@ -58,7 +58,7 @@
 						<div class="user-img-div">
 							<img src="assets/img/user.png" class="img-thumbnail" />
 							<div class="inner-text">
-								欢迎你，${user.userName} <br /> <small><div id="current-time"></div> </small>
+								欢迎你，${user.userName} <br />
 							</div>
 						</div>
 					</li>

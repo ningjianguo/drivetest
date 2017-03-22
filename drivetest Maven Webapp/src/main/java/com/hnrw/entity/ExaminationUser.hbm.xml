@@ -12,7 +12,7 @@
             </column>
         </property>
         <property name="userAccountPassword" type="java.lang.String">
-            <column name="user_account_password" length="50" not-null="true">
+            <column name="user_account_password" length="32" not-null="true">
             </column>
         </property>
         <property name="userRole" type="java.lang.String">

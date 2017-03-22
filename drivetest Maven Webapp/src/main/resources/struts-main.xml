@@ -14,7 +14,7 @@
 		
 		<!-- 用户登出 -->
 		<action name="loginOut" class="userAction" method="userOutLogin">
-			<result name="loginOut" type="redirectAction">/index</result>
+			<result name="loginOut" type="redirectAction">index</result>
 		</action>
 		
 		<!-- 用户注册 -->

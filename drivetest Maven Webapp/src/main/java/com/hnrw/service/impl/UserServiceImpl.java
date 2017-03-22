@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.hnrw.dao.IUser;
 import com.hnrw.entity.ExaminationUser;
 import com.hnrw.service.IUserService;
+import com.hnrw.util.MD5Util;
 
 @Service
 public class UserServiceImpl implements IUserService {
@@ -16,6 +17,8 @@ public class UserServiceImpl implements IUserService {
 	
 	@Override
 	public ExaminationUser login(ExaminationUser user) {
+		 //md5解密
+		 user.setUserAccountPassword(MD5Util.getInstance().calcMD5(user.getUserAccountPassword()));
 		 return userDaoImpl.isExistUser(user);
 	}
 
@@ -28,6 +31,8 @@ public class UserServiceImpl implements IUserService {
 				if("".equals(userName) || userName == null){
 					user.setUserName(userAccountName);
 				}
+				//用户密码使用md5加密
+				user.setUserAccountPassword(MD5Util.getInstance().calcMD5(user.getUserAccountPassword()));
 				//用户注册默认为普通权限，区别于管理员权限
 				user.setUserRole("0");
 				userDaoImpl.saveUser(user);

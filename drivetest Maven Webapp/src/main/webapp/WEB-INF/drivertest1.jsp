@@ -21,6 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link href="assets/css/custom.css" rel="stylesheet" />
     <!-- GOOGLE FONTS-->
     <link href='assets/css/openSans.css' rel='stylesheet' type='text/css' />
+    <link href='assets/css/bootstrap-custom.css' rel='stylesheet' type='text/css' />
      <!-- JQUERY SCRIPTS -->
     <script src="assets/js/jquery-1.10.2.js"></script>
 </head>
@@ -34,7 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand fa fa-taxi" href="index.html">&nbsp;DRIVER TEST</a>
+                <a class="navbar-brand fa fa-taxi" href="index">&nbsp;DRIVER TEST</a>
             </div>
 
             <div class="header-right">
@@ -59,11 +60,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                     </li>
                     <li>
-                        <a class="active-menu" href="index.html"><i class="fa fa-dashboard "></i>主页</a>
+                        <a href="index"><i class="fa fa-dashboard "></i>主页</a>
                     </li>
                     
                     <li>
-                        <a href="drivertest1.html"><i class="fa fa-pencil-square-o "></i>科一模拟 </a>
+                        <a class="active-menu" href="createPaperOne"><i class="fa fa-pencil-square-o "></i>科一模拟 </a>
                         
                     </li>
                     <li>
@@ -94,13 +95,68 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                       <!-- <h1 class="page-head-line">DASHBOARD</h1>-->
                         <i class="fa fa-arrow-circle-o-right fa-4x" style="color: gray;margin-top: 3px;">&nbsp;科目一模拟</i>
                         <h5 class="page-subhead-line"></h5>
                     </div>
                 </div>
                 <!-- /. ROW  -->
-              
+              <div class="row">
+              	<div class="col-md-2">
+              		<fieldset>
+					    <legend>考生信息</legend>
+					    <table style="text-align: center;" align="center">
+					    <tr>
+					    	<td colspan="2">
+					    	 <img src="assets/img/user.png" class="img-thumbnail" /><br/>
+					    	</td>
+					    </tr>
+					    <tr>
+					    	<td>考生姓名:</td>
+					    	<td>${user.userName}</td>
+					    </tr>
+					    <tr>
+					    	<td>考试题数:</td>
+					    	<td>100题</td>
+					    </tr>
+					    <tr>
+					    	<td>考试时间:</td>
+					    	<td>45分钟</td>
+					    </tr>
+					    <tr>
+					    	<td>合格标准:</td>
+					    	<td>满分100分</td>
+					    </tr>
+					    <tr>
+					    	<td></td>
+					    	<td>90分及格</td>
+					    </tr>
+					    </table>
+					</fieldset>
+					<fieldset>
+					    <legend>剩余时间</legend>
+					</fieldset>
+              	</div>
+              	<div class="col-md-7">
+              		<fieldset>
+					    <legend>考试题目</legend>
+					</fieldset>
+              	</div>
+              	<div class="col-md-3">
+              		<fieldset>
+					    <legend>答题信息</legend>
+					      <%
+					    	int i = 0;
+					    	for(i = 1; i <= 100; i++){
+					    	if(i<10){
+					      %>
+					    	<button type="button" class="btn btn-default btn-sm" style="margin: 2px;">0<%=i%></button>
+					     <%}else{%>
+					    	<button type="button" class="btn btn-default btn-sm" style="margin: 2px;"><%=i%></button>
+					     <%}
+					      }%>
+					</fieldset>
+              	</div>
+              </div>
                 <!-- /. ROW  -->
             </div>
             <!-- /. PAGE INNER  -->

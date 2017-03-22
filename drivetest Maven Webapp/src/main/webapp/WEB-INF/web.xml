@@ -4,7 +4,9 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	id="WebApp_ID" version="2.5">
 	<display-name>drivetest</display-name>
-
+	<welcome-file-list>
+			<welcome-file>index.action</welcome-file>
+	</welcome-file-list>
 	<!-- 配置struts2过滤器，拦截所有前端请求交由struts控制 -->
 	<filter>
 		<filter-name>struts2</filter-name>

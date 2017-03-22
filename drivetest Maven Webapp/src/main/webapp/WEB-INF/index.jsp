@@ -66,7 +66,7 @@
 							class="fa fa-dashboard "></i>主页</a>
 					</li>
 
-					<li><a href="drivertest1.html"><i
+					<li><a href="createPaperOne"><i
 							class="fa fa-pencil-square-o "></i>科一模拟 </a>
 					</li>
 					<li><a href="drivertest4.html"><i
@@ -105,7 +105,7 @@
 				<div class="row">
 					<div class="col-md-4">
 						<div class="main-box mb-green" align="center">
-							<a href="drivertest1.html"> <i
+							<a href="createPaperOne"> <i
 								class="fa fa-pencil-square-o fa-5x"></i>
 								<h5>科一模拟</h5> </a>
 						</div>

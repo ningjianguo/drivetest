@@ -101,7 +101,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </div>
                 <!-- /. ROW  -->
               <div class="row">
-              	<div class="col-md-2">
+              	<div class="col-md-3">
               		<fieldset>
 					    <legend>考生信息</legend>
 					    <table style="text-align: center;" align="center">
@@ -134,16 +134,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</fieldset>
 					<fieldset>
 					    <legend>剩余时间</legend>
+					    <div align="center" style="font-size: x-large;font-weight: bolder;margin-bottom: 5px;" id="currentTime"></div>
 					</fieldset>
               	</div>
-              	<div class="col-md-7">
+              	<div class="col-md-9">
               		<fieldset>
 					    <legend>考试题目</legend>
 					</fieldset>
               	</div>
-              	<div class="col-md-3">
+              	
+              </div>
+                <!-- /. ROW  -->
+                <div class="row">
+                	<div class="col-md-12">
               		<fieldset>
 					    <legend>答题信息</legend>
+					    <div align="center">
 					      <%
 					    	int i = 0;
 					    	for(i = 1; i <= 100; i++){
@@ -154,10 +160,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					    	<button type="button" class="btn btn-default btn-sm" style="margin: 2px;"><%=i%></button>
 					     <%}
 					      }%>
+					      </div>
 					</fieldset>
               	</div>
-              </div>
-                <!-- /. ROW  -->
+                </div>
             </div>
             <!-- /. PAGE INNER  -->
         </div>
@@ -183,7 +189,37 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    var now = (new Date()).toLocaleString();
 		    $('#current-time').text(now);
 		}, 1000);
+		testTimeDown();
 	})
-		
+	//考试计时器
+	function testTimeDown(){
+		var minute = 0;
+		var second = 60;
+		var ms = "";
+		var num = setInterval(function() {
+			if(--second <= 9){
+				if(second < 0){
+					minute--;
+					second = 59;
+				}
+				if(second != 59){
+					ms = minute+":0"+second;
+				}else{
+					ms = minute+":"+second;
+				}
+			}else{
+				ms = minute+":"+second;
+			}
+			if(minute<10){
+				ms = "0"+ms;
+				if(minute==0&&second==0){
+					clearInterval(num);
+					//发送请求
+					
+				}
+			}
+			$('#currentTime').text(ms);
+		}, 1000)
+	}
 </script>
 </html>

@@ -23,6 +23,8 @@
 <link href="assets/css/custom.css" rel="stylesheet" />
 <!-- GOOGLE FONTS-->
 <link href='assets/css/openSans.css' rel='stylesheet' type='text/css' />
+<!-- JQUERY SCRIPTS -->
+<script src="assets/js/jquery-1.10.2.js"></script>
 </head>
 <body>
 	<div id="wrapper">
@@ -42,7 +44,7 @@
 			<div class="header-right">
 
 				<a href="message-task.html" class="btn btn-info" title="New Message"><i
-					class="fa fa-envelope-o fa-2x"></i>&nbsp;邮件列表</a> <a href="login.html"
+					class="fa fa-envelope-o fa-2x"></i>&nbsp;邮件列表</a> <a href="loginOut"
 					class="btn btn-danger" title="Logout"><i
 					class="fa  fa-sign-out fa-2x"></i>&nbsp;退出系统</a>
 
@@ -56,7 +58,7 @@
 						<div class="user-img-div">
 							<img src="assets/img/user.png" class="img-thumbnail" />
 							<div class="inner-text">
-								欢迎你，小明 <br /> <small><div id="current-time"></div> </small>
+								欢迎你，${user.userName} <br /> <small><div id="current-time"></div> </small>
 							</div>
 						</div>
 					</li>
@@ -197,6 +199,7 @@
 					</form>
 				</div>
 				<div class="modal-footer">
+					<span style="font-size: large; color: red;margin-right: 100px;" id="errinfo"></span>
 					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
 					<button type="button" class="btn btn-info" onclick="loginFormSubmit()">登录</button>
 				</div>
@@ -216,7 +219,7 @@
 					<h4 class="modal-title" id="myModalLabel"><a onclick="loginUser()">登录</a>&nbsp;|&nbsp;注册</h4>
 				</div>
 				<div class="modal-body">
-					<form class="form-horizontal" id="registeForm" action="registe" method="post">
+					<form class="form-horizontal" id="registeForm">
 						<div class="form-group">
 							<label class="col-sm-2 control-label">用户名:</label>
 							<div class="col-sm-10">
@@ -234,7 +237,7 @@
 						<div class="form-group">
 							<label class="col-sm-2 control-label">姓&nbsp;&nbsp;&nbsp;名:</label>
 							<div class="col-sm-10">
-								<input type="password" class="form-control" id="_userName" name="userName"
+								<input type="text" class="form-control" id="_userName" name="userName"
 									placeholder="例 :张小明    (选填)">
 							</div>
 						</div>
@@ -248,7 +251,7 @@
 					</form>
 				</div>
 				<div class="modal-footer">
-					<span style="font-size: large; color: red;margin-right: 100px;" id="errinfo"></span>
+					<span style="font-size: large; color: red;margin-right: 100px;" id="_errinfo"></span>
 					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
 					<button type="button" class="btn btn-info" onclick="registeFormSubmit()">注册</button>
 				</div>
@@ -257,8 +260,6 @@
 	</div>
 	<!-- /. FOOTER  -->
 	<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
-	<!-- JQUERY SCRIPTS -->
-	<script src="assets/js/jquery-1.10.2.js"></script>
 	<!-- BOOTSTRAP SCRIPTS -->
 	<script src="assets/js/bootstrap.js"></script>
 	<!-- METISMENU SCRIPTS -->
@@ -294,25 +295,61 @@
 	}
 	//登录表单提交
 	function loginFormSubmit(){
-		$('#loginForm').submit();
+		var userAccountName = $('#userAccountName').val().replace(/[ ]/g,"");
+		var userAccountPassword = $('#userAccountPassword').val().replace(/[ ]/g,"");
+		if(userAccountName==""){
+			$('#errinfo').text("请输入用户名!");
+		}else if(userAccountPassword==""){
+			$('#errinfo').text("请输入密码!");
+		}else{
+			//ajax异步提交表单
+			$.ajax({
+				type:"post",
+				url:"login",
+				data:$('#loginForm').serialize(),
+				success:function(data){
+					if(data == "fail"){
+						$('#errinfo').text("用户名或密码错误!");
+					}else{
+						window.location.reload();
+					}
+				}
+			})
+		}
 	}
 	//注册表单格式验证
 	function validataRegisteForm(){
 		var userAccountName = $('#_userAccountName').val().replace(/[ ]/g,"");
 		var userAccountPassword = $('#_userAccountPassword').val().replace(/[ ]/g,"");
+		var userEmail = $('#_userEmail').val().replace(/[ ]/g,"");
+		var myreg = /^([\.a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/;  
 		if(userAccountName.length < 4){
-			$('#errinfo').text("用户名不得少于4位字符");
+			$('#_errinfo').text("用户名不得少于4位字符!");
 		}else if(userAccountPassword.length < 6){
-			$('#errinfo').text("密码不得少于6位字符");
+			$('#_errinfo').text("密码不得少于6位字符!");
+		}else if(userEmail !=""){
+			if(!myreg.test(userEmail)){
+				$('#_errinfo').text("邮箱格式有误!");
+			}else{
+				return true;
+			}
 		}else{
-			$('#errinfo').text("");
 			return true;
 		}
+		
 	}
 	//注册表单提交
 	function registeFormSubmit(){
 		if(validataRegisteForm()){
-			$('#registeForm').submit();
+			//ajax异步提交表单
+			$.ajax({
+				type:"post",
+				url:"registe",
+				data:$('#registeForm').serialize(),
+				success:function(data){
+					$('#_errinfo').text(data);
+				}
+			})
 		}
 	}
 </script>

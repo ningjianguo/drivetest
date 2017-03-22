@@ -10,10 +10,15 @@
 		</action>
 		
 		<!-- 用户登录 -->
-		<action name="login" class="userAction" method="userLogin"></action>
+		<action name="login" class="userAction" method="userLogin"/>
+		
+		<!-- 用户登出 -->
+		<action name="loginOut" class="userAction" method="userOutLogin">
+			<result name="loginOut" type="redirectAction">/index</result>
+		</action>
 		
 		<!-- 用户注册 -->
-		<action name="registe" class="userAction" method="userRegiste"></action>
+		<action name="registe" class="userAction" method="userRegiste"/>
 		
 	</package>
 </struts>    

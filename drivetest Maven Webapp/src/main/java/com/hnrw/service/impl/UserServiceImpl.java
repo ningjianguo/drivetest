@@ -28,6 +28,8 @@ public class UserServiceImpl implements IUserService {
 				if("".equals(userName) || userName == null){
 					user.setUserName(userAccountName);
 				}
+				//用户注册默认为普通权限，区别于管理员权限
+				user.setUserRole("0");
 				userDaoImpl.saveUser(user);
 				return "注册成功!";
 			}else{

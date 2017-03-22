@@ -1,9 +1,8 @@
 package com.hnrw.dao.impl;
 
-import java.math.BigDecimal;
-
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
+
 import com.hnrw.dao.IUser;
 import com.hnrw.entity.ExaminationUser;
 
@@ -39,7 +38,7 @@ public class UserDaoImpl extends BaseDaoImpl<ExaminationUser> implements IUser{
 		@Override
 		public boolean isExistUserByUserAccountName(String userAccountName) {
 			String queryHql = "SELECT COUNT(*) FROM ExaminationUser WHERE userAccountName=?";
-			BigDecimal count = (BigDecimal) getSession().createQuery(queryHql).setString(0, userAccountName).uniqueResult();
+			Long count = (Long) getSession().createQuery(queryHql).setString(0, userAccountName).uniqueResult();
 			return count.intValue() == 0 ? false:true;
 		}
 }

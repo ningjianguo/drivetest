@@ -2,18 +2,18 @@ package com.hnrw.entity;
 
 import java.util.Date;
 
-
 public class ExamInfo implements java.io.Serializable {
 
 	// Fields
 
-	private static final long serialVersionUID = -1943460621287755109L;
+	private static final long serialVersionUID = -870416719131872121L;
 	private Integer infoId;
 	private ExamUser examUser;
 	private String paperNumber;
 	private Date infoStartTime;
 	private Date infoStartEnd;
 	private Integer infoScore;
+	private Integer infoType;
 
 	// Constructors
 
@@ -21,14 +21,24 @@ public class ExamInfo implements java.io.Serializable {
 	public ExamInfo() {
 	}
 
+	/** minimal constructor */
+	public ExamInfo(ExamUser examUser, String paperNumber, Date infoStartTime,
+			Integer infoType) {
+		this.examUser = examUser;
+		this.paperNumber = paperNumber;
+		this.infoStartTime = infoStartTime;
+		this.infoType = infoType;
+	}
+
 	/** full constructor */
 	public ExamInfo(ExamUser examUser, String paperNumber, Date infoStartTime,
-			Date infoStartEnd, Integer infoScore) {
+			Date infoStartEnd, Integer infoScore, Integer infoType) {
 		this.examUser = examUser;
 		this.paperNumber = paperNumber;
 		this.infoStartTime = infoStartTime;
 		this.infoStartEnd = infoStartEnd;
 		this.infoScore = infoScore;
+		this.infoType = infoType;
 	}
 
 	// Property accessors
@@ -79,6 +89,14 @@ public class ExamInfo implements java.io.Serializable {
 
 	public void setInfoScore(Integer infoScore) {
 		this.infoScore = infoScore;
+	}
+
+	public Integer getInfoType() {
+		return this.infoType;
+	}
+
+	public void setInfoType(Integer infoType) {
+		this.infoType = infoType;
 	}
 
 }

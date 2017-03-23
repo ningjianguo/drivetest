@@ -14,7 +14,7 @@
         </property>
         <property name="question1Answer" type="java.lang.String">
             <column name="question1_answer" length="1" not-null="true">
-                <comment>答案</comment>
+                <comment>科一题目标准答案</comment>
             </column>
         </property>
         <property name="question1Item1" type="java.lang.String">
@@ -49,7 +49,7 @@
         </property>
         <set name="examPaper1s" inverse="true">
             <key>
-                <column name="questions1_id" not-null="true">
+                <column name="question1_id" not-null="true">
                     <comment>科一题目主键(外键)</comment>
                 </column>
             </key>

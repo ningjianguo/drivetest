@@ -23,13 +23,18 @@
             </column>
         </property>
         <property name="infoStartEnd" type="java.util.Date">
-            <column name="info_startEnd" length="0" not-null="true">
+            <column name="info_startEnd" length="0">
                 <comment>考试结束时间</comment>
             </column>
         </property>
         <property name="infoScore" type="java.lang.Integer">
-            <column name="info_score" not-null="true">
+            <column name="info_score">
                 <comment>最终得分</comment>
+            </column>
+        </property>
+        <property name="infoType" type="java.lang.Integer">
+            <column name="info_type" not-null="true">
+                <comment>考试类型(科一、科四)</comment>
             </column>
         </property>
     </class>

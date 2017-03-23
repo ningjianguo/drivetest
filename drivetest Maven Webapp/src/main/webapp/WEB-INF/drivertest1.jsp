@@ -146,19 +146,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						    <h4 style="margin-left: 20px;">B、错误</h4>
 						    <h4 style="margin-left: 20px;">A、正确</h4>
 						    <h4 style="margin-left: 20px;">B、错误</h4>
-						    <fieldset>
-						    	<legend>题目选项</legend>
-						    	<div align="center">
-							    	<button type="button" class="btn btn-default btn-lg" style="margin: 4px;">A</button>
-							    	<button type="button" class="btn btn-default btn-lg" style="margin: 4px;">B</button>
-							    	<button type="button" class="btn btn-default btn-lg" style="margin: 4px;">C</button>
-							    	<button type="button" class="btn btn-default btn-lg" style="margin: 4px;">D</button>
-						    	</div>
-						    </fieldset>
 					    </div>
 					    <div style="float: right;">
 					    	<a href="javascript:biggerImage('assets/img/1.jpg')" title="点击放大效果图"><img alt="" src="assets/img/1.jpg" class="img-thumbnail"></a>
 					    </div>
+					</fieldset>
+					<fieldset>
+						  <legend>题目选项</legend>
+						    	<div align="left">
+							    	<button type="button" class="btn btn-default btn-lg" style="margin-right: 20px;margin-left: 50px;">A</button>
+							    	<button type="button" class="btn btn-default btn-lg" style="margin-right: 20px;">B</button>
+							    	<button type="button" class="btn btn-default btn-lg" style="margin-right: 20px;">C</button>
+							    	<button type="button" class="btn btn-default btn-lg" style="margin-right: 100px;">D</button>
+							    	<button type="button" class="btn btn-primary btn-lg">交卷</button>
+						    	</div>
 					</fieldset>
               	</div>
               	

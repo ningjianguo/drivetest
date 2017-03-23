@@ -3,7 +3,6 @@ package com.hnrw.entity;
 import java.util.HashSet;
 import java.util.Set;
 
-
 public class ExamUser implements java.io.Serializable {
 
 	// Fields

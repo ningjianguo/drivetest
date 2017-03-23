@@ -3,11 +3,12 @@ package com.hnrw.entity;
 import java.util.HashSet;
 import java.util.Set;
 
+
 public class ExamQuestion1 implements java.io.Serializable {
 
+	private static final long serialVersionUID = 5762725504786767177L;
 	// Fields
 
-	private static final long serialVersionUID = 5762725504786767177L;
 	private Integer question1Id;
 	private String question1Question;
 	private String question1Answer;

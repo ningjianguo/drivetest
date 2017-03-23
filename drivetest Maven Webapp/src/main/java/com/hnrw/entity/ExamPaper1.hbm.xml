@@ -8,7 +8,7 @@
             <generator class="native" />
         </id>
         <many-to-one name="examQuestion1" class="com.hnrw.entity.ExamQuestion1" fetch="select">
-            <column name="questions1_id" not-null="true">
+            <column name="question1_id" not-null="true">
                 <comment>科一题目主键(外键)</comment>
             </column>
         </many-to-one>
@@ -17,13 +17,13 @@
                 <comment>试卷编号uuid(唯一)</comment>
             </column>
         </property>
-        <property name="question1Answer" type="java.lang.Integer">
-            <column name="question1_answer" not-null="true">
+        <property name="question1Answer" type="java.lang.String">
+            <column name="question1_answer" length="1" not-null="true">
                 <comment>科一题目标准答案</comment>
             </column>
         </property>
         <property name="paper1Choice" type="java.lang.Integer">
-            <column name="paper1_choice" not-null="true">
+            <column name="paper1_choice">
                 <comment>科一题目所选答案</comment>
             </column>
         </property>

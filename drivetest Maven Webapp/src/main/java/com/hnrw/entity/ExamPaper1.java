@@ -4,11 +4,11 @@ public class ExamPaper1 implements java.io.Serializable {
 
 	// Fields
 
-	private static final long serialVersionUID = 7817365513804079099L;
+	private static final long serialVersionUID = -6958401068092056670L;
 	private Integer paper1Id;
 	private ExamQuestion1 examQuestion1;
 	private String paper1Number;
-	private Integer question1Answer;
+	private String question1Answer;
 	private Integer paper1Choice;
 
 	// Constructors
@@ -17,9 +17,17 @@ public class ExamPaper1 implements java.io.Serializable {
 	public ExamPaper1() {
 	}
 
+	/** minimal constructor */
+	public ExamPaper1(ExamQuestion1 examQuestion1, String paper1Number,
+			String question1Answer) {
+		this.examQuestion1 = examQuestion1;
+		this.paper1Number = paper1Number;
+		this.question1Answer = question1Answer;
+	}
+
 	/** full constructor */
 	public ExamPaper1(ExamQuestion1 examQuestion1, String paper1Number,
-			Integer question1Answer, Integer paper1Choice) {
+			String question1Answer, Integer paper1Choice) {
 		this.examQuestion1 = examQuestion1;
 		this.paper1Number = paper1Number;
 		this.question1Answer = question1Answer;
@@ -52,11 +60,11 @@ public class ExamPaper1 implements java.io.Serializable {
 		this.paper1Number = paper1Number;
 	}
 
-	public Integer getQuestion1Answer() {
+	public String getQuestion1Answer() {
 		return this.question1Answer;
 	}
 
-	public void setQuestion1Answer(Integer question1Answer) {
+	public void setQuestion1Answer(String question1Answer) {
 		this.question1Answer = question1Answer;
 	}
 

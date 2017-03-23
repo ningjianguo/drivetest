@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.hnrw.entity.ExamPaper1" table="exam_paper1" catalog="jiakaosys">
+        <id name="paper1Id" type="java.lang.Integer">
+            <column name="paper1_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="examQuestion1" class="com.hnrw.entity.ExamQuestion1" fetch="select">
+            <column name="questions1_id" not-null="true">
+                <comment>科一题目主键(外键)</comment>
+            </column>
+        </many-to-one>
+        <property name="paper1Number" type="java.lang.String">
+            <column name="paper1_number" length="32" not-null="true">
+                <comment>试卷编号uuid(唯一)</comment>
+            </column>
+        </property>
+        <property name="question1Answer" type="java.lang.Integer">
+            <column name="question1_answer" not-null="true">
+                <comment>科一题目标准答案</comment>
+            </column>
+        </property>
+        <property name="paper1Choice" type="java.lang.Integer">
+            <column name="paper1_choice" not-null="true">
+                <comment>科一题目所选答案</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.hnrw.entity.ExamQuestion1" table="exam_question1" catalog="jiakaosys">
+        <id name="question1Id" type="java.lang.Integer">
+            <column name="question1_id" />
+            <generator class="native" />
+        </id>
+        <property name="question1Question" type="java.lang.String">
+            <column name="question1_question" not-null="true">
+                <comment>问题</comment>
+            </column>
+        </property>
+        <property name="question1Answer" type="java.lang.String">
+            <column name="question1_answer" length="1" not-null="true">
+                <comment>答案</comment>
+            </column>
+        </property>
+        <property name="question1Item1" type="java.lang.String">
+            <column name="question1_item1" not-null="true">
+                <comment>选项1</comment>
+            </column>
+        </property>
+        <property name="question1Item2" type="java.lang.String">
+            <column name="question1_item2" not-null="true">
+                <comment>选项2</comment>
+            </column>
+        </property>
+        <property name="question1Item3" type="java.lang.String">
+            <column name="question1_item3">
+                <comment>选项3</comment>
+            </column>
+        </property>
+        <property name="question1Item4" type="java.lang.String">
+            <column name="question1_item4">
+                <comment>选项4</comment>
+            </column>
+        </property>
+        <property name="question1Explains" type="java.lang.String">
+            <column name="question1_explains" length="512" not-null="true">
+                <comment>解释</comment>
+            </column>
+        </property>
+        <property name="question1Url" type="java.lang.String">
+            <column name="question1_url">
+                <comment>图片地址</comment>
+            </column>
+        </property>
+        <set name="examPaper1s" inverse="true">
+            <key>
+                <column name="questions1_id" not-null="true">
+                    <comment>科一题目主键(外键)</comment>
+                </column>
+            </key>
+            <one-to-many class="com.hnrw.entity.ExamPaper1" />
+        </set>
+    </class>
+</hibernate-mapping>

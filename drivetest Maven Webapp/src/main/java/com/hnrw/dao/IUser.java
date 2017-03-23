@@ -1,6 +1,6 @@
 package com.hnrw.dao;
 
-import com.hnrw.entity.ExaminationUser;
+import com.hnrw.entity.ExamUser;
 
 public interface IUser {
 	
@@ -9,7 +9,7 @@ public interface IUser {
 	 * @param user 前台传入数据
 	 * @return 用户对象
 	 * */
-	public ExaminationUser isExistUser(ExaminationUser user);
+	public ExamUser isExistUser(ExamUser user);
 	/**
 	 * 验证用户是否存在
 	 * @param userAccountName 用户帐号
@@ -17,7 +17,7 @@ public interface IUser {
 	 */
 	public boolean isExistUserByUserAccountName(String userAccountName);
 	
-	public void saveUser(ExaminationUser user);
-	public void updateUser(ExaminationUser user);
-	public void deleteUser(ExaminationUser user);
+	public void saveUser(ExamUser user);
+	public void updateUser(ExamUser user);
+	public void deleteUser(ExamUser user);
 }

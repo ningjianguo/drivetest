@@ -2,30 +2,43 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.hnrw.entity.ExaminationUser" table="examination_user" catalog="jiakaosys">
+    <class name="com.hnrw.entity.ExamUser" table="exam_user" catalog="jiakaosys">
         <id name="userId" type="java.lang.Integer">
             <column name="user_id" />
             <generator class="native" />
         </id>
         <property name="userAccountName" type="java.lang.String">
-            <column name="user_account_name" length="50" not-null="true">
+            <column name="user_account_name" length="32" not-null="true">
+                <comment>用户登录名</comment>
             </column>
         </property>
         <property name="userAccountPassword" type="java.lang.String">
             <column name="user_account_password" length="32" not-null="true">
+                <comment>用户登录密码</comment>
             </column>
         </property>
         <property name="userRole" type="java.lang.String">
             <column name="user_role" length="1" not-null="true">
+                <comment>用户角色(0:普通用户、1:管理员:)</comment>
             </column>
         </property>
         <property name="userName" type="java.lang.String">
-            <column name="user_name" length="50">
+            <column name="user_name" length="32">
+                <comment>用户姓名</comment>
             </column>
         </property>
         <property name="userEmail" type="java.lang.String">
-            <column name="user_email" length="50">
+            <column name="user_email" length="32">
+                <comment>用户邮箱</comment>
             </column>
         </property>
+        <set name="examInfos" inverse="true">
+            <key>
+                <column name="user_id" not-null="true">
+                    <comment>用户主键(外键)</comment>
+                </column>
+            </key>
+            <one-to-many class="com.hnrw.entity.ExamInfo" />
+        </set>
     </class>
 </hibernate-mapping>

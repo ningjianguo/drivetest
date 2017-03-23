@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.hnrw.entity.ExamInfo" table="exam_info" catalog="jiakaosys">
+        <id name="infoId" type="java.lang.Integer">
+            <column name="info_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="examUser" class="com.hnrw.entity.ExamUser" fetch="select">
+            <column name="user_id" not-null="true">
+                <comment>用户主键(外键)</comment>
+            </column>
+        </many-to-one>
+        <property name="paperNumber" type="java.lang.String">
+            <column name="paper_number" length="32" not-null="true">
+                <comment>试卷编号(paper1+paper4)</comment>
+            </column>
+        </property>
+        <property name="infoStartTime" type="java.util.Date">
+            <column name="info_startTime" length="0" not-null="true">
+                <comment>考试开始时间</comment>
+            </column>
+        </property>
+        <property name="infoStartEnd" type="java.util.Date">
+            <column name="info_startEnd" length="0" not-null="true">
+                <comment>考试结束时间</comment>
+            </column>
+        </property>
+        <property name="infoScore" type="java.lang.Integer">
+            <column name="info_score" not-null="true">
+                <comment>最终得分</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

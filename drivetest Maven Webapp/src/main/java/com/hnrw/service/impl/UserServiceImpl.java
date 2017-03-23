@@ -5,7 +5,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.hnrw.dao.IUser;
-import com.hnrw.entity.ExaminationUser;
+import com.hnrw.entity.ExamUser;
 import com.hnrw.service.IUserService;
 import com.hnrw.util.MD5Util;
 
@@ -16,14 +16,14 @@ public class UserServiceImpl implements IUserService {
 	private IUser userDaoImpl;
 	
 	@Override
-	public ExaminationUser login(ExaminationUser user) {
+	public ExamUser login(ExamUser user) {
 		 //md5解密
 		 user.setUserAccountPassword(MD5Util.getInstance().calcMD5(user.getUserAccountPassword()));
 		 return userDaoImpl.isExistUser(user);
 	}
 
 	@Override
-	public String registe(ExaminationUser user) {
+	public String registe(ExamUser user) {
 		String userName = user.getUserName();
 		String userAccountName = user.getUserAccountName();
 		try {

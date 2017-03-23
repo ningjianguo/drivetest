@@ -140,6 +140,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               	<div class="col-md-9">
               		<fieldset>
 					    <legend>考试题目</legend>
+					    <div style="float: left;">
+						    <h3>1、前方标志表示向左是单向行驶道路。</h3>
+						    <h4 style="margin-left: 20px;">A、正确</h4>
+						    <h4 style="margin-left: 20px;">B、错误</h4>
+						    <h4 style="margin-left: 20px;">A、正确</h4>
+						    <h4 style="margin-left: 20px;">B、错误</h4>
+						    <fieldset>
+						    	<legend>题目选项</legend>
+						    	<div align="center">
+							    	<button type="button" class="btn btn-default btn-lg" style="margin: 4px;">A</button>
+							    	<button type="button" class="btn btn-default btn-lg" style="margin: 4px;">B</button>
+							    	<button type="button" class="btn btn-default btn-lg" style="margin: 4px;">C</button>
+							    	<button type="button" class="btn btn-default btn-lg" style="margin: 4px;">D</button>
+						    	</div>
+						    </fieldset>
+					    </div>
+					    <div style="float: right;">
+					    	<a href="javascript:biggerImage('assets/img/1.jpg')" title="点击放大效果图"><img alt="" src="assets/img/1.jpg" class="img-thumbnail"></a>
+					    </div>
 					</fieldset>
               	</div>
               	
@@ -174,6 +193,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div id="footer-sec" align="center">
 	Copyright &copy; 2017 Hunan University Of Humanities,Science And Technology. All Rights Reserved.
     </div>
+    
+    <!-- 放大图片模态框 -->
+    ﻿<div id="showImage" class="modal">         
+         <div class="modal-body">
+             <button data-dismiss="modal" class="close" type="button"><span class="glyphicon glyphicon-remove"></span></button>
+            <div id="img_show"></div>
+         </div>
+    </div>
+    <!-- 进入考试提示模态框 -->
+    <div class="modal fade bs-example-modal-lg" id="showWarning" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div align="center">
+						<h3>温馨提示</h3>
+						<h5>按交管部门通知，科目一考试系统全面更新。全真模拟考试下不能修改答案，每做一题，系统自动计算错误题数，及格标准为90分。</h5>
+						 <button type="button" class="btn btn-info" data-dismiss="modal">确定</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 试卷生成提示模态框 -->
+	﻿<div id="showPaperTikit" class="modal" data-backdrop="static" data-keyboard="false">         
+         <div class="modal-body">
+			<div align="center" style="margin-top: 200px;"><img alt="" src="assets/img/load.gif"><div style="color: #fff;"><h3>小编正在为您疯狂出题中,请稍候......</h3></div></div>
+         </div>
+    </div>
     <!-- /. FOOTER  -->
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
     <!-- BOOTSTRAP SCRIPTS -->
@@ -189,11 +237,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    var now = (new Date()).toLocaleString();
 		    $('#current-time').text(now);
 		}, 1000);
-		testTimeDown();
+		/* showWarning();
+		$('#showWarning').on('hidden.bs.modal', function (e) {
+		  testTimeDown();
+		}); */
+		waitPaper();
 	})
 	//考试计时器
 	function testTimeDown(){
-		var minute = 0;
+		var minute = 44;
 		var second = 60;
 		var ms = "";
 		var num = setInterval(function() {
@@ -220,6 +272,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			}
 			$('#currentTime').text(ms);
 		}, 1000)
+	}
+	//放大效果图
+	function biggerImage(imgUrl){
+		$("#showImage").find("#img_show").html("<a href='javascript:smallImage()' title='点击缩小效果图'><img src='"+imgUrl+"' class='carousel-inner img-responsive img-rounded' />");
+        $("#showImage").modal();
+	}
+	//缩小效果图
+	function smallImage(){
+		$("#showImage").modal('toggle');
+	}
+	//进入页面时弹出警告框
+	function showWarning(){
+		$("#showWarning").modal('show');
+	}
+	//出题等待提示框
+	function waitPaper(){
+		$("#showPaperTikit").modal('show');
 	}
 </script>
 </html>

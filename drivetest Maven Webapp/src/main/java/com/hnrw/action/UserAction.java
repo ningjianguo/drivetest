@@ -5,12 +5,12 @@ import javax.annotation.Resource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.hnrw.entity.ExaminationUser;
+import com.hnrw.entity.ExamUser;
 import com.hnrw.service.IUserService;
 
 @Controller
 @Scope("prototype")
-public class UserAction extends BaseAction<ExaminationUser> {
+public class UserAction extends BaseAction<ExamUser> {
 	private static final long serialVersionUID = -7484732053197251028L;
 	
 	@Resource
@@ -21,7 +21,7 @@ public class UserAction extends BaseAction<ExaminationUser> {
 	 */
 	@SuppressWarnings("unchecked")
 	public String userLogin(){
-		ExaminationUser user = userServiceImpl.login(getModel());
+		ExamUser user = userServiceImpl.login(getModel());
 		if(user != null){
 			//登录成功则把user对象放到session中保存
 			session.put("user",user);

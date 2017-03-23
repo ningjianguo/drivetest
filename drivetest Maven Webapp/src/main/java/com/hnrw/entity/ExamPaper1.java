@@ -1,0 +1,71 @@
+package com.hnrw.entity;
+
+public class ExamPaper1 implements java.io.Serializable {
+
+	// Fields
+
+	private static final long serialVersionUID = 7817365513804079099L;
+	private Integer paper1Id;
+	private ExamQuestion1 examQuestion1;
+	private String paper1Number;
+	private Integer question1Answer;
+	private Integer paper1Choice;
+
+	// Constructors
+
+	/** default constructor */
+	public ExamPaper1() {
+	}
+
+	/** full constructor */
+	public ExamPaper1(ExamQuestion1 examQuestion1, String paper1Number,
+			Integer question1Answer, Integer paper1Choice) {
+		this.examQuestion1 = examQuestion1;
+		this.paper1Number = paper1Number;
+		this.question1Answer = question1Answer;
+		this.paper1Choice = paper1Choice;
+	}
+
+	// Property accessors
+
+	public Integer getPaper1Id() {
+		return this.paper1Id;
+	}
+
+	public void setPaper1Id(Integer paper1Id) {
+		this.paper1Id = paper1Id;
+	}
+
+	public ExamQuestion1 getExamQuestion1() {
+		return this.examQuestion1;
+	}
+
+	public void setExamQuestion1(ExamQuestion1 examQuestion1) {
+		this.examQuestion1 = examQuestion1;
+	}
+
+	public String getPaper1Number() {
+		return this.paper1Number;
+	}
+
+	public void setPaper1Number(String paper1Number) {
+		this.paper1Number = paper1Number;
+	}
+
+	public Integer getQuestion1Answer() {
+		return this.question1Answer;
+	}
+
+	public void setQuestion1Answer(Integer question1Answer) {
+		this.question1Answer = question1Answer;
+	}
+
+	public Integer getPaper1Choice() {
+		return this.paper1Choice;
+	}
+
+	public void setPaper1Choice(Integer paper1Choice) {
+		this.paper1Choice = paper1Choice;
+	}
+
+}

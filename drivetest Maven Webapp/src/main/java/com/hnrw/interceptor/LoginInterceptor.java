@@ -4,7 +4,7 @@ import java.util.Map;
 
 import org.apache.struts2.ServletActionContext;
 
-import com.hnrw.entity.ExaminationUser;
+import com.hnrw.entity.ExamUser;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
@@ -21,7 +21,7 @@ public class LoginInterceptor extends AbstractInterceptor {
 			ac.put("loginerr", 0);
 			return "login";
 		} else {
-			ExaminationUser user = (ExaminationUser) session.get("user");
+			ExamUser user = (ExamUser) session.get("user");
 			if (user == null) {
 				ac.put("loginerr", 0);
 				return "login";

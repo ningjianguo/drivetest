@@ -1,6 +1,6 @@
 package com.hnrw.service;
 
-import com.hnrw.entity.ExaminationUser;
+import com.hnrw.entity.ExamUser;
 
 
 public interface IUserService {
@@ -10,12 +10,12 @@ public interface IUserService {
 		 * @param user 前台传入参数
 		 * @return 用户对象
 		 */
-		public ExaminationUser login(ExaminationUser user);
+		public ExamUser login(ExamUser user);
 		
 		/**
 		 * 用户注册
 		 * @param user 前台传入参数
 		 * @return 注册反馈信息
 		 */
-		public String registe(ExaminationUser user);
+		public String registe(ExamUser user);
 }

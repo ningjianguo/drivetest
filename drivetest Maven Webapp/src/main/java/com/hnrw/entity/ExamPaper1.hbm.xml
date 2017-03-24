@@ -7,7 +7,7 @@
             <column name="paper1_id" />
             <generator class="native" />
         </id>
-        <many-to-one name="examQuestion1" class="com.hnrw.entity.ExamQuestion1" fetch="select">
+        <many-to-one name="examQuestion1" class="com.hnrw.entity.ExamQuestion1" fetch="select" lazy="false">
             <column name="question1_id" not-null="true">
                 <comment>科一题目主键(外键)</comment>
             </column>

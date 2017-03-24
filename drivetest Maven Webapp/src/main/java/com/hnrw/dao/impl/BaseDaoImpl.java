@@ -2,6 +2,7 @@ package com.hnrw.dao.impl;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -11,6 +12,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hnrw.dao.IBaseDao;
+import com.opensymphony.xwork2.ActionContext;
 
 @Transactional
 public class BaseDaoImpl<T> implements IBaseDao<T> {

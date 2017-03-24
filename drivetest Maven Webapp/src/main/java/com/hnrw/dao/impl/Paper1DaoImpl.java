@@ -13,7 +13,7 @@ import com.hnrw.util.UUIDUtil;
 public class Paper1DaoImpl extends BaseDaoImpl<ExamPaper1> implements IPaper1Dao{
 
 	@Override
-	public boolean createPaper1(List<ExamQuestion1> examQuestion1s) {
+	public String createPaper1(List<ExamQuestion1> examQuestion1s) {
 		String paper1Number = UUIDUtil.getUUID();
 		ExamPaper1 examPaper1 = null;
 		try {
@@ -26,9 +26,9 @@ public class Paper1DaoImpl extends BaseDaoImpl<ExamPaper1> implements IPaper1Dao
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return false;
+			return null;
 		}
-		return true;
+		return paper1Number;
 	}
 
 

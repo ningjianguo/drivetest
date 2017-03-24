@@ -64,7 +64,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </li>
                     
                     <li>
-                        <a class="active-menu" href="createPaperOne"><i class="fa fa-pencil-square-o "></i>科一模拟 </a>
+                        <a class="active-menu" href="javascript:createPaperOne()"><i class="fa fa-pencil-square-o "></i>科一模拟 </a>
                         
                     </li>
                     <li>
@@ -140,26 +140,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               	<div class="col-md-9">
               		<fieldset>
 					    <legend>考试题目</legend>
-					    <div style="float: left;">
-						    <h3>1、前方标志表示向左是单向行驶道路。</h3>
-						    <h4 style="margin-left: 20px;">A、正确</h4>
-						    <h4 style="margin-left: 20px;">B、错误</h4>
-						    <h4 style="margin-left: 20px;">A、正确</h4>
-						    <h4 style="margin-left: 20px;">B、错误</h4>
-					    </div>
-					    <div style="float: right;">
-					    	<a href="javascript:biggerImage('assets/img/1.jpg')" title="点击放大效果图"><img alt="" src="assets/img/1.jpg" class="img-thumbnail"></a>
-					    </div>
+					    <div style="float: left;" id="title"></div>
+					    <div style="float: right;" id="image"></div>
 					</fieldset>
 					<fieldset>
 						  <legend>题目选项</legend>
-						    	<div align="left">
-							    	<button type="button" class="btn btn-default btn-lg" style="margin-right: 20px;margin-left: 50px;">A</button>
-							    	<button type="button" class="btn btn-default btn-lg" style="margin-right: 20px;">B</button>
-							    	<button type="button" class="btn btn-default btn-lg" style="margin-right: 20px;">C</button>
-							    	<button type="button" class="btn btn-default btn-lg" style="margin-right: 100px;">D</button>
-							    	<button type="button" class="btn btn-primary btn-lg">交卷</button>
-						    	</div>
+						    	<div align="left" id="option"></div>
 					</fieldset>
               	</div>
               	
@@ -238,11 +224,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    var now = (new Date()).toLocaleString();
 		    $('#current-time').text(now);
 		}, 1000);
-		/* showWarning();
 		$('#showWarning').on('hidden.bs.modal', function (e) {
 		  testTimeDown();
-		}); */
-		waitPaper();
+		}); 
+		createPaperOne();
 	})
 	//考试计时器
 	function testTimeDown(){
@@ -276,7 +261,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	}
 	//放大效果图
 	function biggerImage(imgUrl){
-		$("#showImage").find("#img_show").html("<a href='javascript:smallImage()' title='点击缩小效果图'><img src='"+imgUrl+"' class='carousel-inner img-responsive img-rounded' />");
+		$("#showImage").find("#img_show").html("<a href='javascript:smallImage()' title='点击缩小效果图'><img src='"+imgUrl+"' class='carousel-inner img-responsive img-rounded' />");//
         $("#showImage").modal();
 	}
 	//缩小效果图
@@ -288,8 +273,45 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		$("#showWarning").modal('show');
 	}
 	//出题等待提示框
-	function waitPaper(){
-		$("#showPaperTikit").modal('show');
+	function waitPaper(args){
+		$("#showPaperTikit").modal(args);
+	}
+	//科目一模拟模块请求
+	function createPaperOne(){
+		waitPaper("show");
+		$.ajax({
+			type:"post",
+			url:"createPaperOne",
+			data:null,
+			success:function(data){
+				var dataObj=eval("("+data+")");
+				//加载题目信息
+				var title = "<h3>"+dataObj[0].examQuestion1.question1Question+"</h3>";
+				title += "<h4 style='margin-left: 20px;'>A、"+dataObj[0].examQuestion1.question1Item1+"</h4>";
+				title += "<h4 style='margin-left: 20px;'>B、"+dataObj[0].examQuestion1.question1Item2+"</h4>";
+				if(dataObj[0].examQuestion1.question1Item3 != ""){
+					title += "<h4 style='margin-left: 20px;'>C、"+dataObj[0].examQuestion1.question1Item3+"</h4>";
+					title += "<h4 style='margin-left: 20px;'>D、"+dataObj[0].examQuestion1.question1Item4+"</h4>";
+				}
+				$('#title').html(title);
+				//加载图片信息
+				if(dataObj[0].examQuestion1.question1Url != ""){
+					var img = "<a href=\"javascript:biggerImage(\'../img/"+dataObj[0].examQuestion1.question1Url+"\')\" title='点击放大效果图'><img src='../img/"+dataObj[0].examQuestion1.question1Url+"' class='img-thumbnail'></a>"
+					$('#image').html(img);
+				}
+				//加载选项信息
+				var option = "<button type='button' class='btn btn-default btn-lg' style='margin-right: 20px;margin-left: 50px;'>A</button>";
+				option+="<button type='button' class='btn btn-default btn-lg' style='margin-right: 20px;'>B</button>";
+				if(dataObj[0].examQuestion1.question1Item3 != ""){
+					option+="<button type='button' class='btn btn-default btn-lg' style='margin-right: 20px;'>C</button>";
+					option+="<button type='button' class='btn btn-default btn-lg' style='margin-right: 100px;'>D</button>";
+				}
+				option+="<button type='button' class='btn btn-primary btn-lg'>交卷</button>";
+				$('#option').html(option);
+				waitPaper("toggle");
+				showWarning();
+			}
+		});
 	}
 </script>
 </html>

@@ -10,8 +10,8 @@ public class ExamInfo implements java.io.Serializable {
 	private Integer infoId;
 	private ExamUser examUser;
 	private String paperNumber;
-	private Date infoStartTime;
-	private Date infoStartEnd;
+	private String infoStartTime;
+	private String infoStartEnd;
 	private Integer infoScore;
 	private Integer infoType;
 
@@ -22,7 +22,7 @@ public class ExamInfo implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public ExamInfo(ExamUser examUser, String paperNumber, Date infoStartTime,
+	public ExamInfo(ExamUser examUser, String paperNumber, String infoStartTime,
 			Integer infoType) {
 		this.examUser = examUser;
 		this.paperNumber = paperNumber;
@@ -31,8 +31,8 @@ public class ExamInfo implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public ExamInfo(ExamUser examUser, String paperNumber, Date infoStartTime,
-			Date infoStartEnd, Integer infoScore, Integer infoType) {
+	public ExamInfo(ExamUser examUser, String paperNumber, String infoStartTime,
+			String infoStartEnd, Integer infoScore, Integer infoType) {
 		this.examUser = examUser;
 		this.paperNumber = paperNumber;
 		this.infoStartTime = infoStartTime;
@@ -67,19 +67,19 @@ public class ExamInfo implements java.io.Serializable {
 		this.paperNumber = paperNumber;
 	}
 
-	public Date getInfoStartTime() {
+	public String getInfoStartTime() {
 		return this.infoStartTime;
 	}
 
-	public void setInfoStartTime(Date infoStartTime) {
+	public void setInfoStartTime(String infoStartTime) {
 		this.infoStartTime = infoStartTime;
 	}
 
-	public Date getInfoStartEnd() {
+	public String getInfoStartEnd() {
 		return this.infoStartEnd;
 	}
 
-	public void setInfoStartEnd(Date infoStartEnd) {
+	public void setInfoStartEnd(String infoStartEnd) {
 		this.infoStartEnd = infoStartEnd;
 	}
 

@@ -20,9 +20,13 @@
 		<!-- 用户注册 -->
 		<action name="registe" class="userAction" method="userRegiste"/>
 		
+		<!-- 前往drivertest1.jsp -->
+		<action name="driverTest1" class="courseOneTestAction" method="toDriverTest1Jsp">
+			<interceptor-ref name="myLoginStack"></interceptor-ref>
+			<result name="success">/WEB-INF/drivertest1.jsp</result>
+		</action>
 		<!-- 科目一试卷生成 -->
 		<action name="createPaperOne" class="courseOneTestAction" method="createOnePaper">
-			<result name="createPaper">/WEB-INF/drivertest1.jsp</result>
 			<interceptor-ref name="myLoginStack"></interceptor-ref>
 		</action>
 	</package>

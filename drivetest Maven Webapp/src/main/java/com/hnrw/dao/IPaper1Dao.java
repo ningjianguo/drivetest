@@ -8,7 +8,8 @@ public interface IPaper1Dao {
 	
 	/**
 	 * 生成科一试题
-	 * @return
+	 * @param 题库试题信息
+	 * @return 科一试题编号
 	 */
-	public boolean createPaper1(List<ExamQuestion1> examQuestion1s);
+	public String createPaper1(List<ExamQuestion1> examQuestion1s);
 }

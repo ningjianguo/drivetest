@@ -1,3 +1,4 @@
+<%@page import="com.sun.xml.internal.rngom.ast.builder.Include"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
@@ -27,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body>
     <div id="wrapper">
-        <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+       <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -198,6 +199,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div align="center" style="margin-top: 200px;"><img alt="" src="assets/img/load.gif"><div style="color: #fff;"><h3>小编正在为您疯狂出题中,请稍候......</h3></div></div>
          </div>
     </div>
+    <!-- 提交试卷确认模态框 -->
+    <div class="modal fade bs-example-modal-sm" id="showSubmitPaper" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+		<div class="modal-dialog modal-sm" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div align="center">
+						<h5 id="submitTip"></h5>
+						 <button type="button" class="btn btn-info" data-dismiss="modal" onclick="submitPaper1()">交卷</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
     <!-- /. FOOTER  -->
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
     <!-- BOOTSTRAP SCRIPTS -->
@@ -208,6 +223,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="assets/js/custom.js"></script>
 </body>
 <script>
+	var errorItem = 0;//被选错答案个数
+	var paperNumber = "";//试卷编号
 	$(function(){
 		setInterval(function() {
 	    var now = (new Date()).toLocaleString();
@@ -242,7 +259,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				if(minute==0&&second==0){
 					clearInterval(num);
 					//发送请求
-					
+					preSubmitPaper1("答题时间已到，请交卷!");
 				}
 			}
 			$('#currentTime').text(ms);
@@ -274,6 +291,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			data:null,
 			success:function(data){
 				var dataObj=eval("("+data+")");
+				paperNumber = dataObj[0].paper1Number;
 				//加载题目信息
 				showAnswerItem(dataObj);
 				showQuestionItem();
@@ -303,12 +321,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				if(answer == chooseItem){
 					$('#number').find('button').eq(paper1Qid-1).attr("class","btn btn-success btn-sm");
 				}else{
+					if(++errorItem > 5){
+						preSubmitPaper1("您已答错了6题，成绩不合格。请交卷!");
+					}
 					$('#number').find('button').eq(paper1Qid-1).attr("class","btn btn-danger btn-sm");
 				}
 				
 				//加载题目信息
 				var dataObj=eval("("+data+")");
+				paperNumber = dataObj[0].paper1Number;
 				showAnswerItem(dataObj);
+			}
+		});
+	}
+	//提交试卷
+	function preSubmitPaper1(warningInfo){
+		if(warningInfo != undefined){
+			$('#submitTip').text(warningInfo);
+			$('#showSubmitPaper').modal('show');
+		}else{
+			submitPaper1();
+		}
+	}
+	function submitPaper1(){
+		alert(paperNumber);
+		$.ajax({
+			type:"post",
+			url:"submitPaper1",
+			data:{"paper1Number":paperNumber},
+			success:function(data){
+				
 			}
 		});
 	}
@@ -336,7 +378,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					option+="<button type='button' onclick=\"selectAnswer(\'"+dataObj[0].question1Answer+"\',\'"+dataObj[0].paper1Number+"\',\'"+dataObj[0].paper1Qid+"\',3)\" class='btn btn-default btn-lg' style='margin-right: 20px;'>C</button>";
 					option+="<button type='button' onclick=\"selectAnswer(\'"+dataObj[0].question1Answer+"\',\'"+dataObj[0].paper1Number+"\',\'"+dataObj[0].paper1Qid+"\',4)\" class='btn btn-default btn-lg' style='margin-right: 20px;'>D</button>";
 				}
-				option+="<button type='button' class='btn btn-primary btn-lg' style='margin-left: 20px;'>交卷</button>";
+				option+="<button type='button' class='btn btn-primary btn-lg' style='margin-left: 20px;' onclick='preSubmitPaper1()'>交卷</button>";
 				$('#option').html(option);
 	}
 </script>

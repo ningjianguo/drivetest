@@ -18,4 +18,5 @@ public class IndexAction extends ActionSupport{
 		request.setAttribute("loginerr", 1);
 		return SUCCESS;
 	}
+	
 }

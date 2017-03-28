@@ -8,7 +8,6 @@
 			<result name="success">/WEB-INF/index.jsp</result>
 			<interceptor-ref name="myLoginStack"></interceptor-ref>
 		</action>
-		
 		<!-- 用户登录 -->
 		<action name="login" class="userAction" method="userLogin"/>
 		
@@ -31,6 +30,9 @@
 		</action>
 		<!-- 科目一题目切换 -->
 		<action name="chooseOneAnswer" class="courseOneTestAction" method="chooseOneAnswer">
+			<interceptor-ref name="myLoginStack"></interceptor-ref>
+		</action>
+		<action name="submitPaper1" class="courseOneTestAction" method="submitPaper1">
 			<interceptor-ref name="myLoginStack"></interceptor-ref>
 		</action>
 	</package>

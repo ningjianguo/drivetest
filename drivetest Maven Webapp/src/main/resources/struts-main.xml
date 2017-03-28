@@ -29,5 +29,9 @@
 		<action name="createPaperOne" class="courseOneTestAction" method="createOnePaper">
 			<interceptor-ref name="myLoginStack"></interceptor-ref>
 		</action>
+		<!-- 科目一题目切换 -->
+		<action name="chooseOneAnswer" class="courseOneTestAction" method="chooseOneAnswer">
+			<interceptor-ref name="myLoginStack"></interceptor-ref>
+		</action>
 	</package>
 </struts>    

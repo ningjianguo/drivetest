@@ -22,6 +22,11 @@
                 <comment>科一题目标准答案</comment>
             </column>
         </property>
+        <property name="paper1Qid" type="java.lang.Integer">
+            <column name="paper1_qid" not-null="true">
+                <comment>试卷题目序号</comment>
+            </column>
+        </property>
         <property name="paper1Choice" type="java.lang.Integer">
             <column name="paper1_choice">
                 <comment>科一题目所选答案</comment>

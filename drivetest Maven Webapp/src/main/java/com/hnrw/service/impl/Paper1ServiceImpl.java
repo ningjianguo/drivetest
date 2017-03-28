@@ -38,5 +38,16 @@ public class Paper1ServiceImpl implements IPaper1Service{
 		}
 		return null;
 	}
+	
+	@Override
+	public String chooseOneAnswer(ExamPaper1 examPaper1) {
+		if(paper1DaoImpl.updatePaper1Choice(examPaper1)){//保存上一题的答题信息
+			ExamPaper1 paper1 = infoDaoImpl.getCourseOneQuestion(examPaper1.getPaper1Number(),examPaper1.getPaper1Qid()+1);
+			JsonConfig config = new JsonConfig();
+			config.setExcludes(new String[]{"examPaper1s"});
+			return JSONArray.fromObject(paper1,config).toString();
+		}
+		return null;
+	}
 
 }

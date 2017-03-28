@@ -9,6 +9,7 @@ public class ExamPaper1 implements java.io.Serializable {
 	private ExamQuestion1 examQuestion1;
 	private String paper1Number;
 	private String question1Answer;
+	private Integer paper1Qid;
 	private Integer paper1Choice;
 
 	// Constructors
@@ -27,11 +28,12 @@ public class ExamPaper1 implements java.io.Serializable {
 
 	/** full constructor */
 	public ExamPaper1(ExamQuestion1 examQuestion1, String paper1Number,
-			String question1Answer, Integer paper1Choice) {
+			String question1Answer, Integer paper1Choice,Integer paper1Qid) {
 		this.examQuestion1 = examQuestion1;
 		this.paper1Number = paper1Number;
 		this.question1Answer = question1Answer;
 		this.paper1Choice = paper1Choice;
+		this.paper1Qid = paper1Qid;
 	}
 
 	// Property accessors
@@ -76,4 +78,12 @@ public class ExamPaper1 implements java.io.Serializable {
 		this.paper1Choice = paper1Choice;
 	}
 
+	public Integer getPaper1Qid() {
+		return paper1Qid;
+	}
+
+	public void setPaper1Qid(Integer paper1Qid) {
+		this.paper1Qid = paper1Qid;
+	}
+	
 }

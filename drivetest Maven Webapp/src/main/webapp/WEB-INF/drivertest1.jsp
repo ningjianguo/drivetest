@@ -102,7 +102,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <!-- /. ROW  -->
               <div class="row">
               	<div class="col-md-3">
-              		<fieldset>
+              		<fieldset style="height: 350px;">
 					    <legend>考生信息</legend>
 					    <table style="text-align: center;" align="center">
 					    <tr>
@@ -138,14 +138,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</fieldset>
               	</div>
               	<div class="col-md-9">
-              		<fieldset>
+              		<fieldset style="height: 350px;">
 					    <legend>考试题目</legend>
-					    <div style="float: left;" id="title"></div>
-					    <div style="float: right;" id="image"></div>
+					    <div class="col-md-6" id="title"></div>
+					    <div class="col-md-6" id="image"></div>
 					</fieldset>
 					<fieldset>
 						  <legend>题目选项</legend>
-						    	<div align="left" id="option"></div>
+						  <div align="left" id="option"></div>
 					</fieldset>
               	</div>
               	
@@ -155,18 +155,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 	<div class="col-md-12">
               		<fieldset>
 					    <legend>答题信息</legend>
-					    <div align="center">
-					      <%
-					    	int i = 0;
-					    	for(i = 1; i <= 100; i++){
-					    	if(i<10){
-					      %>
-					    	<button type="button" class="btn btn-default btn-sm" style="margin: 2px;">0<%=i%></button>
-					     <%}else{%>
-					    	<button type="button" class="btn btn-default btn-sm" style="margin: 2px;"><%=i%></button>
-					     <%}
-					      }%>
-					      </div>
+					    <div align="center" id="number"></div>
 					</fieldset>
               	</div>
                 </div>
@@ -286,7 +275,46 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			success:function(data){
 				var dataObj=eval("("+data+")");
 				//加载题目信息
-				var title = "<h3>"+dataObj[0].examQuestion1.question1Question+"</h3>";
+				showAnswerItem(dataObj);
+				showQuestionItem();
+				waitPaper("toggle");
+				showWarning();
+			}
+		});
+	}
+	//题目序号展示
+	function showQuestionItem(){
+		var button = "";
+		for(var i = 1;i <= 100;i++){
+			if(i<10){
+				i = "0"+i;
+			}
+			button+="<button type='button' class='btn btn-default btn-sm' style='margin: 2px;'>"+i+"</button>";
+		}
+		$('#number').html(button);
+	}
+	//选择一项答案
+	function selectAnswer(answer,paper1Number,paper1Qid,chooseItem){
+		$.ajax({
+			type:"post",
+			url:"chooseOneAnswer",
+			data:{"paper1Number":paper1Number,"paper1Qid":paper1Qid,"paper1Choice":chooseItem},
+			success:function(data){
+				if(answer == chooseItem){
+					$('#number').find('button').eq(paper1Qid-1).attr("class","btn btn-success btn-sm");
+				}else{
+					$('#number').find('button').eq(paper1Qid-1).attr("class","btn btn-danger btn-sm");
+				}
+				
+				//加载题目信息
+				var dataObj=eval("("+data+")");
+				showAnswerItem(dataObj);
+			}
+		});
+	}
+	//展示答案选项
+	function showAnswerItem(dataObj){
+		var title = "<h3>"+dataObj[0].paper1Qid+"、"+dataObj[0].examQuestion1.question1Question+"</h3>";
 				title += "<h4 style='margin-left: 20px;'>A、"+dataObj[0].examQuestion1.question1Item1+"</h4>";
 				title += "<h4 style='margin-left: 20px;'>B、"+dataObj[0].examQuestion1.question1Item2+"</h4>";
 				if(dataObj[0].examQuestion1.question1Item3 != ""){
@@ -298,20 +326,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				if(dataObj[0].examQuestion1.question1Url != ""){
 					var img = "<a href=\"javascript:biggerImage(\'../img/"+dataObj[0].examQuestion1.question1Url+"\')\" title='点击放大效果图'><img src='../img/"+dataObj[0].examQuestion1.question1Url+"' class='img-thumbnail'></a>"
 					$('#image').html(img);
+				}else{
+					$('#image').html("");
 				}
 				//加载选项信息
-				var option = "<button type='button' class='btn btn-default btn-lg' style='margin-right: 20px;margin-left: 50px;'>A</button>";
-				option+="<button type='button' class='btn btn-default btn-lg' style='margin-right: 20px;'>B</button>";
+				var option = "<button type='button' onclick=\"selectAnswer(\'"+dataObj[0].question1Answer+"\',\'"+dataObj[0].paper1Number+"\',\'"+dataObj[0].paper1Qid+"\',1)\" class='btn btn-default btn-lg' style='margin-right: 20px;margin-left: 50px;'>A</button>";
+				option+="<button type='button' onclick=\"selectAnswer(\'"+dataObj[0].question1Answer+"\',\'"+dataObj[0].paper1Number+"\',\'"+dataObj[0].paper1Qid+"\',2)\" class='btn btn-default btn-lg' style='margin-right: 20px;'>B</button>";
 				if(dataObj[0].examQuestion1.question1Item3 != ""){
-					option+="<button type='button' class='btn btn-default btn-lg' style='margin-right: 20px;'>C</button>";
-					option+="<button type='button' class='btn btn-default btn-lg' style='margin-right: 100px;'>D</button>";
+					option+="<button type='button' onclick=\"selectAnswer(\'"+dataObj[0].question1Answer+"\',\'"+dataObj[0].paper1Number+"\',\'"+dataObj[0].paper1Qid+"\',3)\" class='btn btn-default btn-lg' style='margin-right: 20px;'>C</button>";
+					option+="<button type='button' onclick=\"selectAnswer(\'"+dataObj[0].question1Answer+"\',\'"+dataObj[0].paper1Number+"\',\'"+dataObj[0].paper1Qid+"\',4)\" class='btn btn-default btn-lg' style='margin-right: 20px;'>D</button>";
 				}
-				option+="<button type='button' class='btn btn-primary btn-lg'>交卷</button>";
+				option+="<button type='button' class='btn btn-primary btn-lg' style='margin-left: 20px;'>交卷</button>";
 				$('#option').html(option);
-				waitPaper("toggle");
-				showWarning();
-			}
-		});
 	}
 </script>
 </html>

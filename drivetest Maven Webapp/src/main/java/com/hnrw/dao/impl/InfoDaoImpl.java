@@ -4,13 +4,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 
-import org.hibernate.HibernateException;
 import org.springframework.stereotype.Repository;
 
 import com.hnrw.dao.IInfoDao;
 import com.hnrw.entity.ExamInfo;
 import com.hnrw.entity.ExamPaper1;
-import com.hnrw.entity.ExamQuestion1;
 import com.hnrw.entity.ExamUser;
 import com.opensymphony.xwork2.ActionContext;
 

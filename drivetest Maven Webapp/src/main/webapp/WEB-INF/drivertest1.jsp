@@ -213,6 +213,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</div>
 	</div>
+    <!-- 试卷反馈模态框 -->
+    <div class="modal fade bs-example-modal-sm" id="showReturnPaper" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+		<div class="modal-dialog modal-sm" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div align="center">
+						<img class="img-responsive img-rounded" id="img1">
+						<table style="border: 0px;cellpadding:10px;" >
+							<tr>
+								<td>错题:</td><td id="errorNum"></td><td>&nbsp;</td><td>未做题:</td><td id="noSelectedNum"></td>
+							</tr>
+							<tr>
+								<td>总成绩:</td><td id="totalScore"></td><td>&nbsp;</td><td>成绩评定:</td><td id="grade"></td>
+							</tr>
+							<tr>
+								<td><button type="button" class="btn btn-info" data-dismiss="modal" onclick="againTest()">再考一次</button></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td><button type="button" class="btn btn-default" data-dismiss="modal" onclick="toIndex()">取消</button></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
     <!-- /. FOOTER  -->
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
     <!-- BOOTSTRAP SCRIPTS -->
@@ -321,8 +349,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				if(answer == chooseItem){
 					$('#number').find('button').eq(paper1Qid-1).attr("class","btn btn-success btn-sm");
 				}else{
-					if(++errorItem > 5){
-						preSubmitPaper1("您已答错了6题，成绩不合格。请交卷!");
+					if(++errorItem > 10){
+						preSubmitPaper1("您已答错了11题，成绩不合格。请交卷!");
 					}
 					$('#number').find('button').eq(paper1Qid-1).attr("class","btn btn-danger btn-sm");
 				}
@@ -344,13 +372,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		}
 	}
 	function submitPaper1(){
-		alert(paperNumber);
 		$.ajax({
 			type:"post",
 			url:"submitPaper1",
 			data:{"paper1Number":paperNumber},
 			success:function(data){
-				
+				var dataObj=eval("("+data+")");
+				$('#errorNum').text(dataObj[0]+"道");
+				$('#noSelectedNum').text(dataObj[1]+"道");
+				$('#totalScore').text(dataObj[2]+"分");
+				if(dataObj[2] < 90){
+					$('#img1').attr("src","assets/img/malushashou.png");
+					$('#grade').text("不合格");
+				}else{
+					$('#grade').text("合格");
+				}
+				errorItem = 0;//被选错答案个数
+				paperNumber = "";//试卷编号
+				$('#showReturnPaper').modal('show');
 			}
 		});
 	}
@@ -380,6 +419,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				}
 				option+="<button type='button' class='btn btn-primary btn-lg' style='margin-left: 20px;' onclick='preSubmitPaper1()'>交卷</button>";
 				$('#option').html(option);
+	}
+	//重考一次
+	function againTest(){
+		$('#showReturnPaper').modal('toggle');
+		createPaperOne();
+	}
+	//前往首页
+	function toIndex(){
+		$('#showReturnPaper').modal('toggle');
+		window.location.href="<%=basePath%>index";
 	}
 </script>
 </html>

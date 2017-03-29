@@ -1,6 +1,5 @@
 package com.hnrw.entity;
 
-import java.util.Date;
 
 public class ExamInfo implements java.io.Serializable {
 
@@ -11,7 +10,7 @@ public class ExamInfo implements java.io.Serializable {
 	private ExamUser examUser;
 	private String paperNumber;
 	private String infoStartTime;
-	private String infoStartEnd;
+	private String infoEndTime;
 	private Integer infoScore;
 	private Integer infoType;
 
@@ -32,11 +31,11 @@ public class ExamInfo implements java.io.Serializable {
 
 	/** full constructor */
 	public ExamInfo(ExamUser examUser, String paperNumber, String infoStartTime,
-			String infoStartEnd, Integer infoScore, Integer infoType) {
+			String infoEndTime, Integer infoScore, Integer infoType) {
 		this.examUser = examUser;
 		this.paperNumber = paperNumber;
 		this.infoStartTime = infoStartTime;
-		this.infoStartEnd = infoStartEnd;
+		this.infoEndTime = infoEndTime;
 		this.infoScore = infoScore;
 		this.infoType = infoType;
 	}
@@ -75,12 +74,12 @@ public class ExamInfo implements java.io.Serializable {
 		this.infoStartTime = infoStartTime;
 	}
 
-	public String getInfoStartEnd() {
-		return this.infoStartEnd;
+	public String getInfoEndTime() {
+		return infoEndTime;
 	}
 
-	public void setInfoStartEnd(String infoStartEnd) {
-		this.infoStartEnd = infoStartEnd;
+	public void setInfoEndTime(String infoEndTime) {
+		this.infoEndTime = infoEndTime;
 	}
 
 	public Integer getInfoScore() {

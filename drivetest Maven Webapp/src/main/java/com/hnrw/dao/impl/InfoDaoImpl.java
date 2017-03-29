@@ -49,5 +49,21 @@ public class InfoDaoImpl extends BaseDaoImpl<ExamInfo> implements IInfoDao{
 		}
 		return examPaper1;
 	}
+
+	@Override
+	public boolean updateExamEndTimeAndScoreByPaperNumber(String paperNumber,int totalScore) {
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+		try {
+			String sql = "UPDATE EXAM_INFO SET INFO_SCORE=? , INFO_ENDTIME=? WHERE PAPER_NUMBER=?";
+			int a = getSession().createSQLQuery(sql).setInteger(0, totalScore)
+											.setString(1, sdf.format(new Date()))
+											.setString(2, paperNumber)
+											.executeUpdate();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 	
 }

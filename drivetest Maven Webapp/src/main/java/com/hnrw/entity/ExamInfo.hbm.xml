@@ -22,8 +22,8 @@
                 <comment>考试开始时间</comment>
             </column>
         </property>
-        <property name="infoStartEnd" type="java.lang.String">
-            <column name="info_startEnd" length="32">
+        <property name="infoEndTime" type="java.lang.String">
+            <column name="info_endTime" length="32">
                 <comment>考试结束时间</comment>
             </column>
         </property>

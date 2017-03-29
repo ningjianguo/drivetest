@@ -48,5 +48,29 @@ public class Paper1DaoImpl extends BaseDaoImpl<ExamPaper1> implements IPaper1Dao
 		}
 	}
 
+	@Override
+	public int getTrueAnswerByPaper1Number(String paper1Number) {
+		String hql = "SELECT COUNT(*) FROM ExamPaper1 WHERE paper1Number=:number AND question1Answer=paper1Choice";
+		Long size = null;
+		try {
+			size = (Long) getSession().createQuery(hql).setString("number", paper1Number).uniqueResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return size.intValue();
+	}
+
+	@Override
+	public int getselectedAnswerByPaper1Number(String paper1Number) {
+		String hql = "SELECT COUNT(*) FROM ExamPaper1 WHERE paper1Number=:number AND paper1Choice IS NOT NULL";
+		Long size = null;
+		try {
+			size = (Long) getSession().createQuery(hql).setString("number", paper1Number).uniqueResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return size.intValue();
+	}
+
 
 }

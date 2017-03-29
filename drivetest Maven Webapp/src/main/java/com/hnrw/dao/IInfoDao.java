@@ -18,4 +18,12 @@ public interface IInfoDao {
 	 * @return 题目信息
 	 */
 	public ExamPaper1 getCourseOneQuestion(String paperNumber,int questionNumber);
+	
+	/**
+	 * 根据试卷编号更新考试结束时间和总成绩
+	 * @param paperNumber1 试卷编号
+	 * @param totalScore 总成绩
+	 * @return 是否更新成功
+	 */
+	public boolean updateExamEndTimeAndScoreByPaperNumber(String paperNumber,int totalScore);
 }

@@ -1,4 +1,3 @@
-<%@page import="com.sun.xml.internal.rngom.ast.builder.Include"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
@@ -405,7 +404,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$('#title').html(title);
 				//加载图片信息
 				if(dataObj[0].examQuestion1.question1Url != ""){
-					var img = "<a href=\"javascript:biggerImage(\'../img/"+dataObj[0].examQuestion1.question1Url+"\')\" title='点击放大效果图'><img src='../img/"+dataObj[0].examQuestion1.question1Url+"' class='img-thumbnail'></a>"
+					var img = "<a href=\"javascript:biggerImage(\'../question1/"+dataObj[0].examQuestion1.question1Url+"\')\" title='点击放大效果图'><img src='../question1/"+dataObj[0].examQuestion1.question1Url+"' class='img-thumbnail'></a>"
 					$('#image').html(img);
 				}else{
 					$('#image').html("");

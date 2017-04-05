@@ -7,4 +7,10 @@ public interface IInfoService {
 	 * @return 试卷分数反馈
 	 */
 	public String submitPaper1(String paper1Number);
+	/**
+	 * 提交科四试卷
+	 * @param paper4Number 试卷编号
+	 * @return 试卷分数反馈
+	 */
+	public String submitPaper4(String paper4Number);
 }

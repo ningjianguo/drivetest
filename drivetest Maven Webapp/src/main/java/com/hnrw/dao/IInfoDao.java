@@ -1,6 +1,7 @@
 package com.hnrw.dao;
 
 import com.hnrw.entity.ExamPaper1;
+import com.hnrw.entity.ExamPaper4;
 
 public interface IInfoDao {
 	/**
@@ -19,6 +20,13 @@ public interface IInfoDao {
 	 */
 	public ExamPaper1 getCourseOneQuestion(String paperNumber,int questionNumber);
 	
+	/**
+	 * 获取一道科目一的题
+	 * @param paperNumber 试卷编号
+	 * @param questionNumber 题号
+	 * @return 题目信息
+	 */
+	public ExamPaper4 getCourseFourQuestion(String paperNumber,int questionNumber);
 	/**
 	 * 根据试卷编号更新考试结束时间和总成绩
 	 * @param paperNumber1 试卷编号

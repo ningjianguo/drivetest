@@ -39,4 +39,9 @@ public class InfoServiceImpl implements IInfoService {
 		return null;
 	}
 
+	@Override
+	public String submitPaper4(String paper4Number) {
+		return null;
+	}
+
 }

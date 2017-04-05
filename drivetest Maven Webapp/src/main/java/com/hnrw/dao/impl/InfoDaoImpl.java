@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.hnrw.dao.IInfoDao;
 import com.hnrw.entity.ExamInfo;
 import com.hnrw.entity.ExamPaper1;
+import com.hnrw.entity.ExamPaper4;
 import com.hnrw.entity.ExamUser;
 import com.opensymphony.xwork2.ActionContext;
 
@@ -64,6 +65,11 @@ public class InfoDaoImpl extends BaseDaoImpl<ExamInfo> implements IInfoDao{
 			e.printStackTrace();
 			return false;
 		}
+	}
+
+	@Override
+	public ExamPaper4 getCourseFourQuestion(String paperNumber, int questionNumber) {
+		return null;
 	}
 	
 }

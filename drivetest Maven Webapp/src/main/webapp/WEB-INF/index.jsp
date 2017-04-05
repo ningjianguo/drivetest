@@ -12,84 +12,15 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>DRIVE TEST</title>
-<link rel="icon" href="assets/img/car.ico" type="image/x-icon">
-<!-- BOOTSTRAP STYLES-->
-<link href="assets/css/bootstrap.css" rel="stylesheet" />
-<!-- FONTAWESOME STYLES-->
-<link href="assets/css/font-awesome.css" rel="stylesheet" />
-<!--CUSTOM BASIC STYLES-->
-<link href="assets/css/basic.css" rel="stylesheet" />
-<!--CUSTOM MAIN STYLES-->
-<link href="assets/css/custom.css" rel="stylesheet" />
-<!-- GOOGLE FONTS-->
-<link href='assets/css/openSans.css' rel='stylesheet' type='text/css' />
-<!-- JQUERY SCRIPTS -->
-<script src="assets/js/jquery-1.10.2.js"></script>
+<%@include file="common.jsp" %>
 </head>
 <body>
 	<div id="wrapper">
-		<nav class="navbar navbar-default navbar-cls-top " role="navigation"
-			style="margin-bottom: 0">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target=".sidebar-collapse">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand fa fa-taxi" href="index">&nbsp;DRIVER
-					TEST</a>
-			</div>
-
-			<div class="header-right">
-				<span id="current-time" style="float: left;font-weight: bolder;margin-right: 15px;margin-top: 10px;"></span>
-				<a href="message-task.html" class="btn btn-info" title="New Message"><i
-					class="fa fa-envelope-o fa-2x"></i>&nbsp;邮件列表</a> <a href="loginOut"
-					class="btn btn-danger" title="Logout"><i
-					class="fa  fa-sign-out fa-2x"></i>&nbsp;退出系统</a>
-
-			</div>
-		</nav>
+		<%@include file="toppage.jsp" %>
 		<!-- /. NAV TOP  -->
-		<nav class="navbar-default navbar-side" role="navigation">
-			<div class="sidebar-collapse">
-				<ul class="nav" id="main-menu">
-					<li>
-						<div class="user-img-div">
-							<img src="assets/img/user.png" class="img-thumbnail" />
-							<div class="inner-text">
-								欢迎你，${user.userName} <br />
-							</div>
-						</div>
-					</li>
-					<li><a class="active-menu" href="index"><i
-							class="fa fa-dashboard "></i>主页</a>
-					</li>
-
-					<li><a href="driverTest1"><i
-							class="fa fa-pencil-square-o "></i>科一模拟 </a>
-					</li>
-					<li><a href="drivertest4.html"><i
-							class="fa fa-pencil-square-o "></i>科四模拟</a>
-					</li>
-					<li><a href="analogtest.html"><i
-							class="fa fa-pencil-square "></i>模拟练习</a>
-					</li>
-					<li><a href="testreview.html"><i class="fa fa-book "></i>试题复习</a>
-					</li>
-					<li><a href="mygrade.html"><i
-							class="fa fa-graduation-cap "></i>我的成绩</a>
-					</li>
-					<li><a href="personsetting.html"><i class="fa fa-cogs "></i>个人设置</a>
-					</li>
-					<li><a href="javascript:void(0)"><i
-							class="fa fa-sign-out "></i>退出系统</a>
-					</li>
-				</ul>
-
-			</div>
-
-		</nav>
+		<jsp:include page="leftmenu.jsp">
+			<jsp:param value="index" name="menuactive"/>
+		</jsp:include>
 		<!-- /. NAV SIDE  -->
 		<div id="page-wrapper">
 			<div id="page-inner">
@@ -154,9 +85,7 @@
 	</div>
 	<!-- /. WRAPPER  -->
 
-	<div id="footer-sec" align="center">Copyright &copy; 2017 Hunan
-		University Of Humanities,Science And Technology. All Rights Reserved.
-	</div>
+	<%@include file="copyrightpage.jsp" %>
 	<!-- 登录模态框 -->
 	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel">

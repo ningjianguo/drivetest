@@ -2,12 +2,12 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.entity.ExamPaper4" table="exam_paper4" catalog="jiakaosys">
+    <class name="com.hnrw.entity.ExamPaper4" table="exam_paper4" catalog="jiakaosys">
         <id name="paper4Id" type="java.lang.Integer">
             <column name="paper4_id" />
             <generator class="native" />
         </id>
-        <many-to-one name="examQuestion4" class="com.entity.ExamQuestion4" fetch="select" lazy="false">
+        <many-to-one name="examQuestion4" class="com.hnrw.entity.ExamQuestion4" fetch="select" lazy="false">
             <column name="question4_id" not-null="true">
                 <comment>科四题目主键(外键)</comment>
             </column>

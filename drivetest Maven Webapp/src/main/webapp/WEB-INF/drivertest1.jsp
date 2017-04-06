@@ -12,6 +12,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <title>Driver Test</title>
     <%@include file="common.jsp" %>
 </head>
+<style>
+	fieldset{padding:.35em .625em .75em;margin:0 2px;border:1px solid silver}
+	legend{padding:.5em;border:0;width:auto}
+</style>
 <body>
     <div id="wrapper">
        <%@include file="toppage.jsp" %>
@@ -73,7 +77,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					    <div class="col-md-6" id="image"></div>
 					</fieldset>
 					<fieldset>
-						  <legend>题目选项</legend>
+						  <legend>题目选项(单选)</legend>
 						  <div align="left" id="option"></div>
 					</fieldset>
               	</div>

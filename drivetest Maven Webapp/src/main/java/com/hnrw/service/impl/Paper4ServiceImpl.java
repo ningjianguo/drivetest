@@ -31,7 +31,7 @@ public class Paper4ServiceImpl implements IPaper4Service{
 		String paper4Number = paper4DaoImpl.createPaper4(examQuestion4s);
 		if(infoDaoImpl.createExamInfo(paper4Number, 4)){//出题成功
 			//返回第一道题
-			ExamPaper4 examPaper4 = infoDaoImpl.getCourseFourQuestion(paper4Number, 4);
+			ExamPaper4 examPaper4 = infoDaoImpl.getCourseFourQuestion(paper4Number, 1);
 			JsonConfig config = new JsonConfig();
 			config.setExcludes(new String[]{"examPaper4s"});
 			return JSONArray.fromObject(examPaper4,config).toString();

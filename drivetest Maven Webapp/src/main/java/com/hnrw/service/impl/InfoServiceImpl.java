@@ -5,19 +5,22 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import net.sf.json.JSONArray;
-
 import org.springframework.stereotype.Service;
 
 import com.hnrw.dao.IInfoDao;
 import com.hnrw.dao.IPaper1Dao;
+import com.hnrw.dao.IPaper4Dao;
 import com.hnrw.service.IInfoService;
+
+import net.sf.json.JSONArray;
 
 @Service
 public class InfoServiceImpl implements IInfoService {
 	
 	@Resource
 	private IPaper1Dao paper1DaoImpl;
+	@Resource
+	private IPaper4Dao paper4DaoImpl;
 	@Resource
 	private IInfoDao infoDaoImpl;
 	

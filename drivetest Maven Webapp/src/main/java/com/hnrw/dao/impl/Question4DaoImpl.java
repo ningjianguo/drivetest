@@ -13,7 +13,7 @@ public class Question4DaoImpl extends BaseDaoImpl<ExamQuestion4> implements IQue
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ExamQuestion4> get50SubjectByRandom() {
-		String sql = "SELECT * FROM exam_question4 ORDER BY rand() LIMIT 400";
+		String sql = "SELECT * FROM exam_question4 ORDER BY rand() LIMIT 50";
 		List<ExamQuestion4> examQuestion4s = null;
 		try {
 			examQuestion4s = getSession().createSQLQuery(sql).addEntity(ExamQuestion4.class).list();

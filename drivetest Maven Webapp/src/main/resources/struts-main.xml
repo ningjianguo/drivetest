@@ -35,5 +35,21 @@
 		<action name="submitPaper1" class="courseOneTestAction" method="submitPaper1">
 			<interceptor-ref name="myLoginStack"></interceptor-ref>
 		</action>
+		<!-- 前往drivertest4.jsp -->
+		<action name="driverTest4" class="courseFourTestAction" method="toDriverTest4Jsp">
+			<interceptor-ref name="myLoginStack"></interceptor-ref>
+			<result name="success">/WEB-INF/drivertest4.jsp</result>
+		</action>
+		<!-- 科目四试卷生成 -->
+		<action name="createPaperFour" class="courseFourTestAction" method="createOnePaper">
+			<interceptor-ref name="myLoginStack"></interceptor-ref>
+		</action>
+		<!-- 科目四题目切换 -->
+		<action name="chooseOneAnswer4" class="courseFourTestAction" method="chooseOneAnswer">
+			<interceptor-ref name="myLoginStack"></interceptor-ref>
+		</action>
+		<action name="submitPaper4" class="courseFourTestAction" method="submitPaper4">
+			<interceptor-ref name="myLoginStack"></interceptor-ref>
+		</action>
 	</package>
 </struts>    

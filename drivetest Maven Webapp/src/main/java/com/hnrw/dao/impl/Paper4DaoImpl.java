@@ -16,7 +16,7 @@ public class Paper4DaoImpl extends BaseDaoImpl<ExamPaper4> implements IPaper4Dao
 	public String createPaper4(List<ExamQuestion4> examQuestion4s) {
 		String paper4Number = UUIDUtil.getUUID();
 		ExamPaper4 examPaper4 = null;
-		int qid = 4;
+		int qid = 1;
 		try {
 			for (ExamQuestion4 examQuestion4 : examQuestion4s) {
 				examPaper4 = new ExamPaper4();

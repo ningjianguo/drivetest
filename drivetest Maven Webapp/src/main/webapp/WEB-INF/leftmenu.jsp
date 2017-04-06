@@ -25,7 +25,7 @@
 					<li><a href="driverTest1" id="drivetest1"><i
 							class="fa fa-pencil-square-o "></i>科一模拟 </a>
 					</li>
-					<li><a href="drivertest4.html" id="drivetest4"><i
+					<li><a href="driverTest4" id="drivetest4"><i
 							class="fa fa-pencil-square-o "></i>科四模拟</a>
 					</li>
 					<li><a href="analogtest.html"><i

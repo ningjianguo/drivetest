@@ -69,7 +69,18 @@ public class InfoDaoImpl extends BaseDaoImpl<ExamInfo> implements IInfoDao{
 
 	@Override
 	public ExamPaper4 getCourseFourQuestion(String paperNumber, int questionNumber) {
-		return null;
+		String sql = "SELECT * FROM EXAM_PAPER4 WHERE PAPER4_NUMBER=? LIMIT ?,1 ";
+		ExamPaper4 examPaper4 = null;
+		try {
+			examPaper4 = (ExamPaper4) getSession().createSQLQuery(sql).addEntity(ExamPaper4.class)
+						.setString(0, paperNumber)
+						.setInteger(1, questionNumber-1)
+						.uniqueResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		return examPaper4;
 	}
 	
 }

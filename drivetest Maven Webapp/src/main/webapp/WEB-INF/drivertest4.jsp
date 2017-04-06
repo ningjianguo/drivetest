@@ -12,6 +12,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <title>Driver Test</title>
     <%@include file="common.jsp" %>
 </head>
+<style>
+	fieldset{padding:.35em .625em .75em;margin:0 2px;border:1px solid silver}
+	legend{padding:.5em;border:0;width:auto}
+</style>
 <body>
     <div id="wrapper">
        <%@include file="toppage.jsp" %>
@@ -73,7 +77,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					    <div class="col-md-6" id="image"></div>
 					</fieldset>
 					<fieldset>
-						  <legend>题目选项</legend>
+						  <legend>题目选项(多选)</legend>
 						  <div align="left" id="option"></div>
 					</fieldset>
               	</div>
@@ -133,7 +137,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="modal-body">
 					<div align="center">
 						<h5 id="submitTip"></h5>
-						 <button type="button" class="btn btn-info" data-dismiss="modal" onclick="submitPaper1()">交卷</button>
+						 <button type="button" class="btn btn-info" data-dismiss="modal" onclick="submitPaper4()">交卷</button>
 					</div>
 				</div>
 			</div>
@@ -213,7 +217,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				if(minute==0&&second==0){
 					clearInterval(num);
 					//发送请求
-					preSubmitPaper1("答题时间已到，请交卷!");
+					preSubmitPaper4("答题时间已到，请交卷!");
 				}
 			}
 			$('#currentTime').text(ms);
@@ -236,16 +240,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	function waitPaper(args){
 		$("#showPaperTikit").modal(args);
 	}
-	//科目一模拟模块请求
+	//科目四模拟模块请求
 	function createPaperOne(){
 		waitPaper("show");
 		$.ajax({
 			type:"post",
-			url:"createPaperOne",
+			url:"createPaperFour",
 			data:null,
 			success:function(data){
 				var dataObj=eval("("+data+")");
-				paperNumber = dataObj[0].paper1Number;
+				paperNumber = dataObj[0].paper4Number;
 				//加载题目信息
 				showAnswerItem(dataObj);
 				showQuestionItem();
@@ -257,7 +261,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	//题目序号展示
 	function showQuestionItem(){
 		var button = "";
-		for(var i = 1;i <= 100;i++){
+		for(var i = 1;i <= 50;i++){
 			if(i<10){
 				i = "0"+i;
 			}
@@ -266,42 +270,42 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		$('#number').html(button);
 	}
 	//选择一项答案
-	function selectAnswer(answer,paper1Number,paper1Qid,chooseItem){
+	function selectAnswer(answer,paper4Number,paper4Qid,chooseItem){
 		$.ajax({
 			type:"post",
-			url:"chooseOneAnswer",
-			data:{"paper1Number":paper1Number,"paper1Qid":paper1Qid,"paper1Choice":chooseItem},
+			url:"chooseOneAnswer4",
+			data:{"paper4Number":paper4Number,"paper4Qid":paper4Qid,"paper4Choice":chooseItem},
 			success:function(data){
 				if(answer == chooseItem){
-					$('#number').find('button').eq(paper1Qid-1).attr("class","btn btn-success btn-sm");
+					$('#number').find('button').eq(paper4Qid-1).attr("class","btn btn-success btn-sm");
 				}else{
-					if(++errorItem > 10){
-						preSubmitPaper1("您已答错了11题，成绩不合格。请交卷!");
+					if(++errorItem > 5){
+						preSubmitPaper4("您已答错了6题，成绩不合格。请交卷!");
 					}
-					$('#number').find('button').eq(paper1Qid-1).attr("class","btn btn-danger btn-sm");
+					$('#number').find('button').eq(paper4Qid-1).attr("class","btn btn-danger btn-sm");
 				}
 				
 				//加载题目信息
 				var dataObj=eval("("+data+")");
-				paperNumber = dataObj[0].paper1Number;
+				paperNumber = dataObj[0].paper4Number;
 				showAnswerItem(dataObj);
 			}
 		});
 	}
 	//提交试卷
-	function preSubmitPaper1(warningInfo){
+	function preSubmitPaper4(warningInfo){
 		if(warningInfo != undefined){
 			$('#submitTip').text(warningInfo);
 			$('#showSubmitPaper').modal('show');
 		}else{
-			submitPaper1();
+			submitPaper4();
 		}
 	}
-	function submitPaper1(){
+	function submitPaper4(){
 		$.ajax({
 			type:"post",
-			url:"submitPaper1",
-			data:{"paper1Number":paperNumber},
+			url:"submitPaper4",
+			data:{"paper4Number":paperNumber},
 			success:function(data){
 				var dataObj=eval("("+data+")");
 				$('#errorNum').text(dataObj[0]+"道");
@@ -321,29 +325,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	}
 	//展示答案选项
 	function showAnswerItem(dataObj){
-		var title = "<h3>"+dataObj[0].paper1Qid+"、"+dataObj[0].examQuestion1.question1Question+"</h3>";
-				title += "<h4 style='margin-left: 20px;'>A、"+dataObj[0].examQuestion1.question1Item1+"</h4>";
-				title += "<h4 style='margin-left: 20px;'>B、"+dataObj[0].examQuestion1.question1Item2+"</h4>";
-				if(dataObj[0].examQuestion1.question1Item3 != ""){
-					title += "<h4 style='margin-left: 20px;'>C、"+dataObj[0].examQuestion1.question1Item3+"</h4>";
-					title += "<h4 style='margin-left: 20px;'>D、"+dataObj[0].examQuestion1.question1Item4+"</h4>";
+		var title = "<h3>"+dataObj[0].paper4Qid+"、"+dataObj[0].examQuestion4.question4Question+"</h3>";
+				title += "<h4 style='margin-left: 20px;'>A、"+dataObj[0].examQuestion4.question4Item1+"</h4>";
+				title += "<h4 style='margin-left: 20px;'>B、"+dataObj[0].examQuestion4.question4Item2+"</h4>";
+				if(dataObj[0].examQuestion4.question4Item3 != ""){
+					title += "<h4 style='margin-left: 20px;'>C、"+dataObj[0].examQuestion4.question4Item3+"</h4>";
+					title += "<h4 style='margin-left: 20px;'>D、"+dataObj[0].examQuestion4.question4Item4+"</h4>";
 				}
 				$('#title').html(title);
 				//加载图片信息
-				if(dataObj[0].examQuestion1.question1Url != ""){
-					var img = "<a href=\"javascript:biggerImage(\'../question1/"+dataObj[0].examQuestion1.question1Url+"\')\" title='点击放大效果图'><img src='../question1/"+dataObj[0].examQuestion1.question1Url+"' class='img-thumbnail'></a>"
+				if(dataObj[0].examQuestion4.question4Url != ""){
+					var img = "<a href=\"javascript:biggerImage(\'../question4/"+dataObj[0].examQuestion4.question4Url+"\')\" title='点击放大效果图'><img src='../question4/"+dataObj[0].examQuestion4.question4Url+"' class='img-thumbnail'></a>"
 					$('#image').html(img);
 				}else{
 					$('#image').html("");
 				}
 				//加载选项信息
-				var option = "<button type='button' onclick=\"selectAnswer(\'"+dataObj[0].question1Answer+"\',\'"+dataObj[0].paper1Number+"\',\'"+dataObj[0].paper1Qid+"\',1)\" class='btn btn-default btn-lg' style='margin-right: 20px;margin-left: 50px;'>A</button>";
-				option+="<button type='button' onclick=\"selectAnswer(\'"+dataObj[0].question1Answer+"\',\'"+dataObj[0].paper1Number+"\',\'"+dataObj[0].paper1Qid+"\',2)\" class='btn btn-default btn-lg' style='margin-right: 20px;'>B</button>";
-				if(dataObj[0].examQuestion1.question1Item3 != ""){
-					option+="<button type='button' onclick=\"selectAnswer(\'"+dataObj[0].question1Answer+"\',\'"+dataObj[0].paper1Number+"\',\'"+dataObj[0].paper1Qid+"\',3)\" class='btn btn-default btn-lg' style='margin-right: 20px;'>C</button>";
-					option+="<button type='button' onclick=\"selectAnswer(\'"+dataObj[0].question1Answer+"\',\'"+dataObj[0].paper1Number+"\',\'"+dataObj[0].paper1Qid+"\',4)\" class='btn btn-default btn-lg' style='margin-right: 20px;'>D</button>";
+				var option = "<button type='button' onclick=\"selectAnswer(\'"+dataObj[0].question4Answer+"\',\'"+dataObj[0].paper4Number+"\',\'"+dataObj[0].paper4Qid+"\',1)\" class='btn btn-default btn-lg' style='margin-right: 20px;margin-left: 50px;'>A</button>";
+				option+="<button type='button' onclick=\"selectAnswer(\'"+dataObj[0].question4Answer+"\',\'"+dataObj[0].paper4Number+"\',\'"+dataObj[0].paper4Qid+"\',2)\" class='btn btn-default btn-lg' style='margin-right: 20px;'>B</button>";
+				if(dataObj[0].examQuestion4.question4Item3 != ""){
+					option+="<button type='button' onclick=\"selectAnswer(\'"+dataObj[0].question4Answer+"\',\'"+dataObj[0].paper4Number+"\',\'"+dataObj[0].paper4Qid+"\',3)\" class='btn btn-default btn-lg' style='margin-right: 20px;'>C</button>";
+					option+="<button type='button' onclick=\"selectAnswer(\'"+dataObj[0].question4Answer+"\',\'"+dataObj[0].paper4Number+"\',\'"+dataObj[0].paper4Qid+"\',4)\" class='btn btn-default btn-lg' style='margin-right: 20px;'>D</button>";
 				}
-				option+="<button type='button' class='btn btn-primary btn-lg' style='margin-left: 20px;' onclick='preSubmitPaper1()'>交卷</button>";
+				option+="<button type='button' class='btn btn-success btn-lg' style='margin-left: 20px;' onclick=''>下一题</button>";
+				option+="<button type='button' class='btn btn-primary btn-lg' style='margin-left: 10px;' onclick='preSubmitPaper4()'>交&nbsp;&nbsp;&nbsp;卷</button>";
 				$('#option').html(option);
 	}
 	//重考一次

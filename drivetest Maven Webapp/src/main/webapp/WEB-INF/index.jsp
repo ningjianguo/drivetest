@@ -59,7 +59,7 @@
 				<div class="row">
 					<div class="col-md-4">
 						<div class="main-box mb-litte-green" align="center">
-							<a href="drivertest4.html"> <i
+							<a href="driverTest4"> <i
 								class="fa fa-pencil-square-o fa-5x"></i>
 								<h5>科四模拟</h5> </a>
 						</div>

@@ -29,9 +29,9 @@
 							class="fa fa-pencil-square-o "></i>科四模拟</a>
 					</li>
 					<li><a href="analogtest.html"><i
-							class="fa fa-pencil-square "></i>模拟练习</a>
+							class="fa fa-book "></i>科一复习</a>
 					</li>
-					<li><a href="testreview.html"><i class="fa fa-book "></i>试题复习</a>
+					<li><a href="testreview.html"><i class="fa fa-book "></i>科四复习</a>
 					</li>
 					<li><a href="mygrade.html"><i
 							class="fa fa-graduation-cap "></i>我的成绩</a>

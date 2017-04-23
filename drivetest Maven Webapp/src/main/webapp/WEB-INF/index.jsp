@@ -44,8 +44,8 @@
 					<div class="col-md-4">
 						<div class="main-box mb-orange" align="center">
 							<a href="analogtest.html"> <i
-								class="fa fa-pencil-square fa-5x"></i>
-								<h5>模拟练习</h5> </a>
+								class="fa fa-book fa-5x"></i>
+								<h5>科一复习</h5> </a>
 						</div>
 					</div>
 					<div class="col-md-4">
@@ -67,7 +67,7 @@
 					<div class="col-md-4">
 						<div class="main-box mb-zi" align="center">
 							<a href="testreview.html"> <i class="fa fa-book fa-5x"></i>
-								<h5>试题复习</h5> </a>
+								<h5>科四复习</h5> </a>
 						</div>
 					</div>
 					<div class="col-md-4">

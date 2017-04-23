@@ -28,7 +28,7 @@
 					<li><a href="driverTest4" id="drivetest4"><i
 							class="fa fa-pencil-square-o "></i>科四模拟</a>
 					</li>
-					<li><a href="analogtest.html"><i
+					<li><a href="test1Review"><i
 							class="fa fa-book "></i>科一复习</a>
 					</li>
 					<li><a href="testreview.html"><i class="fa fa-book "></i>科四复习</a>

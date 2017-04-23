@@ -51,5 +51,10 @@
 		<action name="submitPaper4" class="courseFourTestAction" method="submitPaper4">
 			<interceptor-ref name="myLoginStack"></interceptor-ref>
 		</action>
+		<!-- 前往test1review.jsp -->
+		<action name="test1Review" class="test1ReviewAction" method="toTest1ReviewJsp">
+			<interceptor-ref name="myLoginStack"></interceptor-ref>
+			<result name="success">/WEB-INF/test1review.jsp</result>
+		</action>
 	</package>
 </struts>    

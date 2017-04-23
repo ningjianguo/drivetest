@@ -26,7 +26,6 @@
 			<div id="page-inner">
 				<div class="row">
 					<div class="col-md-12">
-						<!-- <h1 class="page-head-line">DASHBOARD</h1>-->
 						<i class="fa fa-arrow-circle-o-right fa-4x"
 							style="color: gray;margin-top: 3px;">&nbsp;个人中心</i>
 						<h5 class="page-subhead-line"></h5>
@@ -43,7 +42,7 @@
 					</div>
 					<div class="col-md-4">
 						<div class="main-box mb-orange" align="center">
-							<a href="analogtest.html"> <i
+							<a href="test1Review"> <i
 								class="fa fa-book fa-5x"></i>
 								<h5>科一复习</h5> </a>
 						</div>

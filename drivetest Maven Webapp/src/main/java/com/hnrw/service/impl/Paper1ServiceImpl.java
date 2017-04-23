@@ -41,6 +41,9 @@ public class Paper1ServiceImpl implements IPaper1Service{
 	
 	@Override
 	public String chooseOneAnswer(ExamPaper1 examPaper1) {
+		if(examPaper1.getPaper1Choice()==null){
+			examPaper1.setPaper1Choice(5);
+		}
 		if(paper1DaoImpl.updatePaper1Choice(examPaper1)){//保存上一题的答题信息
 			ExamPaper1 paper1 = infoDaoImpl.getCourseOneQuestion(examPaper1.getPaper1Number(),examPaper1.getPaper1Qid()+1);
 			JsonConfig config = new JsonConfig();

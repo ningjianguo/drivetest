@@ -33,7 +33,7 @@ public class InfoServiceImpl implements IInfoService {
 		int totalScore = trueNum*1;
 		boolean flag = infoDaoImpl.updateExamEndTimeAndScoreByPaperNumber(paper1Number, totalScore);
 		if(flag){//插入成功
-			List<Integer> paper1Info = new ArrayList<Integer>();
+			List<Integer> paper1Info = new ArrayList<Integer>();	
 			paper1Info.add(errorNum);
 			paper1Info.add(noSelectedNum);
 			paper1Info.add(totalScore);
@@ -44,7 +44,19 @@ public class InfoServiceImpl implements IInfoService {
 
 	@Override
 	public String submitPaper4(String paper4Number) {
+		int trueNum = paper4DaoImpl.getTrueAnswerByPaper4Number(paper4Number);
+		int selectedNum = paper4DaoImpl.getselectedAnswerByPaper4Number(paper4Number);
+		int errorNum = selectedNum - trueNum;
+		int noSelectedNum = 50 - selectedNum;
+		int totalScore = trueNum*2;
+		boolean flag = infoDaoImpl.updateExamEndTimeAndScoreByPaperNumber(paper4Number, totalScore);
+		if(flag){//插入成功
+			List<Integer> paper4Info = new ArrayList<Integer>();	
+			paper4Info.add(errorNum);
+			paper4Info.add(noSelectedNum);
+			paper4Info.add(totalScore);
+			return JSONArray.fromObject(paper4Info).toString();
+		}
 		return null;
 	}
-
 }

@@ -270,13 +270,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		$('#number').html(button);
 	}
 	//选择一项答案
-	function selectAnswer(answer,paper4Number,paper4Qid,chooseItem){
+	function selectAnswer(answer,paper4Number,paper4Qid){
+		var selectedAnswer = '';
+		for(var i=1;i<5;i++){
+			var temp = $('#selectedItem').find('button').eq(i-1).attr('class');
+			if(temp == 'btn btn-info btn-lg'){
+				selectedAnswer+=i;
+			}
+		}
 		$.ajax({
 			type:"post",
 			url:"chooseOneAnswer4",
-			data:{"paper4Number":paper4Number,"paper4Qid":paper4Qid,"paper4Choice":chooseItem},
+			data:{"paper4Number":paper4Number,"paper4Qid":paper4Qid,"paper4Choice":selectedAnswer},
 			success:function(data){
-				if(answer == chooseItem){
+				if(answer == selectedAnswer){
 					$('#number').find('button').eq(paper4Qid-1).attr("class","btn btn-success btn-sm");
 				}else{
 					if(++errorItem > 5){
@@ -341,14 +348,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					$('#image').html("");
 				}
 				//加载选项信息
-				var option = "<button type='button' onclick=\"selectAnswer(\'"+dataObj[0].question4Answer+"\',\'"+dataObj[0].paper4Number+"\',\'"+dataObj[0].paper4Qid+"\',1)\" class='btn btn-default btn-lg' style='margin-right: 20px;margin-left: 50px;'>A</button>";
-				option+="<button type='button' onclick=\"selectAnswer(\'"+dataObj[0].question4Answer+"\',\'"+dataObj[0].paper4Number+"\',\'"+dataObj[0].paper4Qid+"\',2)\" class='btn btn-default btn-lg' style='margin-right: 20px;'>B</button>";
+				var option = "<div id='selectedItem'><button type='button' onclick=\"selectItems(1)\" class='btn btn-default btn-lg' style='margin-right: 20px;margin-left: 50px;'>A</button>";
+				option+="<button type='button' onclick=\"selectItems(2)\" class='btn btn-default btn-lg' style='margin-right: 20px;'>B</button>";
 				if(dataObj[0].examQuestion4.question4Item3 != ""){
-					option+="<button type='button' onclick=\"selectAnswer(\'"+dataObj[0].question4Answer+"\',\'"+dataObj[0].paper4Number+"\',\'"+dataObj[0].paper4Qid+"\',3)\" class='btn btn-default btn-lg' style='margin-right: 20px;'>C</button>";
-					option+="<button type='button' onclick=\"selectAnswer(\'"+dataObj[0].question4Answer+"\',\'"+dataObj[0].paper4Number+"\',\'"+dataObj[0].paper4Qid+"\',4)\" class='btn btn-default btn-lg' style='margin-right: 20px;'>D</button>";
+					option+="<button type='button' onclick=\"selectItems(3)\" class='btn btn-default btn-lg' style='margin-right: 20px;'>C</button>";
+					option+="<button type='button' onclick=\"selectItems(4)\" class='btn btn-default btn-lg' style='margin-right: 20px;'>D</button>";
 				}
-				option+="<button type='button' class='btn btn-success btn-lg' style='margin-left: 20px;' onclick=''>下一题</button>";
-				option+="<button type='button' class='btn btn-primary btn-lg' style='margin-left: 10px;' onclick='preSubmitPaper4()'>交&nbsp;&nbsp;&nbsp;卷</button>";
+				option+="<button type='button' class='btn btn-success btn-lg' style='margin-left: 20px;' onclick=\"selectAnswer(\'"+dataObj[0].question4Answer+"\',\'"+dataObj[0].paper4Number+"\',\'"+dataObj[0].paper4Qid+"\')\">下一题</button>";
+				option+="<button type='button' class='btn btn-primary btn-lg' style='margin-left: 10px;' onclick='preSubmitPaper4()'>交&nbsp;&nbsp;&nbsp;卷</button></div>";
 				$('#option').html(option);
 	}
 	//重考一次
@@ -360,6 +367,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	function toIndex(){
 		$('#showReturnPaper').modal('toggle');
 		window.location.href="<%=basePath%>index";
+	}
+	//选中答案
+	function selectItems(num){
+		var temp = $('#selectedItem').find('button').eq(num-1).attr('class');
+		if(temp == 'btn btn-default btn-lg'){
+			$('#selectedItem').find('button').eq(num-1).attr('class','btn btn-info btn-lg');
+		}else{
+			$('#selectedItem').find('button').eq(num-1).attr('class','btn btn-default btn-lg');
+		}
 	}
 </script>
 </html>

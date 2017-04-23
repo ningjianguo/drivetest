@@ -38,7 +38,7 @@ public class Paper4DaoImpl extends BaseDaoImpl<ExamPaper4> implements IPaper4Dao
 		try {
 			String sql = "UPDATE EXAM_PAPER4 SET PAPER4_CHOICE=? WHERE PAPER4_NUMBER=? AND PAPER4_QID=?";
 			getSession().createSQLQuery(sql).setInteger(0, examPaper4.getPaper4Choice())
-											.setString(4, examPaper4.getPaper4Number())
+											.setString(1, examPaper4.getPaper4Number())
 											.setInteger(2, examPaper4.getPaper4Qid())
 											.executeUpdate();
 			return true;

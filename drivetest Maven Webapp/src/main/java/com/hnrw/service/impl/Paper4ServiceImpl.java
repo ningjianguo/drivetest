@@ -41,8 +41,11 @@ public class Paper4ServiceImpl implements IPaper4Service{
 	
 	@Override
 	public String chooseOneAnswer(ExamPaper4 examPaper4) {
+		if(examPaper4.getPaper4Choice()==null){
+			examPaper4.setPaper4Choice(5);
+		}
 		if(paper4DaoImpl.updatePaper4Choice(examPaper4)){//保存上一题的答题信息
-			ExamPaper4 paper4 = infoDaoImpl.getCourseFourQuestion(examPaper4.getPaper4Number(),examPaper4.getPaper4Qid()+4);
+			ExamPaper4 paper4 = infoDaoImpl.getCourseFourQuestion(examPaper4.getPaper4Number(),examPaper4.getPaper4Qid()+1);
 			JsonConfig config = new JsonConfig();
 			config.setExcludes(new String[]{"examPaper4s"});
 			return JSONArray.fromObject(paper4,config).toString();

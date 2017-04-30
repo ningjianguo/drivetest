@@ -5,7 +5,7 @@
   <artifactId>drivetest</artifactId>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
-  <name>drivetest Maven Webapp</name>
+  <name>drivetest</name>
   <url>http://maven.apache.org</url>
   <dependencies>
 		<dependency>

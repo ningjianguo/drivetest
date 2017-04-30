@@ -14,7 +14,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <style>
 	fieldset{padding:.35em .625em .75em;margin:0 2px;border:1px solid silver}
-	legend{padding:.5em;border:0;width:auto}
+	legend{border:0;width:auto;font-size: 16px;margin: 0px 2px 0px 5px;}
 </style>
 <body>
     <div id="wrapper">
@@ -28,14 +28,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                        <i class="fa fa-arrow-circle-o-right fa-4x" style="color: gray;margin-top: 3px;">&nbsp;科目一模拟</i>
+                        <i class="fa fa-arrow-circle-o-right fa-2x" style="color: gray;margin-top: 3px;">&nbsp;科目一模拟</i>
                         <h5 class="page-subhead-line"></h5>
                     </div>
                 </div>
                 <!-- /. ROW  -->
               <div class="row">
               	<div class="col-md-3">
-              		<fieldset style="height: 350px;">
+              		<fieldset style="height: 300px;">
 					    <legend>考生信息</legend>
 					    <table style="text-align: center;" align="center">
 					    <tr>
@@ -67,18 +67,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</fieldset>
 					<fieldset>
 					    <legend>剩余时间</legend>
-					    <div align="center" style="font-size: x-large;font-weight: bolder;margin-bottom: 5px;" id="currentTime"></div>
+					    <div align="center" style="font-size: x-large;font-weight: bolder;height: 20px;" id="currentTime"></div>
 					</fieldset>
               	</div>
               	<div class="col-md-9">
-              		<fieldset style="height: 350px;">
+              		<fieldset style="height: 300px;">
 					    <legend>考试题目</legend>
 					    <div class="col-md-6" id="title"></div>
 					    <div class="col-md-6" id="image"></div>
 					</fieldset>
 					<fieldset>
 						  <legend>题目选项(单选)</legend>
-						  <div align="left" id="option"></div>
+						  <div align="left" id="option" style="height: 20px;"></div>
 					</fieldset>
               	</div>
               	
@@ -242,7 +242,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	}
 	//科目一模拟模块请求
 	function createPaperOne(){
-		waitPaper("show");
+	    waitPaper("show");
 		$.ajax({
 			type:"post",
 			url:"createPaperOne",
@@ -341,13 +341,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					$('#image').html("");
 				}
 				//加载选项信息
-				var option = "<button type='button' onclick=\"selectAnswer(\'"+dataObj[0].question1Answer+"\',\'"+dataObj[0].paper1Number+"\',\'"+dataObj[0].paper1Qid+"\',1)\" class='btn btn-default btn-lg' style='margin-right: 20px;margin-left: 50px;'>A</button>";
-				option+="<button type='button' onclick=\"selectAnswer(\'"+dataObj[0].question1Answer+"\',\'"+dataObj[0].paper1Number+"\',\'"+dataObj[0].paper1Qid+"\',2)\" class='btn btn-default btn-lg' style='margin-right: 20px;'>B</button>";
+				var option = "<button type='button' onclick=\"selectAnswer(\'"+dataObj[0].question1Answer+"\',\'"+dataObj[0].paper1Number+"\',\'"+dataObj[0].paper1Qid+"\',1)\" class='btn btn-default btn-sm' style='margin-right: 20px;margin-left: 50px;'>A</button>";
+				option+="<button type='button' onclick=\"selectAnswer(\'"+dataObj[0].question1Answer+"\',\'"+dataObj[0].paper1Number+"\',\'"+dataObj[0].paper1Qid+"\',2)\" class='btn btn-default btn-sm' style='margin-right: 20px;'>B</button>";
 				if(dataObj[0].examQuestion1.question1Item3 != ""){
-					option+="<button type='button' onclick=\"selectAnswer(\'"+dataObj[0].question1Answer+"\',\'"+dataObj[0].paper1Number+"\',\'"+dataObj[0].paper1Qid+"\',3)\" class='btn btn-default btn-lg' style='margin-right: 20px;'>C</button>";
-					option+="<button type='button' onclick=\"selectAnswer(\'"+dataObj[0].question1Answer+"\',\'"+dataObj[0].paper1Number+"\',\'"+dataObj[0].paper1Qid+"\',4)\" class='btn btn-default btn-lg' style='margin-right: 20px;'>D</button>";
+					option+="<button type='button' onclick=\"selectAnswer(\'"+dataObj[0].question1Answer+"\',\'"+dataObj[0].paper1Number+"\',\'"+dataObj[0].paper1Qid+"\',3)\" class='btn btn-default btn-sm' style='margin-right: 20px;'>C</button>";
+					option+="<button type='button' onclick=\"selectAnswer(\'"+dataObj[0].question1Answer+"\',\'"+dataObj[0].paper1Number+"\',\'"+dataObj[0].paper1Qid+"\',4)\" class='btn btn-default btn-sm' style='margin-right: 20px;'>D</button>";
 				}
-				option+="<button type='button' class='btn btn-primary btn-lg' style='margin-left: 20px;' onclick='preSubmitPaper1()'>交卷</button>";
+				option+="<button type='button' class='btn btn-primary btn-sm' style='margin-left: 20px;' onclick='preSubmitPaper1()'>交卷</button>";
 				$('#option').html(option);
 	}
 	//重考一次

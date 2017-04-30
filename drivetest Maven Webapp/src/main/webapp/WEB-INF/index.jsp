@@ -26,8 +26,8 @@
 			<div id="page-inner">
 				<div class="row">
 					<div class="col-md-12">
-						<i class="fa fa-arrow-circle-o-right fa-4x"
-							style="color: gray;margin-top: 3px;">&nbsp;个人中心</i>
+						<i class="fa fa-arrow-circle-o-right fa-2x"
+							style="color: gray;margin-top: 3px;">&nbsp;导航中心</i>
 						<h5 class="page-subhead-line"></h5>
 					</div>
 				</div>
@@ -83,7 +83,6 @@
 		<!-- /. PAGE WRAPPER  -->
 	</div>
 	<!-- /. WRAPPER  -->
-
 	<%@include file="copyrightpage.jsp" %>
 	<!-- 登录模态框 -->
 	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog"

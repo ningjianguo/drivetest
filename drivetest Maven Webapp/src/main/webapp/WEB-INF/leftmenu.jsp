@@ -19,27 +19,27 @@
 						</div>
 					</li>
 					<li><a href="index" id="index"><i
-							class="fa fa-dashboard "></i>主页</a>
+							class="fa fa-dashboard fa-fw"></i>主&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;页</a>
 					</li>
 
 					<li><a href="driverTest1" id="drivetest1"><i
-							class="fa fa-pencil-square-o "></i>科一模拟 </a>
+							class="fa fa-pencil-square-o fa-fw"></i>科一模拟 </a>
 					</li>
 					<li><a href="driverTest4" id="drivetest4"><i
-							class="fa fa-pencil-square-o "></i>科四模拟</a>
+							class="fa fa-pencil-square-o fa-fw"></i>科四模拟</a>
 					</li>
 					<li><a href="test1Review"><i
-							class="fa fa-book "></i>科一复习</a>
+							class="fa fa-book fa-fw"></i>科一复习</a>
 					</li>
-					<li><a href="testreview.html"><i class="fa fa-book "></i>科四复习</a>
+					<li><a href="testreview.html"><i class="fa fa-book fa-fw"></i>科四复习</a>
 					</li>
 					<li><a href="mygrade.html"><i
-							class="fa fa-graduation-cap "></i>我的成绩</a>
+							class="fa fa-graduation-cap fa-fw"></i>我的成绩</a>
 					</li>
-					<li><a href="personsetting.html"><i class="fa fa-cogs "></i>个人设置</a>
+					<li><a href="personsetting.html"><i class="fa fa-cogs fa-fw"></i>个人设置</a>
 					</li>
 					<li><a href="javascript:void(0)"><i
-							class="fa fa-sign-out "></i>退出系统</a>
+							class="fa fa-sign-out fa-fw"></i>退出系统</a>
 					</li>
 				</ul>
 

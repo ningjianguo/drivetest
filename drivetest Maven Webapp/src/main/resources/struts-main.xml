@@ -53,8 +53,15 @@
 		</action>
 		<!-- 前往test1review.jsp -->
 		<action name="test1Review" class="test1ReviewAction" method="toTest1ReviewJsp">
-			<interceptor-ref name="myLoginStack"></interceptor-ref>
 			<result name="success">/WEB-INF/test1review.jsp</result>
+		</action>
+		<!-- 科一复习试卷生成 -->
+		<action name="createReviewPaper1" class="test1ReviewAction" method="createOnePaper">
+			<interceptor-ref name="myLoginStack"></interceptor-ref>
+		</action>
+		<!-- 科一复习试卷题目切换 -->
+		<action name="chooseOneQuestion1" class="test1ReviewAction" method="chooseOneAnswer">
+			<interceptor-ref name="myLoginStack"></interceptor-ref>
 		</action>
 	</package>
 </struts>    

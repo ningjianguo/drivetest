@@ -17,8 +17,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	legend{border:0;width:auto;font-size: 16px;margin: 0px 2px 0px 5px;}
 </style>
 <body>
-    <div id="wrapper">
-       <%@include file="toppage.jsp" %>
+    <%@include file="toppage.jsp" %>
+    <div id="wrapper" style="margin-top: 50px;">
         <!-- /. NAV TOP  -->
         <jsp:include page="leftmenu.jsp">
         	<jsp:param value="drivetest1" name="menuactive"/>
@@ -74,7 +74,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               		<fieldset style="height: 300px;">
 					    <legend>考试题目</legend>
 					    <div class="col-md-6" id="title"></div>
-					    <div class="col-md-6" id="image"></div>
+					    <div class="col-md-6" id="image" align="right"></div>
 					</fieldset>
 					<fieldset>
 						  <legend>题目选项(单选)</legend>
@@ -88,7 +88,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 	<div class="col-md-12">
               		<fieldset>
 					    <legend>答题信息</legend>
-					    <div align="center" id="number"></div>
+					    <div id="number" style="text-align: center; max-height: 170px;" class="row"></div>
 					</fieldset>
               	</div>
                 </div>
@@ -260,13 +260,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	}
 	//题目序号展示
 	function showQuestionItem(){
-		var button = "";
+		var button = "<table align='center'><tr>";
 		for(var i = 1;i <= 100;i++){
-			if(i<10){
-				i = "0"+i;
+			button+="<td><button type='button' class='btn btn-default btn-sm' style='margin: 2px; width:43px;height:30px;'>"+i+"</button><td>";
+			if(i % 22 == 0){
+				i++;
+				if(i <= 100){
+					button+="</tr><tr><td><button type='button' class='btn btn-default btn-sm' style='margin: 2px;width:43px;height:30px;'>"+i+"</button><td>";
+				}
 			}
-			button+="<button type='button' class='btn btn-default btn-sm' style='margin: 2px;'>"+i+"</button>";
 		}
+		button+="</tr></table>"
 		$('#number').html(button);
 	}
 	//选择一项答案
@@ -325,7 +329,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	}
 	//展示答案选项
 	function showAnswerItem(dataObj){
-		var title = "<h3>"+dataObj[0].paper1Qid+"、"+dataObj[0].examQuestion1.question1Question+"</h3>";
+		var title = "<h4 style='font-weight: bolder;'>"+dataObj[0].paper1Qid+"、"+dataObj[0].examQuestion1.question1Question+"</h4>";
 				title += "<h4 style='margin-left: 20px;'>A、"+dataObj[0].examQuestion1.question1Item1+"</h4>";
 				title += "<h4 style='margin-left: 20px;'>B、"+dataObj[0].examQuestion1.question1Item2+"</h4>";
 				if(dataObj[0].examQuestion1.question1Item3 != ""){
@@ -335,7 +339,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$('#title').html(title);
 				//加载图片信息
 				if(dataObj[0].examQuestion1.question1Url != ""){
-					var img = "<a href=\"javascript:biggerImage(\'../question1/"+dataObj[0].examQuestion1.question1Url+"\')\" title='点击放大效果图'><img src='../question1/"+dataObj[0].examQuestion1.question1Url+"' class='img-thumbnail'></a>"
+					var img = "<a href=\"javascript:biggerImage(\'../question1/"+dataObj[0].examQuestion1.question1Url+"\')\" title='点击放大效果图'><img src='../question1/"+dataObj[0].examQuestion1.question1Url+"' class='img-thumbnail' style='width:250px;max-height:265px;'></a>"
 					$('#image').html(img);
 				}else{
 					$('#image').html("");

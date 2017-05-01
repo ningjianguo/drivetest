@@ -13,8 +13,8 @@
 					<li>
 						<div class="user-img-div">
 							<img src="assets/img/user.png" class="img-thumbnail" />
-							<div class="inner-text">
-								欢迎你，${user.userName} <br />
+							<div class="inner-text" style="margin-bottom: 5px;">
+								欢迎你，${user.userName}
 							</div>
 						</div>
 					</li>
@@ -28,7 +28,7 @@
 					<li><a href="driverTest4" id="drivetest4"><i
 							class="fa fa-pencil-square-o fa-fw"></i>科四模拟</a>
 					</li>
-					<li><a href="test1Review"><i
+					<li><a href="test1Review" id="test1Review"><i
 							class="fa fa-book fa-fw"></i>科一复习</a>
 					</li>
 					<li><a href="testreview.html"><i class="fa fa-book fa-fw"></i>科四复习</a>
@@ -38,7 +38,7 @@
 					</li>
 					<li><a href="personsetting.html"><i class="fa fa-cogs fa-fw"></i>个人设置</a>
 					</li>
-					<li><a href="javascript:void(0)"><i
+					<li><a href="loginOut"><i
 							class="fa fa-sign-out fa-fw"></i>退出系统</a>
 					</li>
 				</ul>

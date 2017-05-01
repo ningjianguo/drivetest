@@ -1,6 +1,7 @@
 package com.hnrw.service;
 
 import com.hnrw.entity.ExamPaper1;
+import com.hnrw.entity.ExamQuestion1;
 
 public interface IPaper1Service {
 	
@@ -16,4 +17,12 @@ public interface IPaper1Service {
 	 * @return	下一道题目信息
 	 */
 	public String chooseOneAnswer(ExamPaper1 examPaper1);
+	
+	/**
+	 * 创建一份科一复习试卷
+	 * @param id 题目主键
+	 * @return 题目信息
+	 */
+	public String nextReviewQuestion1(int id);
+	
 }

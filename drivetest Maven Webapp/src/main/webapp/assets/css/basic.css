@@ -20,7 +20,7 @@ body {
 #page-inner {
 	height:100%;
     width: 105%;
-    margin: 5px 0px 60px -30px;
+    margin: 5px 0px 0px -30px;
     background-color: #fff!important;
     padding: 10px;
 }

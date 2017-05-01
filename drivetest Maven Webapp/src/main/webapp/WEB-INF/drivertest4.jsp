@@ -14,11 +14,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <style>
 	fieldset{padding:.35em .625em .75em;margin:0 2px;border:1px solid silver}
-	legend{padding:.5em;border:0;width:auto}
+	legend{border:0;width:auto;font-size: 16px;margin: 0px 2px 0px 5px;}
 </style>
 <body>
-    <div id="wrapper">
-       <%@include file="toppage.jsp" %>
+    <%@include file="toppage.jsp" %>
+    <div id="wrapper" style="margin-top: 50px;">
         <!-- /. NAV TOP  -->
         <jsp:include page="leftmenu.jsp">
         	<jsp:param value="drivetest4" name="menuactive"/>
@@ -28,14 +28,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                        <i class="fa fa-arrow-circle-o-right fa-4x" style="color: gray;margin-top: 3px;">&nbsp;科目四模拟</i>
+                        <i class="fa fa-arrow-circle-o-right fa-2x" style="color: gray;margin-top: 3px;">&nbsp;科目四模拟</i>
                         <h5 class="page-subhead-line"></h5>
                     </div>
                 </div>
                 <!-- /. ROW  -->
               <div class="row">
               	<div class="col-md-3">
-              		<fieldset style="height: 350px;">
+              		<fieldset style="height: 300px;">
 					    <legend>考生信息</legend>
 					    <table style="text-align: center;" align="center">
 					    <tr>
@@ -67,18 +67,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</fieldset>
 					<fieldset>
 					    <legend>剩余时间</legend>
-					    <div align="center" style="font-size: x-large;font-weight: bolder;margin-bottom: 5px;" id="currentTime"></div>
+					    <div align="center" style="font-size: x-large;font-weight: bolder;height: 20px;" id="currentTime"></div>
 					</fieldset>
               	</div>
               	<div class="col-md-9">
-              		<fieldset style="height: 350px;">
+              		<fieldset style="height: 300px;">
 					    <legend>考试题目</legend>
 					    <div class="col-md-6" id="title"></div>
-					    <div class="col-md-6" id="image"></div>
+					    <div class="col-md-6" id="image" align="right"></div>
 					</fieldset>
 					<fieldset>
 						  <legend>题目选项(多选)</legend>
-						  <div align="left" id="option"></div>
+						  <div align="left" id="option" style="height: 20px;"></div>
 					</fieldset>
               	</div>
               	
@@ -88,7 +88,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 	<div class="col-md-12">
               		<fieldset>
 					    <legend>答题信息</legend>
-					    <div align="center" id="number"></div>
+					    <div id="number" style="text-align: center; max-height: 170px;" class="row"></div>
 					</fieldset>
               	</div>
                 </div>
@@ -242,7 +242,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	}
 	//科目四模拟模块请求
 	function createPaperOne(){
-		waitPaper("show");
+	    waitPaper("show");
 		$.ajax({
 			type:"post",
 			url:"createPaperFour",
@@ -260,13 +260,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	}
 	//题目序号展示
 	function showQuestionItem(){
-		var button = "";
+		var button = "<table align='center'><tr>";
 		for(var i = 1;i <= 50;i++){
-			if(i<10){
-				i = "0"+i;
+			button+="<td><button type='button' class='btn btn-default btn-sm' style='margin: 2px; width:43px;height:30px;'>"+i+"</button><td>";
+			if(i % 22 == 0){
+				i++;
+				if(i <= 50){
+					button+="</tr><tr><td><button type='button' class='btn btn-default btn-sm' style='margin: 2px;width:43px;height:30px;'>"+i+"</button><td>";
+				}
 			}
-			button+="<button type='button' class='btn btn-default btn-sm' style='margin: 2px;'>"+i+"</button>";
 		}
+		button+="</tr></table>"
 		$('#number').html(button);
 	}
 	//选择一项答案
@@ -274,7 +278,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		var selectedAnswer = '';
 		for(var i=1;i<5;i++){
 			var temp = $('#selectedItem').find('button').eq(i-1).attr('class');
-			if(temp == 'btn btn-info btn-lg'){
+			if(temp == 'btn btn-info btn-sm'){
 				selectedAnswer+=i;
 			}
 		}
@@ -332,7 +336,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	}
 	//展示答案选项
 	function showAnswerItem(dataObj){
-		var title = "<h3>"+dataObj[0].paper4Qid+"、"+dataObj[0].examQuestion4.question4Question+"</h3>";
+		var title = "<h4 style='font-weight: bolder;'>"+dataObj[0].paper4Qid+"、"+dataObj[0].examQuestion4.question4Question+"</h4>";
 				title += "<h4 style='margin-left: 20px;'>A、"+dataObj[0].examQuestion4.question4Item1+"</h4>";
 				title += "<h4 style='margin-left: 20px;'>B、"+dataObj[0].examQuestion4.question4Item2+"</h4>";
 				if(dataObj[0].examQuestion4.question4Item3 != ""){
@@ -342,20 +346,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$('#title').html(title);
 				//加载图片信息
 				if(dataObj[0].examQuestion4.question4Url != ""){
-					var img = "<a href=\"javascript:biggerImage(\'../question4/"+dataObj[0].examQuestion4.question4Url+"\')\" title='点击放大效果图'><img src='../question4/"+dataObj[0].examQuestion4.question4Url+"' class='img-thumbnail'></a>"
+					var img = "<a href=\"javascript:biggerImage(\'../question4/"+dataObj[0].examQuestion4.question4Url+"\')\" title='点击放大效果图'><img src='../question4/"+dataObj[0].examQuestion4.question4Url+"' class='img-thumbnail' style='width:250px;max-height:265px;'></a>"
 					$('#image').html(img);
 				}else{
 					$('#image').html("");
 				}
 				//加载选项信息
-				var option = "<div id='selectedItem'><button type='button' onclick=\"selectItems(1)\" class='btn btn-default btn-lg' style='margin-right: 20px;margin-left: 50px;'>A</button>";
-				option+="<button type='button' onclick=\"selectItems(2)\" class='btn btn-default btn-lg' style='margin-right: 20px;'>B</button>";
+				var option = "<div id='selectedItem'><button type='button' onclick=\"selectItems(1)\" class='btn btn-default btn-sm' style='margin-right: 20px;margin-left: 50px;'>A</button>";
+				option+="<button type='button' onclick=\"selectItems(2)\" class='btn btn-default btn-sm' style='margin-right: 20px;'>B</button>";
 				if(dataObj[0].examQuestion4.question4Item3 != ""){
-					option+="<button type='button' onclick=\"selectItems(3)\" class='btn btn-default btn-lg' style='margin-right: 20px;'>C</button>";
-					option+="<button type='button' onclick=\"selectItems(4)\" class='btn btn-default btn-lg' style='margin-right: 20px;'>D</button>";
+					option+="<button type='button' onclick=\"selectItems(3)\" class='btn btn-default btn-sm' style='margin-right: 20px;'>C</button>";
+					option+="<button type='button' onclick=\"selectItems(4)\" class='btn btn-default btn-sm' style='margin-right: 20px;'>D</button>";
 				}
-				option+="<button type='button' class='btn btn-success btn-lg' style='margin-left: 20px;' onclick=\"selectAnswer(\'"+dataObj[0].question4Answer+"\',\'"+dataObj[0].paper4Number+"\',\'"+dataObj[0].paper4Qid+"\')\">下一题</button>";
-				option+="<button type='button' class='btn btn-primary btn-lg' style='margin-left: 10px;' onclick='preSubmitPaper4()'>交&nbsp;&nbsp;&nbsp;卷</button></div>";
+				option+="<button type='button' class='btn btn-success btn-sm' style='margin-left: 20px;' onclick=\"selectAnswer(\'"+dataObj[0].question4Answer+"\',\'"+dataObj[0].paper4Number+"\',\'"+dataObj[0].paper4Qid+"\')\">下一题</button>";
+				option+="<button type='button' class='btn btn-primary btn-sm' style='margin-left: 10px;' onclick='preSubmitPaper4()'>交&nbsp;&nbsp;&nbsp;卷</button></div>";
 				$('#option').html(option);
 	}
 	//重考一次
@@ -371,10 +375,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	//选中答案
 	function selectItems(num){
 		var temp = $('#selectedItem').find('button').eq(num-1).attr('class');
-		if(temp == 'btn btn-default btn-lg'){
-			$('#selectedItem').find('button').eq(num-1).attr('class','btn btn-info btn-lg');
+		if(temp == 'btn btn-default btn-sm'){
+			$('#selectedItem').find('button').eq(num-1).attr('class','btn btn-info btn-sm');
 		}else{
-			$('#selectedItem').find('button').eq(num-1).attr('class','btn btn-default btn-lg');
+			$('#selectedItem').find('button').eq(num-1).attr('class','btn btn-default btn-sm');
 		}
 	}
 </script>

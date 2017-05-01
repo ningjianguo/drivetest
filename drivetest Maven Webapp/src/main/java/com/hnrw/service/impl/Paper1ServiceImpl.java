@@ -53,4 +53,14 @@ public class Paper1ServiceImpl implements IPaper1Service{
 		return null;
 	}
 
+	@Override
+	public String nextReviewQuestion1(int id) {
+		int totalSize = question1DaoImpl.getQuestion1TotalSize();
+		ExamQuestion1 examQuestion1 = question1DaoImpl.getOneSubject(id);
+		JsonConfig config = new JsonConfig();
+		config.setExcludes(new String[]{"examPaper1s"});
+		String jsonStr = JSONArray.fromObject(examQuestion1,config).toString();
+		String jsonStr_ = "[{\"totalSize\":\""+totalSize+"\","+jsonStr.substring(2);
+		return jsonStr_;
+	}
 }

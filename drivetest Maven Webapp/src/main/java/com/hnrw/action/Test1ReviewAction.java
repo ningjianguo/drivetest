@@ -5,13 +5,13 @@ import javax.annotation.Resource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.hnrw.entity.ExamPaper1;
+import com.hnrw.entity.ExamQuestion1;
 import com.hnrw.service.IInfoService;
 import com.hnrw.service.IPaper1Service;
 
 @Controller
 @Scope("prototype")
-public class Test1ReviewAction extends BaseAction<ExamPaper1>{
+public class Test1ReviewAction extends BaseAction<ExamQuestion1>{
 
 	private static final long serialVersionUID = -8434492100037005150L;
 	@Resource
@@ -24,12 +24,12 @@ public class Test1ReviewAction extends BaseAction<ExamPaper1>{
 	}
 	
 	public String createOnePaper(){
-		printJsonStringToBrowser(paper1ServiceImpl.createPaper1());
+		printJsonStringToBrowser(paper1ServiceImpl.nextReviewQuestion1(1));
 		return null;
 	}
 	
 	public String chooseOneAnswer(){
-		printJsonStringToBrowser(paper1ServiceImpl.chooseOneAnswer(getModel()));
+		printJsonStringToBrowser(paper1ServiceImpl.nextReviewQuestion1(getModel().getQuestion1Id()));
 		return null;
 	}
 	

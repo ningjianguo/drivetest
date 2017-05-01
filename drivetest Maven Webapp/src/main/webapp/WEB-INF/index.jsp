@@ -15,8 +15,8 @@
 <%@include file="common.jsp" %>
 </head>
 <body>
-	<div id="wrapper">
-		<%@include file="toppage.jsp" %>
+	<%@include file="toppage.jsp" %>
+	<div id="wrapper" style="margin-top: 50px;">
 		<!-- /. NAV TOP  -->
 		<jsp:include page="leftmenu.jsp">
 			<jsp:param value="index" name="menuactive"/>
@@ -81,9 +81,13 @@
 			<!-- /. PAGE INNER  -->
 		</div>
 		<!-- /. PAGE WRAPPER  -->
+		<div style="background-color:#000; color:#fff;font-size:12px;height: 100%;padding: 8px;margin-top: 65px;" align="center">
+       	 Copyright &copy; 2017 Hunan
+			University Of Humanities,Science And Technology. All Rights Reserved.
+		</div>
 	</div>
+	
 	<!-- /. WRAPPER  -->
-	<%@include file="copyrightpage.jsp" %>
 	<!-- 登录模态框 -->
 	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel">
@@ -127,8 +131,8 @@
 				</div>
 				<div class="modal-footer">
 					<span style="font-size: large; color: red;margin-right: 100px;" id="errinfo"></span>
-					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
 					<button type="button" class="btn btn-info" onclick="loginFormSubmit()">登录</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
 				</div>
 			</div>
 		</div>

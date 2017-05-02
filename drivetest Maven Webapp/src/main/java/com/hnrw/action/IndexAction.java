@@ -1,12 +1,15 @@
 package com.hnrw.action;
 
 import javax.servlet.http.HttpServletRequest;
-
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-
 import com.opensymphony.xwork2.ActionSupport;
+/**
+ * 首页action
+ * @author ningjianguo
+ *
+ */
 @Controller
 @Scope("prototype")
 public class IndexAction extends ActionSupport{

@@ -7,7 +7,11 @@ import org.springframework.stereotype.Controller;
 
 import com.hnrw.entity.ExamUser;
 import com.hnrw.service.IUserService;
-
+/**
+ * 用户action
+ * @author ningjianguo
+ *
+ */
 @Controller
 @Scope("prototype")
 public class UserAction extends BaseAction<ExamUser> {

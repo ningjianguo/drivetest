@@ -8,7 +8,11 @@ import org.springframework.stereotype.Controller;
 import com.hnrw.entity.ExamPaper4;
 import com.hnrw.service.IInfoService;
 import com.hnrw.service.IPaper4Service;
-
+/**
+ * 科目四模拟考action
+ * @author ningjianguo
+ *
+ */
 @Controller
 @Scope("prototype")
 public class CourseFourTestAction extends BaseAction<ExamPaper4>{

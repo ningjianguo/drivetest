@@ -12,7 +12,10 @@ import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
-
+/**
+ * 基础action
+ * @author ningjianguo
+ */
 public class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
 
 	private static final long serialVersionUID = 3747848528904059097L;

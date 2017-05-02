@@ -14,9 +14,9 @@
 
 			<div class="header-right">
 				<span id="current-time" style="float: left;font-weight: bolder;margin-right: 15px;margin-top: 5px;"></span>
-				<a href="message-task.html" class="btn btn-info btn-xs" title="New Message"><i
-					class="fa fa-envelope-o fa-2x"></i>&nbsp;<span id="fmessage">邮件列表(<span id="ftask">2</span>)</span></a> <a href="loginOut"
-					class="btn btn-danger btn-xs" title="Logout"><i
+				<a href="message-task.html" class="btn btn-info btn-xs" title="邮件列表"><i
+					class="fa fa-envelope-o fa-2x"></i>&nbsp;<span id="fmessage">邮件列表&nbsp;</span><span id="ftask" class="badge">59</span></a> <a href="loginOut"
+					class="btn btn-danger btn-xs" title="退出系统"><i
 					class="fa  fa-sign-out fa-2x"></i>&nbsp;退出系统</a>
 
 			</div>
@@ -41,6 +41,8 @@
 					message.style.color = "red"
 				}
 				setTimeout("Setlinkblink()", 800);
+			}else{
+				$(".badge").css('display','none');
 			}
 		}
 </script>

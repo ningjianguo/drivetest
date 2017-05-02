@@ -48,6 +48,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               	<div class="col-md-3">
               		<fieldset style="height: 360px;">
 					    <legend>试题详解</legend>
+					    <div style="margin-left: 5px;" id="ts">
+					    </div>
+					    <div style="margin-left: 5px" id="xq">
+					    </div>
 					</fieldset>
               	</div>
               </div>
@@ -147,17 +151,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		$('#number').html(button);
 	}
 	//选择一项答案
-	function selectAnswer(id,answer,chooseItem){
+	function selectAnswer(id,answer,chooseItem,explain){
 					if(answer == chooseItem){
 							$('#number').find('button').eq(id-1).attr("class","btn btn-success btn-sm");
 							nextQuestion1(id+1);
 					}else{
+							$('#ts').html("<div style='margin-left:5px;'>提示&nbsp;:&nbsp<span style='color:red'>错误</span></div>");
+							$('#xq').html("<div style='margin-left:5px;'>详情&nbsp;:&nbsp"+explain+"</div>");
 							$('#option').find('button').eq(chooseItem-1).attr("class","btn btn-danger btn-sm");
 							$('#number').find('button').eq(id-1).attr("class","btn btn-danger btn-sm");
+							$('#option').find('button').attr("disabled",true);
+							$('#option').find('button:last').attr("disabled",false);
 							return;
 					}
 	}
 	function nextQuestion1(id){
+		$('#ts').html("");
+		$('#xq').html("");
+		$('#option').find('button').attr("disabled",false);
 		$.ajax({
 				type:"post",
 				url:"chooseOneQuestion1",
@@ -187,14 +198,37 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					$('#image').html("");
 				}
 				//加载选项信息
-				var option = "<button type='button' onclick=\"selectAnswer("+dataObj[0].question1Id+",\'"+dataObj[0].question1Answer+"\',1)\" class='btn btn-default btn-sm' style='margin-right: 20px;margin-left: 50px;'>A</button>";
-				option+="<button type='button' onclick=\"selectAnswer("+dataObj[0].question1Id+",\'"+dataObj[0].question1Answer+"\',2)\" class='btn btn-default btn-sm' style='margin-right: 20px;'>B</button>";
+				var option = "<button type='button' onclick=\"selectAnswer("+dataObj[0].question1Id+",\'"+dataObj[0].question1Answer+"\',1,\'"+dataObj[0].question1Explains+"\')\" class='btn btn-default btn-sm' style='margin-right: 20px;margin-left: 50px;'>A</button>";
+				option+="<button type='button' onclick=\"selectAnswer("+dataObj[0].question1Id+",\'"+dataObj[0].question1Answer+"\',2,\'"+dataObj[0].question1Explains+"\')\" class='btn btn-default btn-sm' style='margin-right: 20px;'>B</button>";
 				if(dataObj[0].question1Item3 != ""){
-					option+="<button type='button' onclick=\"selectAnswer("+dataObj[0].question1Id+",\'"+dataObj[0].question1Answer+"\',3)\" class='btn btn-default btn-sm' style='margin-right: 20px;'>C</button>";
-					option+="<button type='button' onclick=\"selectAnswer("+dataObj[0].question1Id+",\'"+dataObj[0].question1Answer+"\',4)\" class='btn btn-default btn-sm' style='margin-right: 20px;'>D</button>";
+					option+="<button type='button' onclick=\"selectAnswer("+dataObj[0].question1Id+",\'"+dataObj[0].question1Answer+"\',3,\'"+dataObj[0].question1Explains+"\')\" class='btn btn-default btn-sm' style='margin-right: 20px;'>C</button>";
+					option+="<button type='button' onclick=\"selectAnswer("+dataObj[0].question1Id+",\'"+dataObj[0].question1Answer+"\',4,\'"+dataObj[0].question1Explains+"\')\" class='btn btn-default btn-sm' style='margin-right: 20px;'>D</button>";
 				}
 				option+="<button type='button' class='btn btn-primary btn-sm' style='margin-left: 20px;' onclick=\"nextQuestion1("+(dataObj[0].question1Id+1)+")\">下一题</button>";
+				option+="&nbsp;<a href='javascript:void(0)' onclick=\"collect(this,"+dataObj[0].question1Id+")\" class='btn btn-default btn-sm' title='收藏'><i class='fa fa-star-o'>&nbsp;收藏</i></a>";
 				$('#option').html(option);
+	}
+	
+	//收藏
+	function collect(obj,id){
+		var temp = $(obj).find("i").attr("class");
+		if(temp == 'fa fa-star-o'){
+			$(obj).find("i").attr("class","fa fa-star");
+			$(obj).find("i").html("");
+			$(obj).find("i").html("&nbsp;取消收藏");
+		}else{
+			$(obj).find("i").attr("class","fa fa-star-o");
+			$(obj).find("i").html("");
+			$(obj).find("i").html("&nbsp;收藏");
+			$.ajax({
+				type : 'POST',
+				url : 'collectQuestion',
+				data : {qid:id,type:1},
+				success : function(data){
+					
+				}
+			});
+		}
 	}
 </script>
 </html>

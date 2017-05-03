@@ -7,14 +7,14 @@ import org.springframework.stereotype.Repository;
 import com.hnrw.dao.IPaper1Dao;
 import com.hnrw.entity.ExamPaper1;
 import com.hnrw.entity.ExamQuestion1;
-import com.hnrw.util.UUIDUtil;
+import com.hnrw.util.JDUuid;
 
 @Repository
 public class Paper1DaoImpl extends BaseDaoImpl<ExamPaper1> implements IPaper1Dao{
 
 	@Override
 	public String createPaper1(List<ExamQuestion1> examQuestion1s) {
-		String paper1Number = UUIDUtil.getUUID();
+		String paper1Number = JDUuid.createID("WERWEWER");
 		ExamPaper1 examPaper1 = null;
 		int qid = 1;
 		try {

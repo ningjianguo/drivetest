@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.hnrw.entity.ExamCollection" table="exam_collection" catalog="jiakaosys">
+        <id name="collectionId" type="java.lang.Integer">
+            <column name="collection_id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="examUser" class="com.hnrw.entity.ExamUser" fetch="select">
+            <column name="user_id" not-null="true">
+                <comment>用户ID</comment>
+            </column>
+        </many-to-one>
+        <property name="collectionQid" type="java.lang.Integer">
+            <column name="collection_qid" not-null="true">
+                <comment>试题ID</comment>
+            </column>
+        </property>
+        <property name="collectionType" type="java.lang.Integer">
+            <column name="collection_type" not-null="true">
+                <comment>试题类型:1科目一、4科目四</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

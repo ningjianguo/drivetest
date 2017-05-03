@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <nav class="navbar navbar-default navbar-cls-top navbar-fixed-top" role="navigation"
-			style="margin: 0px;">
+			style="margin: 0 auto;">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
 					data-target=".sidebar-collapse">

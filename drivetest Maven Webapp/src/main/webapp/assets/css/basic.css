@@ -5,11 +5,20 @@
 body {
     font-family: 'Open Sans', sans-serif;
     line-height:25px;
+    width: 1260px;
+    margin: 0 auto;
+    height: 100%;
 }
-
+#body_{
+	width: 1260px;
+    margin: 0 auto;
+    height: 100%;
+    background-color: red;
+}
 #wrapper {
-    width: 100%;
     background: #F3F3F3;
+    width: 1260px;
+    margin: 0 auto;
 }
 
 #page-wrapper {
@@ -19,7 +28,7 @@ body {
 
 #page-inner {
 	height:100%;
-    width: 105%;
+    width: 1000px;
     margin: 5px 0px 0px -30px;
     background-color: #fff!important;
     padding: 10px;
@@ -67,7 +76,9 @@ body {
     padding-top: 15px;
     text-transform:uppercase;
 }
-
+.navbar-footer{
+	height: 30px;	
+}
 .header-right {
     color: #fff;
     padding: 10px 50px 5px 50px;
@@ -178,6 +189,7 @@ body {
 .navbar-cls-top {
     background: #00CA79;
     border-bottom: none;
+    width: 1260px;
 }
 
 
@@ -213,7 +225,8 @@ body {
     font-size:12px;
     height: 100%;
     padding: 8px;
-    margin-bottom: 5px;
+    margin: 0 auto;
+    width: 1260px;
 }
 
     #footer-sec a {

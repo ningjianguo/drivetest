@@ -81,12 +81,8 @@
 			<!-- /. PAGE INNER  -->
 		</div>
 		<!-- /. PAGE WRAPPER  -->
-		<div style="background-color:#000; color:#fff;font-size:12px;height: 100%;padding: 8px;margin-top: 65px;" align="center">
-       	 Copyright &copy; 2017 Hunan
-			University Of Humanities,Science And Technology. All Rights Reserved.
-		</div>
+		<%@include file="copyrightpage.jsp" %>
 	</div>
-	
 	<!-- /. WRAPPER  -->
 	<!-- 登录模态框 -->
 	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog"

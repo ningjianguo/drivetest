@@ -4,10 +4,10 @@
 		$(function(){
 			var menuactive = $('#menuactive').val();
 			$('#'+menuactive).attr("class","active-menu");
-		})
+		});
 </script>
 <input type="hidden" id="menuactive" value="<%=request.getParameter("menuactive")%>">
-<nav class="navbar-default navbar-side" role="navigation">
+<nav class="navbar-default navbar-side" role="navigation"  style="background-color: #5BC0DE;height: 93%;">
 			<div class="sidebar-collapse">
 				<ul class="nav" id="main-menu">
 					<li>
@@ -44,5 +44,4 @@
 				</ul>
 
 			</div>
-
 </nav>

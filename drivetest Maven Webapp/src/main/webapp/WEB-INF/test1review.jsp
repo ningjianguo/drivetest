@@ -68,10 +68,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <!-- /. PAGE INNER  -->
         </div>
         <!-- /. PAGE WRAPPER  -->
-    </div>
+    	</div>
+    	<%@include file="copyrightpage.jsp" %>
     <!-- /. WRAPPER  -->
 
-    <%@include file="copyrightpage.jsp" %>
     
     <!-- 放大图片模态框 -->
     ﻿<div id="showImage" class="modal">         
@@ -140,7 +140,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		var button = "<table align='center'><tr>";
 		for(var i = 1;i <= totalSize;i++){
 			button+="<td><button type='button' class='btn btn-default btn-sm' style='margin: 2px; width:43px;height:30px;'>"+i+"</button><td>";
-			if(i % 22 == 0){
+			if(i % 20 == 0){
 				i++;
 				if(i <= totalSize){
 					button+="</tr><tr><td><button type='button' class='btn btn-default btn-sm' style='margin: 2px;width:43px;height:30px;'>"+i+"</button><td>";

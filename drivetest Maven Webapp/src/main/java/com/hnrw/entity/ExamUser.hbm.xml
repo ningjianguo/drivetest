@@ -3,9 +3,9 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="com.hnrw.entity.ExamUser" table="exam_user" catalog="jiakaosys">
-        <id name="userId" type="java.lang.Integer">
-            <column name="user_id" />
-            <generator class="native" />
+        <id name="userId" type="java.lang.String">
+            <column name="user_id" length="40" />
+            <generator class="assigned" />
         </id>
         <property name="userAccountName" type="java.lang.String">
             <column name="user_account_name" length="32" not-null="true">
@@ -32,9 +32,17 @@
                 <comment>用户邮箱</comment>
             </column>
         </property>
+        <set name="examCollections" inverse="true">
+            <key>
+                <column name="user_id" length="40" not-null="true">
+                    <comment>用户ID</comment>
+                </column>
+            </key>
+            <one-to-many class="com.hnrw.entity.ExamCollection" />
+        </set>
         <set name="examInfos" inverse="true">
             <key>
-                <column name="user_id" not-null="true">
+                <column name="user_id" length="40" not-null="true">
                     <comment>用户主键(外键)</comment>
                 </column>
             </key>

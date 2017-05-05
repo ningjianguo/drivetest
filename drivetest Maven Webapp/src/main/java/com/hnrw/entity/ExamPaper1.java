@@ -2,14 +2,13 @@ package com.hnrw.entity;
 
 public class ExamPaper1 implements java.io.Serializable {
 
-	// Fields
-
-	private static final long serialVersionUID = -6958401068092056670L;
-	private Integer paper1Id;
+	private static final long serialVersionUID = 8146756585374336320L;
+	private String paper1Id;
 	private ExamQuestion1 examQuestion1;
+	private Integer paper1No;
 	private String paper1Number;
-	private String question1Answer;
 	private Integer paper1Qid;
+	private String question1Answer;
 	private Integer paper1Choice;
 
 	// Constructors
@@ -19,30 +18,37 @@ public class ExamPaper1 implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public ExamPaper1(ExamQuestion1 examQuestion1, String paper1Number,
+	public ExamPaper1(String paper1Id, ExamQuestion1 examQuestion1,
+			Integer paper1No, String paper1Number, Integer paper1Qid,
 			String question1Answer) {
+		this.paper1Id = paper1Id;
 		this.examQuestion1 = examQuestion1;
+		this.paper1No = paper1No;
 		this.paper1Number = paper1Number;
+		this.paper1Qid = paper1Qid;
 		this.question1Answer = question1Answer;
 	}
 
 	/** full constructor */
-	public ExamPaper1(ExamQuestion1 examQuestion1, String paper1Number,
-			String question1Answer, Integer paper1Choice,Integer paper1Qid) {
+	public ExamPaper1(String paper1Id, ExamQuestion1 examQuestion1,
+			Integer paper1No, String paper1Number, Integer paper1Qid,
+			String question1Answer, Integer paper1Choice) {
+		this.paper1Id = paper1Id;
 		this.examQuestion1 = examQuestion1;
+		this.paper1No = paper1No;
 		this.paper1Number = paper1Number;
+		this.paper1Qid = paper1Qid;
 		this.question1Answer = question1Answer;
 		this.paper1Choice = paper1Choice;
-		this.paper1Qid = paper1Qid;
 	}
 
 	// Property accessors
 
-	public Integer getPaper1Id() {
+	public String getPaper1Id() {
 		return this.paper1Id;
 	}
 
-	public void setPaper1Id(Integer paper1Id) {
+	public void setPaper1Id(String paper1Id) {
 		this.paper1Id = paper1Id;
 	}
 
@@ -54,12 +60,28 @@ public class ExamPaper1 implements java.io.Serializable {
 		this.examQuestion1 = examQuestion1;
 	}
 
+	public Integer getPaper1No() {
+		return this.paper1No;
+	}
+
+	public void setPaper1No(Integer paper1No) {
+		this.paper1No = paper1No;
+	}
+
 	public String getPaper1Number() {
 		return this.paper1Number;
 	}
 
 	public void setPaper1Number(String paper1Number) {
 		this.paper1Number = paper1Number;
+	}
+
+	public Integer getPaper1Qid() {
+		return this.paper1Qid;
+	}
+
+	public void setPaper1Qid(Integer paper1Qid) {
+		this.paper1Qid = paper1Qid;
 	}
 
 	public String getQuestion1Answer() {
@@ -78,12 +100,4 @@ public class ExamPaper1 implements java.io.Serializable {
 		this.paper1Choice = paper1Choice;
 	}
 
-	public Integer getPaper1Qid() {
-		return paper1Qid;
-	}
-
-	public void setPaper1Qid(Integer paper1Qid) {
-		this.paper1Qid = paper1Qid;
-	}
-	
 }

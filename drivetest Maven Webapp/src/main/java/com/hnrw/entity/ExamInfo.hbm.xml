@@ -3,15 +3,20 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="com.hnrw.entity.ExamInfo" table="exam_info" catalog="jiakaosys">
-        <id name="infoId" type="java.lang.Integer">
-            <column name="info_id" />
-            <generator class="native" />
+        <id name="infoId" type="java.lang.String">
+            <column name="info_id" length="40" />
+            <generator class="assigned" />
         </id>
-        <many-to-one name="examUser" class="com.hnrw.entity.ExamUser" fetch="select">
-            <column name="user_id" not-null="true">
+        <many-to-one name="examUser" class="com.hnrw.entity.ExamUser" fetch="select" lazy="false">
+            <column name="user_id" length="40" not-null="true">
                 <comment>用户主键(外键)</comment>
             </column>
         </many-to-one>
+        <property name="infoNo" type="java.lang.Integer">
+            <column name="info_no" not-null="true">
+                <comment>序号</comment>
+            </column>
+        </property>
         <property name="paperNumber" type="java.lang.String">
             <column name="paper_number" length="32" not-null="true">
                 <comment>试卷编号(paper1+paper4)</comment>
@@ -35,6 +40,11 @@
         <property name="infoType" type="java.lang.Integer">
             <column name="info_type" not-null="true">
                 <comment>考试类型(科一、科四)</comment>
+            </column>
+        </property>
+        <property name="infoStartEnd" type="java.lang.String">
+            <column name="info_startEnd" length="32">
+                <comment>考试结束时间</comment>
             </column>
         </property>
     </class>

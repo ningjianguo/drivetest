@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.hnrw.dao.IUser;
 import com.hnrw.entity.ExamUser;
 import com.hnrw.service.IUserService;
+import com.hnrw.util.JDUuid;
 import com.hnrw.util.MD5Util;
 
 @Service
@@ -35,6 +36,7 @@ public class UserServiceImpl implements IUserService {
 				user.setUserAccountPassword(MD5Util.getInstance().calcMD5(user.getUserAccountPassword()));
 				//用户注册默认为普通权限，区别于管理员权限
 				user.setUserRole("0");
+				user.setUserId(JDUuid.createID("qwewqert"));
 				userDaoImpl.saveUser(user);
 				return "注册成功!";
 			}else{

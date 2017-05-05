@@ -33,7 +33,7 @@ public class Test1ReviewAction extends BaseAction<ExamQuestion1>{
 	}
 	
 	public String chooseOneAnswer(){
-		printJsonStringToBrowser(paper1ServiceImpl.nextReviewQuestion1(getModel().getQuestion1Id()));
+		//printJsonStringToBrowser(paper1ServiceImpl.nextReviewQuestion1(getModel().getQuestion1Id()));
 		return null;
 	}
 	

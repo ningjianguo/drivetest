@@ -3,10 +3,15 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="com.hnrw.entity.ExamQuestion1" table="exam_question1" catalog="jiakaosys">
-        <id name="question1Id" type="java.lang.Integer">
-            <column name="question1_id" />
-            <generator class="native" />
+        <id name="question1Id" type="java.lang.String">
+            <column name="question1_id" length="40" />
+            <generator class="assigned" />
         </id>
+        <property name="question1No" type="java.lang.Integer">
+            <column name="question1_no" not-null="true">
+                <comment>序号</comment>
+            </column>
+        </property>
         <property name="question1Question" type="java.lang.String">
             <column name="question1_question" not-null="true">
                 <comment>问题</comment>
@@ -49,7 +54,7 @@
         </property>
         <set name="examPaper1s" inverse="true">
             <key>
-                <column name="question1_id" not-null="true">
+                <column name="question1_id" length="40" not-null="true">
                     <comment>科一题目主键(外键)</comment>
                 </column>
             </key>

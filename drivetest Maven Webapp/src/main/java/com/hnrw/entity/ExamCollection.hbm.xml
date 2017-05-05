@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="com.hnrw.entity.ExamCollection" table="exam_collection" catalog="jiakaosys">
-        <id name="collectionId" type="java.lang.Integer">
-            <column name="collection_id" />
+        <id name="collectionId" type="java.lang.String">
+            <column name="collection_id" length="40" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="examUser" class="com.hnrw.entity.ExamUser" fetch="select">
-            <column name="user_id" not-null="true">
+        <many-to-one name="examUser" class="com.hnrw.entity.ExamUser" fetch="select" lazy="false">
+            <column name="user_id" length="40" not-null="true">
                 <comment>用户ID</comment>
             </column>
         </many-to-one>

@@ -1,18 +1,17 @@
 package com.hnrw.entity;
 
-
 public class ExamInfo implements java.io.Serializable {
 
-	// Fields
-
-	private static final long serialVersionUID = -870416719131872121L;
-	private Integer infoId;
+	private static final long serialVersionUID = 73672985671647157L;
+	private String infoId;
 	private ExamUser examUser;
+	private Integer infoNo;
 	private String paperNumber;
 	private String infoStartTime;
 	private String infoEndTime;
 	private Integer infoScore;
 	private Integer infoType;
+	private String infoStartEnd;
 
 	// Constructors
 
@@ -21,32 +20,38 @@ public class ExamInfo implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public ExamInfo(ExamUser examUser, String paperNumber, String infoStartTime,
-			Integer infoType) {
+	public ExamInfo(String infoId, ExamUser examUser, Integer infoNo,
+			String paperNumber, String infoStartTime, Integer infoType) {
+		this.infoId = infoId;
 		this.examUser = examUser;
+		this.infoNo = infoNo;
 		this.paperNumber = paperNumber;
 		this.infoStartTime = infoStartTime;
 		this.infoType = infoType;
 	}
 
 	/** full constructor */
-	public ExamInfo(ExamUser examUser, String paperNumber, String infoStartTime,
-			String infoEndTime, Integer infoScore, Integer infoType) {
+	public ExamInfo(String infoId, ExamUser examUser, Integer infoNo,
+			String paperNumber, String infoStartTime, String infoEndTime,
+			Integer infoScore, Integer infoType, String infoStartEnd) {
+		this.infoId = infoId;
 		this.examUser = examUser;
+		this.infoNo = infoNo;
 		this.paperNumber = paperNumber;
 		this.infoStartTime = infoStartTime;
 		this.infoEndTime = infoEndTime;
 		this.infoScore = infoScore;
 		this.infoType = infoType;
+		this.infoStartEnd = infoStartEnd;
 	}
 
 	// Property accessors
 
-	public Integer getInfoId() {
+	public String getInfoId() {
 		return this.infoId;
 	}
 
-	public void setInfoId(Integer infoId) {
+	public void setInfoId(String infoId) {
 		this.infoId = infoId;
 	}
 
@@ -56,6 +61,14 @@ public class ExamInfo implements java.io.Serializable {
 
 	public void setExamUser(ExamUser examUser) {
 		this.examUser = examUser;
+	}
+
+	public Integer getInfoNo() {
+		return this.infoNo;
+	}
+
+	public void setInfoNo(Integer infoNo) {
+		this.infoNo = infoNo;
 	}
 
 	public String getPaperNumber() {
@@ -75,7 +88,7 @@ public class ExamInfo implements java.io.Serializable {
 	}
 
 	public String getInfoEndTime() {
-		return infoEndTime;
+		return this.infoEndTime;
 	}
 
 	public void setInfoEndTime(String infoEndTime) {
@@ -96,6 +109,14 @@ public class ExamInfo implements java.io.Serializable {
 
 	public void setInfoType(Integer infoType) {
 		this.infoType = infoType;
+	}
+
+	public String getInfoStartEnd() {
+		return this.infoStartEnd;
+	}
+
+	public void setInfoStartEnd(String infoStartEnd) {
+		this.infoStartEnd = infoStartEnd;
 	}
 
 }

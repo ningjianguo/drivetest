@@ -3,7 +3,6 @@ package com.hnrw.util;
 import java.io.Serializable;
 
 import org.apache.commons.codec.binary.Hex;
-
 public final class JDUuid implements Serializable {
 	private static final long serialVersionUID = -6866147833152133781L;
 	private static String billType;
@@ -42,8 +41,7 @@ public final class JDUuid implements Serializable {
 	}
 
 	private static String getRandomCode() {
-		return new String(Hex.encodeHex(org.apache.commons.id.uuid.UUID
-				.randomUUID().getRawBytes()));
+			return new String(Hex.encodeHex(org.apache.commons.id.uuid.UUID.randomUUID().getRawBytes()));
 	}
 
 	public String toString() {

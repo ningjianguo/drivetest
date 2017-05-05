@@ -2,8 +2,8 @@ package com.hnrw.entity;
 
 public class ExamCollection implements java.io.Serializable {
 
-	private static final long serialVersionUID = 3076441817496783359L;
-	private Integer collectionId;
+	private static final long serialVersionUID = 4723991617724312222L;
+	private String collectionId;
 	private ExamUser examUser;
 	private Integer collectionQid;
 	private Integer collectionType;
@@ -15,7 +15,7 @@ public class ExamCollection implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public ExamCollection(Integer collectionId, ExamUser examUser,
+	public ExamCollection(String collectionId, ExamUser examUser,
 			Integer collectionQid, Integer collectionType) {
 		this.collectionId = collectionId;
 		this.examUser = examUser;
@@ -23,11 +23,13 @@ public class ExamCollection implements java.io.Serializable {
 		this.collectionType = collectionType;
 	}
 
-	public Integer getCollectionId() {
+	// Property accessors
+
+	public String getCollectionId() {
 		return this.collectionId;
 	}
 
-	public void setCollectionId(Integer collectionId) {
+	public void setCollectionId(String collectionId) {
 		this.collectionId = collectionId;
 	}
 

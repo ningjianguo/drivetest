@@ -5,15 +5,14 @@ import java.util.Set;
 
 public class ExamUser implements java.io.Serializable {
 
-	// Fields
-
-	private static final long serialVersionUID = -1018377581101884361L;
-	private Integer userId;
+	private static final long serialVersionUID = 672813022472652081L;
+	private String userId;
 	private String userAccountName;
 	private String userAccountPassword;
 	private String userRole;
 	private String userName;
 	private String userEmail;
+	private Set examCollections = new HashSet(0);
 	private Set examInfos = new HashSet(0);
 
 	// Constructors
@@ -23,31 +22,35 @@ public class ExamUser implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public ExamUser(String userAccountName, String userAccountPassword,
-			String userRole) {
+	public ExamUser(String userId, String userAccountName,
+			String userAccountPassword, String userRole) {
+		this.userId = userId;
 		this.userAccountName = userAccountName;
 		this.userAccountPassword = userAccountPassword;
 		this.userRole = userRole;
 	}
 
 	/** full constructor */
-	public ExamUser(String userAccountName, String userAccountPassword,
-			String userRole, String userName, String userEmail, Set examInfos) {
+	public ExamUser(String userId, String userAccountName,
+			String userAccountPassword, String userRole, String userName,
+			String userEmail, Set examCollections, Set examInfos) {
+		this.userId = userId;
 		this.userAccountName = userAccountName;
 		this.userAccountPassword = userAccountPassword;
 		this.userRole = userRole;
 		this.userName = userName;
 		this.userEmail = userEmail;
+		this.examCollections = examCollections;
 		this.examInfos = examInfos;
 	}
 
 	// Property accessors
 
-	public Integer getUserId() {
+	public String getUserId() {
 		return this.userId;
 	}
 
-	public void setUserId(Integer userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 
@@ -89,6 +92,14 @@ public class ExamUser implements java.io.Serializable {
 
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
+	}
+
+	public Set getExamCollections() {
+		return this.examCollections;
+	}
+
+	public void setExamCollections(Set examCollections) {
+		this.examCollections = examCollections;
 	}
 
 	public Set getExamInfos() {

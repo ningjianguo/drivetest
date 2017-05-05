@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="com.hnrw.entity.ExamPaper4" table="exam_paper4" catalog="jiakaosys">
-        <id name="paper4Id" type="java.lang.Integer">
-            <column name="paper4_id" />
-            <generator class="native" />
+        <id name="paper4Id" type="java.lang.String">
+            <column name="paper4_id" length="40" />
+            <generator class="assigned" />
         </id>
         <many-to-one name="examQuestion4" class="com.hnrw.entity.ExamQuestion4" fetch="select" lazy="false">
-            <column name="question4_id" not-null="true">
+            <column name="question4_id" length="40" not-null="true">
                 <comment>科四题目主键(外键)</comment>
             </column>
         </many-to-one>
+        <property name="paper4No" type="java.lang.Integer">
+            <column name="paper4_no" not-null="true">
+                <comment>序号</comment>
+            </column>
+        </property>
         <property name="paper4Number" type="java.lang.String">
             <column name="paper4_number" length="32" not-null="true">
                 <comment>试卷编号uuid(唯一)</comment>

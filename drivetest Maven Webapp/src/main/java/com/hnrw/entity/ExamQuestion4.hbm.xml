@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="com.hnrw.entity.ExamQuestion4" table="exam_question4" catalog="jiakaosys">
-        <id name="question4Id" type="java.lang.Integer">
-            <column name="question4_id" />
-            <generator class="native" />
+        <id name="question4Id" type="java.lang.String">
+            <column name="question4_id" length="40" />
+            <generator class="assigned" />
         </id>
+        <property name="question4No" type="java.lang.Integer">
+            <column name="question4_no" not-null="true">
+                <comment>序号</comment>
+            </column>
+        </property>
         <property name="question4Question" type="java.lang.String">
             <column name="question4_question" not-null="true">
                 <comment>问题</comment>
@@ -49,7 +54,7 @@
         </property>
         <set name="examPaper4s" inverse="true">
             <key>
-                <column name="question4_id" not-null="true">
+                <column name="question4_id" length="40" not-null="true">
                     <comment>科四题目主键(外键)</comment>
                 </column>
             </key>

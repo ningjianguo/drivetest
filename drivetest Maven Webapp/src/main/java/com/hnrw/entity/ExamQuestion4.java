@@ -5,10 +5,9 @@ import java.util.Set;
 
 public class ExamQuestion4 implements java.io.Serializable {
 
-	// Fields
-
-	private static final long serialVersionUID = -7829352201109736186L;
-	private Integer question4Id;
+	private static final long serialVersionUID = -6503178528304058265L;
+	private String question4Id;
+	private Integer question4No;
 	private String question4Question;
 	private String question4Answer;
 	private String question4Item1;
@@ -26,8 +25,12 @@ public class ExamQuestion4 implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public ExamQuestion4(String question4Question, String question4Answer, String question4Item1, String question4Item2,
+	public ExamQuestion4(String question4Id, Integer question4No,
+			String question4Question, String question4Answer,
+			String question4Item1, String question4Item2,
 			String question4Explains) {
+		this.question4Id = question4Id;
+		this.question4No = question4No;
 		this.question4Question = question4Question;
 		this.question4Answer = question4Answer;
 		this.question4Item1 = question4Item1;
@@ -36,9 +39,13 @@ public class ExamQuestion4 implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public ExamQuestion4(String question4Question, String question4Answer, String question4Item1, String question4Item2,
-			String question4Item3, String question4Item4, String question4Explains, String question4Url,
-			Set examPaper4s) {
+	public ExamQuestion4(String question4Id, Integer question4No,
+			String question4Question, String question4Answer,
+			String question4Item1, String question4Item2,
+			String question4Item3, String question4Item4,
+			String question4Explains, String question4Url, Set examPaper4s) {
+		this.question4Id = question4Id;
+		this.question4No = question4No;
 		this.question4Question = question4Question;
 		this.question4Answer = question4Answer;
 		this.question4Item1 = question4Item1;
@@ -52,12 +59,20 @@ public class ExamQuestion4 implements java.io.Serializable {
 
 	// Property accessors
 
-	public Integer getQuestion4Id() {
+	public String getQuestion4Id() {
 		return this.question4Id;
 	}
 
-	public void setQuestion4Id(Integer question4Id) {
+	public void setQuestion4Id(String question4Id) {
 		this.question4Id = question4Id;
+	}
+
+	public Integer getQuestion4No() {
+		return this.question4No;
+	}
+
+	public void setQuestion4No(Integer question4No) {
+		this.question4No = question4No;
 	}
 
 	public String getQuestion4Question() {

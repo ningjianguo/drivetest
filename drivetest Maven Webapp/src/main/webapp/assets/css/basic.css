@@ -5,19 +5,13 @@
 body {
     font-family: 'Open Sans', sans-serif;
     line-height:25px;
-    width: 1260px;
+    width: 1366px;
     margin: 0 auto;
     height: 100%;
-}
-#body_{
-	width: 1260px;
-    margin: 0 auto;
-    height: 100%;
-    background-color: red;
 }
 #wrapper {
     background: #F3F3F3;
-    width: 1260px;
+    width: 1366px;
     margin: 0 auto;
 }
 
@@ -28,8 +22,8 @@ body {
 
 #page-inner {
 	height:100%;
-    width: 1000px;
-    margin: 5px 0px 0px -30px;
+    width: 1126px;
+    margin: 5px 0px 0px -40px;
     background-color: #fff!important;
     padding: 10px;
 }
@@ -189,7 +183,7 @@ body {
 .navbar-cls-top {
     background: #00CA79;
     border-bottom: none;
-    width: 1260px;
+    width: 1366px;
 }
 
 

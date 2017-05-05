@@ -143,7 +143,11 @@
 		    <artifactId>commons-codec</artifactId>
 		    <version>1.9</version>
 		</dependency>
-		
+		<dependency>
+		    <groupId>commons-discovery</groupId>
+		    <artifactId>commons-discovery</artifactId>
+		    <version>0.5</version>
+		</dependency>
 		<!-- 本地jar -->
 		<dependency>  
             <groupId>com.hnrw.drivetest</groupId>  

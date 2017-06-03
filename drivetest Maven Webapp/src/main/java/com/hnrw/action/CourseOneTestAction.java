@@ -22,6 +22,7 @@ public class CourseOneTestAction extends BaseAction<ExamPaper1>{
 	private IPaper1Service paper1ServiceImpl;
 	@Resource
 	private IInfoService infoServiceImpl;
+	private String paperNumber;
 	
 	public String toDriverTest1Jsp(){
 		return SUCCESS;
@@ -42,4 +43,17 @@ public class CourseOneTestAction extends BaseAction<ExamPaper1>{
 		printJsonStringToBrowser(infoServiceImpl.submitPaper1(paper1Number));
 		return null;
 	}
+	
+	public String againTest(){
+		printJsonStringToBrowser(paper1ServiceImpl.againOneTest(paperNumber));
+		return null;
+	}
+	public String getPaperNumber() {
+		return paperNumber;
+	}
+
+	public void setPaperNumber(String paperNumber) {
+		this.paperNumber = paperNumber;
+	}
+	
 }

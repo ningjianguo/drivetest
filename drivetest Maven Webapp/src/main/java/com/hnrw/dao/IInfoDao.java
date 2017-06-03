@@ -1,9 +1,11 @@
 package com.hnrw.dao;
 
+import com.hnrw.entity.ExamInfo;
 import com.hnrw.entity.ExamPaper1;
 import com.hnrw.entity.ExamPaper4;
 
 public interface IInfoDao {
+	
 	/**
 	 * 创建一份考试信息
 	 * @param paperNumber 试题编号
@@ -27,6 +29,7 @@ public interface IInfoDao {
 	 * @return 题目信息
 	 */
 	public ExamPaper4 getCourseFourQuestion(String paperNumber,int questionNumber);
+	
 	/**
 	 * 根据试卷编号更新考试结束时间和总成绩
 	 * @param paperNumber1 试卷编号
@@ -34,4 +37,10 @@ public interface IInfoDao {
 	 * @return 是否更新成功
 	 */
 	public boolean updateExamEndTimeAndScoreByPaperNumber(String paperNumber,int totalScore);
+	
+	/**
+	 * 删除试题信息
+	 * @param paperNumber 试卷编号
+	 */
+	public void deleteInfo(String paperNumber);
 }

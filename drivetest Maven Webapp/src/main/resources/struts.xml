@@ -35,5 +35,6 @@
 		</global-exception-mappings>
 
 	</package>
-	<include file="struts-main.xml"></include>
+	<include file="struts-front.xml"></include>
+	<include file="struts-admin.xml"></include>
 </struts>    

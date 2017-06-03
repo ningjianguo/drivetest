@@ -55,9 +55,9 @@ public class BaseDaoImpl<T> implements IBaseDao<T> {
 	@Override
 	public List<T> getPaging(int pageNo, int pageSize,String queryLimit) {
 		try {
-			String sql = " from "+ domainClass.getSimpleName()+(queryLimit == null ? "":" "+queryLimit);
-			Query query = getSession().createQuery(sql);  
-			//设置起点  
+			String sql = "from "+ domainClass.getSimpleName()+(queryLimit == null ? "":" where "+queryLimit);
+			Query query = getSession().createQuery(sql);
+			//设置起点   
 			query.setFirstResult(pageSize*(pageNo-1));  
 			//设置每页显示多少个，设置多大结果。  
 			query.setMaxResults(pageSize);  

@@ -6,8 +6,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.hnrw.entity.ExamQuestion1;
-import com.hnrw.service.IInfoService;
-import com.hnrw.service.IPaper1Service;
+import com.hnrw.service.ICollectionService;
+import com.hnrw.service.IQuestion1Service;
 /**
  * 科目一复习action
  * @author Techape
@@ -19,27 +19,27 @@ public class Test1ReviewAction extends BaseAction<ExamQuestion1>{
 
 	private static final long serialVersionUID = -8434492100037005150L;
 	@Resource
-	private IPaper1Service paper1ServiceImpl;
+	private IQuestion1Service question1ServiceImpl;
 	@Resource
-	private IInfoService infoServiceImpl;
+	private ICollectionService collectionServiceImpl;
 	
 	public String toTest1ReviewJsp(){
 		return SUCCESS;
 	}
 	
 	public String createOnePaper(){
-		printJsonStringToBrowser(paper1ServiceImpl.nextReviewQuestion1(1));
+		printJsonStringToBrowser(question1ServiceImpl.createReviewPaper1());
 		return null;
 	}
 	
 	public String chooseOneAnswer(){
-		//printJsonStringToBrowser(paper1ServiceImpl.nextReviewQuestion1(getModel().getQuestion1Id()));
+		printJsonStringToBrowser(question1ServiceImpl.nextReviewQuestion1(getModel().getQuestion1No()));
 		return null;
 	}
 	
-	public String submitPaper1(){
-		String paper1Number = request.getParameter("paper1Number");
-		printJsonStringToBrowser(infoServiceImpl.submitPaper1(paper1Number));
+	public String collectOrNotCollectQuestion1(){
+		String question1Id = request.getParameter("question1Id");
+		printJsonStringToBrowser(collectionServiceImpl.collectOrNotCollect(question1Id));
 		return null;
 	}
 }

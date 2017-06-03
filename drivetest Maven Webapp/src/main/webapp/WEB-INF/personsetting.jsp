@@ -1,133 +1,144 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
 %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<base href="<%=basePath%>">
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Driver Test</title>
-    <link rel="icon" href="assets/img/car.ico" type="image/x-icon">
-    <!-- BOOTSTRAP STYLES-->
-    <link href="assets/css/bootstrap.css" rel="stylesheet" />
-    <!-- FONTAWESOME STYLES-->
-    <link href="assets/css/font-awesome.css" rel="stylesheet" />
-       <!--CUSTOM BASIC STYLES-->
-    <link href="assets/css/basic.css" rel="stylesheet" />
-    <!--CUSTOM MAIN STYLES-->
-    <link href="assets/css/custom.css" rel="stylesheet" />
-    <!-- GOOGLE FONTS-->
-    <link href='assets/css/openSans.css' rel='stylesheet' type='text/css' />
-    <!-- JQUERY SCRIPTS -->
-    <script src="assets/js/jquery-1.10.2.js"></script>
+<base href="<%=basePath%>">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>老司机驾考系统</title>
+<%@include file="common.jsp" %>
+<link href='assets/css/fileinput.min.css' rel='stylesheet' type='text/css' />
 </head>
 <body>
-    <div id="wrapper">
-        <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand fa fa-taxi" href="index.html">&nbsp;DRIVER TEST</a>
-            </div>
-
-            <div class="header-right">
-				<span id="current-time" style="float: left;font-weight: bolder;margin-right: 15px;margin-top: 10px;"></span>
-                <a href="message-task.html" class="btn btn-info" title="New Message"><i class="fa fa-envelope-o fa-2x"></i>&nbsp;邮件列表</a>
-                <a href="login.html" class="btn btn-danger" title="Logout"><i class="fa  fa-sign-out fa-2x"></i>&nbsp;退出系统</a>
-
-            </div>
-        </nav>
-        <!-- /. NAV TOP  -->
-        <nav class="navbar-default navbar-side" role="navigation">
-            <div class="sidebar-collapse">
-                <ul class="nav" id="main-menu">
-                    <li>
-                        <div class="user-img-div">
-                            <img src="assets/img/user.png" class="img-thumbnail" />
-                            <div class="inner-text">
-                                	欢迎你，${user.userName}
-                            <br />
-                            </div>
-                        </div>
-
-                    </li>
-                    <li>
-                        <a class="active-menu" href="index.html"><i class="fa fa-dashboard "></i>主页</a>
-                    </li>
-                    
-                    <li>
-                        <a href="drivertest1.html"><i class="fa fa-pencil-square-o "></i>科一模拟 </a>
-                        
-                    </li>
-                    <li>
-                        <a href="drivertest4.html"><i class="fa fa-pencil-square-o "></i>科四模拟</a>
-                    </li>
-                    <li>
-                        <a href="analogtest.html"><i class="fa fa-pencil-square "></i>模拟练习</a>
-                    </li>
-                     <li>
-                        <a href="testreview.html"><i class="fa fa-book "></i>试题复习</a>
-                    </li>
-                    <li>
-                        <a href="mygrade.html"><i class="fa fa-graduation-cap "></i>我的成绩</a>
-                    </li>
-                    <li>
-                        <a href="personsetting.html"><i class="fa fa-cogs "></i>个人设置</a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)"><i class="fa fa-sign-out "></i>退出系统</a>
-                    </li>
-                </ul>
-
-            </div>
-
-        </nav>
-        <!-- /. NAV SIDE  -->
-        <div id="page-wrapper">
-            <div id="page-inner">
-                <div class="row">
-                    <div class="col-md-12">
-                       <!-- <h1 class="page-head-line">DASHBOARD</h1>-->
-                        <i class="fa fa-arrow-circle-o-right fa-4x" style="color: gray;margin-top: 3px;">&nbsp;个人设置</i>
-                        <h5 class="page-subhead-line"></h5>
-                    </div>
-                </div>
-                <!-- /. ROW  -->
-              
-                <!-- /. ROW  -->
-            </div>
-            <!-- /. PAGE INNER  -->
-        </div>
-        <!-- /. PAGE WRAPPER  -->
-    </div>
-    <!-- /. WRAPPER  -->
-
-    <div id="footer-sec" align="center">
-	Copyright &copy; 2017 Hunan University Of Humanities,Science And Technology. All Rights Reserved.
-    </div>
-    <!-- /. FOOTER  -->
-    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
-    <!-- BOOTSTRAP SCRIPTS -->
-    <script src="assets/js/bootstrap.js"></script>
-    <!-- METISMENU SCRIPTS -->
-    <script src="assets/js/jquery.metisMenu.js"></script>
-       <!-- CUSTOM SCRIPTS -->
-    <script src="assets/js/custom.js"></script>
+	<%@include file="toppage.jsp" %>
+	<div id="wrapper" style="margin-top: 50px;">
+		<!-- /. NAV TOP  -->
+		<jsp:include page="leftmenu.jsp">
+			<jsp:param value="personSetting" name="menuactive"/>
+		</jsp:include>
+		<!-- /. NAV SIDE  -->
+		<div id="page-wrapper">
+			<div id="page-inner">
+				<div class="row">
+					<div class="col-md-12">
+						<i class="fa fa-arrow-circle-o-right fa-2x"
+							style="color: gray;margin-top: 3px;">&nbsp;个人设置</i>
+							 <div id="myAlert" style="display: none" class="alert alert-success">
+									<a href="#" class="close" data-dismiss="alert">&times;</a>
+									<strong>成功！</strong>结果保存成功。
+								</div>
+						<h5 class="page-subhead-line"></h5>
+					</div>
+				</div>
+				<!-- /. ROW  -->
+				<div class="row">
+					<div class="col-md-12">
+						<form class="form-horizontal" align="center" id="userForm">
+						  <div class="form-group">
+						    <label for="userAccountName" class="col-sm-3 control-label">账号:</label>
+						    <div class="col-sm-3">
+						      <input type="text" class="form-control" name="userAccountName" id="userAccountName" value="${user.userAccountName}" readonly>
+						    </div>
+						     <label for="userName" class="col-sm-1 control-label">姓名:</label>
+						    <div class="col-sm-3">
+						      <input type="text" class="form-control" id="userName" name="userName" value="${user.userName}">
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label for="userAccountPassword" class="col-sm-3 control-label">密码:</label>
+						    <div class="col-sm-3">
+						      <input type="password" class="form-control" id="userAccountPassword" name="userAccountPassword" value="${user.userAccountPassword}">
+						    </div>
+						    <label for="userEmail" class="col-sm-1 control-label">邮箱:</label>
+						    <div class="col-sm-3">
+						      <input type="text" class="form-control" id="userEmail" name="userEmail" value="${user.userEmail}">
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label for="file" class="col-sm-3 control-label">头像:</label>
+						    <div class="col-sm-3">
+							    <input id="file" type="file" name="file" multiple>
+								<p class="help-block">只允许上传后缀为.png、.jpg格式的照片</p>
+						    </div>
+						    <div class="col-sm-6" align="center" style="margin-top: 100px;">
+						      <button type="button" onclick="submitForm()" class="btn btn-info">保存</button>
+						      &nbsp;
+						      <button type="button" onclick="toIndex()" class="btn btn-default">取消</button>
+						    </div>
+						  </div>
+						</form>
+					</div>
+				</div>
+				<!-- /. ROW  -->
+			</div>
+			<!-- /. PAGE INNER  -->
+		</div>
+		<!-- /. PAGE WRAPPER  -->
+		<%@include file="copyrightpage.jsp" %>
+	</div>
+	<!-- /. WRAPPER  -->
+	<!-- /. FOOTER  -->
+	<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+	<!-- BOOTSTRAP SCRIPTS -->
+	<script src="assets/js/bootstrap.js"></script>
+	<!-- METISMENU SCRIPTS -->
+	<script src="assets/js/jquery.metisMenu.js"></script>
+	<!-- CUSTOM SCRIPTS -->
+	<script src="assets/js/custom.js"></script>
+	<script type="text/javascript" src="assets/js/fileinput.min.js"></script>
+	<script type="text/javascript" src="assets/js/zh.js"></script>
+	<script type="text/javascript" src="assets/js/ajaxfileupload.js"></script>
 </body>
-<script>
+<script type="text/javascript">
 	$(function(){
-		setInterval(function() {
-	    var now = (new Date()).toLocaleString();
-		    $('#current-time').text(now);
-		}, 1000);
-	})
-		
+		//初始化提示信息
+		$("#myAlert").hide();
+		//初始化上传文件控件
+		$('#file').fileinput({
+			    language: 'zh', //设置语言
+                allowedFileExtensions : ['jpg', 'png'],//接收的文件后缀,
+                maxFileCount: 1,
+                enctype: 'multipart/form-data',
+                showUpload: false, //是否显示上传按钮
+                showCaption: true,//是否显示标题
+                browseClass: "btn btn-primary", //按钮样式             
+                previewFileIcon: "<i class='glyphicon glyphicon-king'></i>", 
+                msgFilesTooMany: "选择上传的文件数量({n}) 超过允许的最大数值{m}！",
+                maxFileSize : 1048576,//单位为kb，如果为0表示不限制文件大小
+		});
+		$(".close").click(function(){
+				$("#myAlert").alert();
+			});
+	});
+	
+	//文件表单上传
+	function submitForm(){
+		$.ajaxFileUpload( {  
+		    	type:'POST',
+		        url : 'updUserInfo',		//用于文件上传的服务器端请求地址  
+		        secureuri : false,          //一般设置为false  
+		        fileElementId : 'file',     //文件上传空间的id属性  <input type="file" id="file" name="file" />必须为file  
+		        data : $('#userForm').serializeArray(),
+		        dataType : 'text',          
+		        success : function(data) {
+		        	data = data.substring(data.indexOf(">")+1,data.lastIndexOf("<"));  
+		        	if(data == 'ok'){
+		        		$("#myAlert").show();
+		        	}
+		        }  
+		    }) ; 
+	}
+	
+	//前往首页
+	function toIndex(){
+		$('#showReturnPaper').modal('toggle');
+		window.location.href="<%=basePath%>index";
+	}
 </script>
 </html>

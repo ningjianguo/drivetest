@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<base href="<%=basePath%>"><head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Driver Test</title>
+    <title>老司机驾考系统</title>
     <%@include file="common.jsp" %>
 </head>
 <style>
@@ -20,11 +20,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <%@include file="toppage.jsp" %>
     <div id="wrapper" style="margin-top: 50px;">
         <!-- /. NAV TOP  -->
+        <!-- /. NAV SIDE  -->
         <jsp:include page="leftmenu.jsp">
         	<jsp:param value="test1Review" name="menuactive"/>
         </jsp:include>
-        <!-- /. NAV SIDE  -->
-        <div id="page-wrapper">
+      <div id="page-wrapper">
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
@@ -32,7 +32,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <h5 class="page-subhead-line"></h5>
                     </div>
                 </div>
-                <!-- /. ROW  -->
               <div class="row">
               	<div class="col-md-9">
               		<fieldset style="height: 300px;">
@@ -55,17 +54,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</fieldset>
               	</div>
               </div>
-                <!-- /. ROW  -->
                 <div class="row">
                 	<div class="col-md-12">
               		<fieldset>
 					    <legend>答题信息</legend>
-					    <div id="number" style="text-align: center; max-height: 170px;" class="row pre-scrollable"></div>
+					    <div id="number" style="text-align: center; max-height: 100px;" class="row pre-scrollable"></div>
 					</fieldset>
-              	</div>
+              		</div>
                 </div>
             </div>
-            <!-- /. PAGE INNER  -->
         </div>
         <!-- /. PAGE WRAPPER  -->
     	</div>
@@ -98,10 +95,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script>
 	var errorItem = 0;//被选错答案个数
 	$(function(){
-		setInterval(function() {
-	    var now = (new Date()).toLocaleString();
-		    $('#current-time').text(now);
-		}, 1000);
 		createPaperOne();
 		showQuestionItem();
 	})
@@ -140,7 +133,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		var button = "<table align='center'><tr>";
 		for(var i = 1;i <= totalSize;i++){
 			button+="<td><button type='button' class='btn btn-default btn-sm' style='margin: 2px; width:43px;height:30px;'>"+i+"</button><td>";
-			if(i % 20 == 0){
+			if(i % 22 == 0){
 				i++;
 				if(i <= totalSize){
 					button+="</tr><tr><td><button type='button' class='btn btn-default btn-sm' style='margin: 2px;width:43px;height:30px;'>"+i+"</button><td>";
@@ -151,28 +144,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		$('#number').html(button);
 	}
 	//选择一项答案
-	function selectAnswer(id,answer,chooseItem,explain){
+	function selectAnswer(id,no,answer,chooseItem,explain){
 					if(answer == chooseItem){
-							$('#number').find('button').eq(id-1).attr("class","btn btn-success btn-sm");
-							nextQuestion1(id+1);
+							$('#number').find('button').eq(no-1).attr("class","btn btn-success btn-sm");
+							nextQuestion1(id,no+1);
 					}else{
 							$('#ts').html("<div style='margin-left:5px;'>提示&nbsp;:&nbsp<span style='color:red'>错误</span></div>");
 							$('#xq').html("<div style='margin-left:5px;'>详情&nbsp;:&nbsp"+explain+"</div>");
 							$('#option').find('button').eq(chooseItem-1).attr("class","btn btn-danger btn-sm");
-							$('#number').find('button').eq(id-1).attr("class","btn btn-danger btn-sm");
+							$('#number').find('button').eq(no-1).attr("class","btn btn-danger btn-sm");
 							$('#option').find('button').attr("disabled",true);
 							$('#option').find('button:last').attr("disabled",false);
 							return;
 					}
 	}
-	function nextQuestion1(id){
+	function nextQuestion1(id,no){
 		$('#ts').html("");
 		$('#xq').html("");
 		$('#option').find('button').attr("disabled",false);
 		$.ajax({
 				type:"post",
 				url:"chooseOneQuestion1",
-				data:{"question1Id":id},
+				data:{"question1Id":id,"question1No":no},
 				success:function(data){
 					//加载题目信息
 					var dataObj=eval("("+data+")");
@@ -182,7 +175,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	}
 	//展示答案选项
 	function showAnswerItem(dataObj){
-		var title = "<h4 style='font-weight: bolder;'>"+dataObj[0].question1Id+"/"+dataObj[0].totalSize+"、"+dataObj[0].question1Question+"</h4>";
+		var title = "<h4 style='font-weight: bolder;'>"+dataObj[0].question1No+"/"+dataObj[0].totalSize+"、"+dataObj[0].question1Question+"</h4>";
 				title += "<h4 style='margin-left: 20px;'>A、"+dataObj[0].question1Item1+"</h4>";
 				title += "<h4 style='margin-left: 20px;'>B、"+dataObj[0].question1Item2+"</h4>";
 				if(dataObj[0].question1Item3 != ""){
@@ -195,40 +188,43 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					var img = "<a href=\"javascript:biggerImage(\'../question1/"+dataObj[0].question1Url+"\')\" title='点击放大效果图'><img src='../question1/"+dataObj[0].question1Url+"' class='img-thumbnail' style='width:250px;max-height:265px;'></a>"
 					$('#image').html(img);
 				}else{
-					$('#image').html("");
+					$('#image').html(""); 
 				}
 				//加载选项信息
-				var option = "<button type='button' onclick=\"selectAnswer("+dataObj[0].question1Id+",\'"+dataObj[0].question1Answer+"\',1,\'"+dataObj[0].question1Explains+"\')\" class='btn btn-default btn-sm' style='margin-right: 20px;margin-left: 50px;'>A</button>";
-				option+="<button type='button' onclick=\"selectAnswer("+dataObj[0].question1Id+",\'"+dataObj[0].question1Answer+"\',2,\'"+dataObj[0].question1Explains+"\')\" class='btn btn-default btn-sm' style='margin-right: 20px;'>B</button>";
+				var option = "<button type='button' onclick=\"selectAnswer(\'"+dataObj[0].question1Id+"\',"+dataObj[0].question1No+",\'"+dataObj[0].question1Answer+"\',1,\'"+dataObj[0].question1Explains+"\')\" class='btn btn-default btn-sm' style='margin-right: 20px;margin-left: 50px;'>A</button>";
+				option+="<button type='button' onclick=\"selectAnswer(\'"+dataObj[0].question1Id+"\',"+dataObj[0].question1No+",\'"+dataObj[0].question1Answer+"\',2,\'"+dataObj[0].question1Explains+"\')\" class='btn btn-default btn-sm' style='margin-right: 20px;'>B</button>";
 				if(dataObj[0].question1Item3 != ""){
-					option+="<button type='button' onclick=\"selectAnswer("+dataObj[0].question1Id+",\'"+dataObj[0].question1Answer+"\',3,\'"+dataObj[0].question1Explains+"\')\" class='btn btn-default btn-sm' style='margin-right: 20px;'>C</button>";
-					option+="<button type='button' onclick=\"selectAnswer("+dataObj[0].question1Id+",\'"+dataObj[0].question1Answer+"\',4,\'"+dataObj[0].question1Explains+"\')\" class='btn btn-default btn-sm' style='margin-right: 20px;'>D</button>";
+					option+="<button type='button' onclick=\"selectAnswer(\'"+dataObj[0].question1Id+"\',"+dataObj[0].question1No+",\'"+dataObj[0].question1Answer+"\',3,\'"+dataObj[0].question1Explains+"\')\" class='btn btn-default btn-sm' style='margin-right: 20px;'>C</button>";
+					option+="<button type='button' onclick=\"selectAnswer(\'"+dataObj[0].question1Id+"\',"+dataObj[0].question1No+",\'"+dataObj[0].question1Answer+"\',4,\'"+dataObj[0].question1Explains+"\')\" class='btn btn-default btn-sm' style='margin-right: 20px;'>D</button>";
 				}
-				option+="<button type='button' class='btn btn-primary btn-sm' style='margin-left: 20px;' onclick=\"nextQuestion1("+(dataObj[0].question1Id+1)+")\">下一题</button>";
-				option+="&nbsp;<a href='javascript:void(0)' onclick=\"collect(this,"+dataObj[0].question1Id+")\" class='btn btn-default btn-sm' title='收藏'><i class='fa fa-star-o'>&nbsp;收藏</i></a>";
+				option+="<button type='button' class='btn btn-primary btn-sm' style='margin-left: 20px;' onclick=\"nextQuestion1(\'"+dataObj[0].question1Id+"\',"+(dataObj[0].question1No+1)+")\">下一题</button>";
+				if(dataObj[0].statu == "YES"){
+					option+="&nbsp;<a href='javascript:void(0)' onclick=\"collect(this,'"+dataObj[0].question1Id+"')\" class='btn btn-default btn-sm' title='取消收藏'><i class='fa fa fa-star'>&nbsp;取消收藏</i></a>";
+				}else{
+					option+="&nbsp;<a href='javascript:void(0)' onclick=\"collect(this,'"+dataObj[0].question1Id+"')\" class='btn btn-default btn-sm' title='收藏'><i class='fa fa-star-o'>&nbsp;收藏</i></a>";
+				}
 				$('#option').html(option);
 	}
 	
 	//收藏
 	function collect(obj,id){
-		var temp = $(obj).find("i").attr("class");
-		if(temp == 'fa fa-star-o'){
-			$(obj).find("i").attr("class","fa fa-star");
-			$(obj).find("i").html("");
-			$(obj).find("i").html("&nbsp;取消收藏");
-		}else{
-			$(obj).find("i").attr("class","fa fa-star-o");
-			$(obj).find("i").html("");
-			$(obj).find("i").html("&nbsp;收藏");
-			$.ajax({
+		$.ajax({
 				type : 'POST',
-				url : 'collectQuestion',
-				data : {qid:id,type:1},
+				url : 'collectOneQuestion1',
+				data : {question1Id:id},
 				success : function(data){
-					
+					var temp = $(obj).find("i").attr("class");
+					if(data == "NO"){
+						$(obj).find("i").attr("class","fa fa-star-o");
+						$(obj).find("i").html("");
+						$(obj).find("i").html("&nbsp;收藏");
+					}else{
+						$(obj).find("i").attr("class","fa fa-star");
+						$(obj).find("i").html("");
+						$(obj).find("i").html("&nbsp;取消收藏");
+					}
 				}
 			});
-		}
 	}
 </script>
 </html>

@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<base href="<%=basePath%>"><head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Driver Test</title>
+    <title>老司机驾考系统</title>
     <%@include file="common.jsp" %>
 </head>
 <style>
@@ -40,7 +40,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					    <table style="text-align: center;" align="center">
 					    <tr>
 					    	<td colspan="2">
-					    	 <img src="assets/img/user.png" class="img-thumbnail" /><br/>
+					    		<img src="../images/${user.userFilepath}" class="img-thumbnail" style="width:128px;height:128px;"/><br/>
 					    	</td>
 					    </tr>
 					    <tr>
@@ -182,10 +182,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	var errorItem = 0;//被选错答案个数
 	var paperNumber = "";//试卷编号
 	$(function(){
-		setInterval(function() {
-	    var now = (new Date()).toLocaleString();
-		    $('#current-time').text(now);
-		}, 1000);
 		$('#showWarning').on('hidden.bs.modal', function (e) {
 		  testTimeDown();
 		}); 
@@ -261,7 +257,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		var button = "<table align='center'><tr>";
 		for(var i = 1;i <= 50;i++){
 			button+="<td><button type='button' class='btn btn-default btn-sm' style='margin: 2px; width:43px;height:30px;'>"+i+"</button><td>";
-			if(i % 20 == 0){
+			if(i % 22 == 0){
 				i++;
 				if(i <= 50){
 					button+="</tr><tr><td><button type='button' class='btn btn-default btn-sm' style='margin: 2px;width:43px;height:30px;'>"+i+"</button><td>";
@@ -272,7 +268,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		$('#number').html(button);
 	}
 	//选择一项答案
-	function selectAnswer(answer,paper4Number,paper4Qid){
+	function selectAnswer(answer,paper4Number,paper4No){
 		var selectedAnswer = '';
 		for(var i=1;i<5;i++){
 			var temp = $('#selectedItem').find('button').eq(i-1).attr('class');
@@ -283,15 +279,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		$.ajax({
 			type:"post",
 			url:"chooseOneAnswer4",
-			data:{"paper4Number":paper4Number,"paper4Qid":paper4Qid,"paper4Choice":selectedAnswer},
+			data:{"paper4Number":paper4Number,"paper4No":paper4No,"paper4Choice":selectedAnswer},
 			success:function(data){
 				if(answer == selectedAnswer){
-					$('#number').find('button').eq(paper4Qid-1).attr("class","btn btn-success btn-sm");
+					$('#number').find('button').eq(paper4No-1).attr("class","btn btn-success btn-sm");
 				}else{
 					if(++errorItem > 5){
 						preSubmitPaper4("您已答错了6题，成绩不合格。请交卷!");
 					}
-					$('#number').find('button').eq(paper4Qid-1).attr("class","btn btn-danger btn-sm");
+					$('#number').find('button').eq(paper4No-1).attr("class","btn btn-danger btn-sm");
 				}
 				
 				//加载题目信息
@@ -334,7 +330,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	}
 	//展示答案选项
 	function showAnswerItem(dataObj){
-		var title = "<h4 style='font-weight: bolder;'>"+dataObj[0].paper4Qid+"、"+dataObj[0].examQuestion4.question4Question+"</h4>";
+		var title = "<h4 style='font-weight: bolder;'>"+dataObj[0].paper4No+"、"+dataObj[0].examQuestion4.question4Question+"</h4>";
 				title += "<h4 style='margin-left: 20px;'>A、"+dataObj[0].examQuestion4.question4Item1+"</h4>";
 				title += "<h4 style='margin-left: 20px;'>B、"+dataObj[0].examQuestion4.question4Item2+"</h4>";
 				if(dataObj[0].examQuestion4.question4Item3 != ""){
@@ -356,7 +352,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					option+="<button type='button' onclick=\"selectItems(3)\" class='btn btn-default btn-sm' style='margin-right: 20px;'>C</button>";
 					option+="<button type='button' onclick=\"selectItems(4)\" class='btn btn-default btn-sm' style='margin-right: 20px;'>D</button>";
 				}
-				option+="<button type='button' class='btn btn-success btn-sm' style='margin-left: 20px;' onclick=\"selectAnswer(\'"+dataObj[0].question4Answer+"\',\'"+dataObj[0].paper4Number+"\',\'"+dataObj[0].paper4Qid+"\')\">下一题</button>";
+				option+="<button type='button' class='btn btn-success btn-sm' style='margin-left: 20px;' onclick=\"selectAnswer(\'"+dataObj[0].question4Answer+"\',\'"+dataObj[0].paper4Number+"\',\'"+dataObj[0].paper4No+"\')\">下一题</button>";
 				option+="<button type='button' class='btn btn-primary btn-sm' style='margin-left: 10px;' onclick='preSubmitPaper4()'>交&nbsp;&nbsp;&nbsp;卷</button></div>";
 				$('#option').html(option);
 	}

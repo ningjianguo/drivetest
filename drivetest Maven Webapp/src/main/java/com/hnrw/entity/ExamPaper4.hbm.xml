@@ -18,13 +18,8 @@
             </column>
         </property>
         <property name="paper4Number" type="java.lang.String">
-            <column name="paper4_number" length="32" not-null="true">
+            <column name="paper4_number" length="40" not-null="true">
                 <comment>试卷编号uuid(唯一)</comment>
-            </column>
-        </property>
-        <property name="paper4Qid" type="java.lang.Integer">
-            <column name="paper4_qid" not-null="true">
-                <comment>试卷题目编号</comment>
             </column>
         </property>
         <property name="question4Answer" type="java.lang.String">

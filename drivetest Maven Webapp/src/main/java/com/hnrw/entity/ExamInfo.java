@@ -5,14 +5,11 @@ public class ExamInfo implements java.io.Serializable {
 	private static final long serialVersionUID = 73672985671647157L;
 	private String infoId;
 	private ExamUser examUser;
-	private Integer infoNo;
 	private String paperNumber;
 	private String infoStartTime;
 	private String infoEndTime;
 	private Integer infoScore;
 	private Integer infoType;
-	private String infoStartEnd;
-
 	// Constructors
 
 	/** default constructor */
@@ -20,29 +17,26 @@ public class ExamInfo implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public ExamInfo(String infoId, ExamUser examUser, Integer infoNo,
+	public ExamInfo(String infoId, ExamUser examUser,
 			String paperNumber, String infoStartTime, Integer infoType) {
 		this.infoId = infoId;
 		this.examUser = examUser;
-		this.infoNo = infoNo;
 		this.paperNumber = paperNumber;
 		this.infoStartTime = infoStartTime;
 		this.infoType = infoType;
 	}
 
 	/** full constructor */
-	public ExamInfo(String infoId, ExamUser examUser, Integer infoNo,
+	public ExamInfo(String infoId, ExamUser examUser,
 			String paperNumber, String infoStartTime, String infoEndTime,
-			Integer infoScore, Integer infoType, String infoStartEnd) {
+			Integer infoScore, Integer infoType) {
 		this.infoId = infoId;
 		this.examUser = examUser;
-		this.infoNo = infoNo;
 		this.paperNumber = paperNumber;
 		this.infoStartTime = infoStartTime;
 		this.infoEndTime = infoEndTime;
 		this.infoScore = infoScore;
 		this.infoType = infoType;
-		this.infoStartEnd = infoStartEnd;
 	}
 
 	// Property accessors
@@ -61,14 +55,6 @@ public class ExamInfo implements java.io.Serializable {
 
 	public void setExamUser(ExamUser examUser) {
 		this.examUser = examUser;
-	}
-
-	public Integer getInfoNo() {
-		return this.infoNo;
-	}
-
-	public void setInfoNo(Integer infoNo) {
-		this.infoNo = infoNo;
 	}
 
 	public String getPaperNumber() {
@@ -109,14 +95,6 @@ public class ExamInfo implements java.io.Serializable {
 
 	public void setInfoType(Integer infoType) {
 		this.infoType = infoType;
-	}
-
-	public String getInfoStartEnd() {
-		return this.infoStartEnd;
-	}
-
-	public void setInfoStartEnd(String infoStartEnd) {
-		this.infoStartEnd = infoStartEnd;
 	}
 
 }

@@ -14,17 +14,12 @@
         </many-to-one>
         <property name="paper1No" type="java.lang.Integer">
             <column name="paper1_no" not-null="true">
-                <comment>序号</comment>
+                 <comment>试卷题目序号</comment>
             </column>
         </property>
         <property name="paper1Number" type="java.lang.String">
-            <column name="paper1_number" length="32" not-null="true">
+            <column name="paper1_number" length="40" not-null="true">
                 <comment>试卷编号uuid(唯一)</comment>
-            </column>
-        </property>
-        <property name="paper1Qid" type="java.lang.Integer">
-            <column name="paper1_qid" not-null="true">
-                <comment>试卷题目序号</comment>
             </column>
         </property>
         <property name="question1Answer" type="java.lang.String">

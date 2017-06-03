@@ -20,10 +20,11 @@ public class Paper1DaoImpl extends BaseDaoImpl<ExamPaper1> implements IPaper1Dao
 		try {
 			for (ExamQuestion1 examQuestion1 : examQuestion1s) {
 				examPaper1 = new ExamPaper1();
+				examPaper1.setPaper1Id(JDUuid.createID("DSHJSDFD"));
 				examPaper1.setExamQuestion1(examQuestion1);
 				examPaper1.setPaper1Number(paper1Number);
 				examPaper1.setQuestion1Answer(examQuestion1.getQuestion1Answer());
-				examPaper1.setPaper1Qid(qid++);
+				examPaper1.setPaper1No(qid++);
 				save(examPaper1);
 			}
 		} catch (Exception e) {
@@ -36,10 +37,10 @@ public class Paper1DaoImpl extends BaseDaoImpl<ExamPaper1> implements IPaper1Dao
 	@Override
 	public boolean updatePaper1Choice(ExamPaper1 examPaper1) {
 		try {
-			String sql = "UPDATE EXAM_PAPER1 SET PAPER1_CHOICE=? WHERE PAPER1_NUMBER=? AND PAPER1_QID=?";
+			String sql = "UPDATE EXAM_PAPER1 SET PAPER1_CHOICE=? WHERE PAPER1_NUMBER=? AND PAPER1_NO=?";
 			getSession().createSQLQuery(sql).setInteger(0, examPaper1.getPaper1Choice())
 											.setString(1, examPaper1.getPaper1Number())
-											.setInteger(2, examPaper1.getPaper1Qid())
+											.setInteger(2, examPaper1.getPaper1No())
 											.executeUpdate();
 			return true;
 		} catch (Exception e) {
@@ -72,5 +73,10 @@ public class Paper1DaoImpl extends BaseDaoImpl<ExamPaper1> implements IPaper1Dao
 		return size.intValue();
 	}
 
+	@Override
+	public void deletePaper1(String paper1Number) {
+		getSession().createSQLQuery("DELETE FROM EXAM_PAPER1 WHERE PAPER1_NUMBER=?")
+		.setString(0, paper1Number).executeUpdate();
+	}
 
 }

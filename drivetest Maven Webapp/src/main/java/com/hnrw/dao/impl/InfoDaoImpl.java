@@ -11,6 +11,7 @@ import com.hnrw.entity.ExamInfo;
 import com.hnrw.entity.ExamPaper1;
 import com.hnrw.entity.ExamPaper4;
 import com.hnrw.entity.ExamUser;
+import com.hnrw.util.JDUuid;
 import com.opensymphony.xwork2.ActionContext;
 
 @Repository
@@ -22,6 +23,7 @@ public class InfoDaoImpl extends BaseDaoImpl<ExamInfo> implements IInfoDao{
 		ExamInfo examInfo = new ExamInfo();
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
 		ExamUser user = (ExamUser) session.get("user");
+		examInfo.setInfoId(JDUuid.createID("ASDDDDWE"));
 		examInfo.setExamUser(user);
 		examInfo.setInfoStartTime(sdf.format(new Date()));
 		examInfo.setInfoType(examType);
@@ -37,7 +39,7 @@ public class InfoDaoImpl extends BaseDaoImpl<ExamInfo> implements IInfoDao{
 
 	@Override
 	public ExamPaper1 getCourseOneQuestion(String paperNumber, int questionNumber) {
-		String sql = "SELECT * FROM EXAM_PAPER1 WHERE PAPER1_NUMBER=? LIMIT ?,1 ";
+		String sql = "SELECT * FROM EXAM_PAPER1 WHERE PAPER1_NUMBER=? ORDER BY PAPER1_NO LIMIT ?,1 ";
 		ExamPaper1 examPaper1 = null;
 		try {
 			examPaper1 = (ExamPaper1) getSession().createSQLQuery(sql).addEntity(ExamPaper1.class)
@@ -69,7 +71,7 @@ public class InfoDaoImpl extends BaseDaoImpl<ExamInfo> implements IInfoDao{
 
 	@Override
 	public ExamPaper4 getCourseFourQuestion(String paperNumber, int questionNumber) {
-		String sql = "SELECT * FROM EXAM_PAPER4 WHERE PAPER4_NUMBER=? LIMIT ?,1 ";
+		String sql = "SELECT * FROM EXAM_PAPER4 WHERE PAPER4_NUMBER=? ORDER BY PAPER4_NO LIMIT ?,1 ";
 		ExamPaper4 examPaper4 = null;
 		try {
 			examPaper4 = (ExamPaper4) getSession().createSQLQuery(sql).addEntity(ExamPaper4.class)
@@ -82,5 +84,11 @@ public class InfoDaoImpl extends BaseDaoImpl<ExamInfo> implements IInfoDao{
 		}
 		return examPaper4;
 	}
-	
+
+	@Override
+	public void deleteInfo(String paperNumber) {
+		getSession().createSQLQuery("DELETE FROM EXAM_INFO WHERE PAPER_NUMBER=?")
+		.setString(0, paperNumber).executeUpdate();
+	}
+
 }

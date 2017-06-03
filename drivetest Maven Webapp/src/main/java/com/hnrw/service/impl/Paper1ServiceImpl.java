@@ -45,7 +45,7 @@ public class Paper1ServiceImpl implements IPaper1Service{
 			examPaper1.setPaper1Choice(5);
 		}
 		if(paper1DaoImpl.updatePaper1Choice(examPaper1)){//保存上一题的答题信息
-			ExamPaper1 paper1 = infoDaoImpl.getCourseOneQuestion(examPaper1.getPaper1Number(),examPaper1.getPaper1Qid()+1);
+			ExamPaper1 paper1 = infoDaoImpl.getCourseOneQuestion(examPaper1.getPaper1Number(),examPaper1.getPaper1No()+1);
 			JsonConfig config = new JsonConfig();
 			config.setExcludes(new String[]{"examPaper1s"});
 			return JSONArray.fromObject(paper1,config).toString();
@@ -54,13 +54,11 @@ public class Paper1ServiceImpl implements IPaper1Service{
 	}
 
 	@Override
-	public String nextReviewQuestion1(int id) {
-		int totalSize = question1DaoImpl.getQuestion1TotalSize();
-		ExamQuestion1 examQuestion1 = question1DaoImpl.getOneSubject(id);
+	public String againOneTest(String paperNumber) {
+		ExamPaper1 paper1 = infoDaoImpl.getCourseOneQuestion(paperNumber, 1);
 		JsonConfig config = new JsonConfig();
 		config.setExcludes(new String[]{"examPaper1s"});
-		String jsonStr = JSONArray.fromObject(examQuestion1,config).toString();
-		String jsonStr_ = "[{\"totalSize\":\""+totalSize+"\","+jsonStr.substring(2);
-		return jsonStr_;
+		return JSONArray.fromObject(paper1,config).toString();
 	}
+
 }

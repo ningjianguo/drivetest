@@ -7,7 +7,6 @@ public class ExamPaper4 implements java.io.Serializable {
 	private ExamQuestion4 examQuestion4;
 	private Integer paper4No;
 	private String paper4Number;
-	private Integer paper4Qid;
 	private String question4Answer;
 	private Integer paper4Choice;
 
@@ -19,25 +18,23 @@ public class ExamPaper4 implements java.io.Serializable {
 
 	/** minimal constructor */
 	public ExamPaper4(String paper4Id, ExamQuestion4 examQuestion4,
-			Integer paper4No, String paper4Number, Integer paper4Qid,
+			Integer paper4No, String paper4Number,
 			String question4Answer) {
 		this.paper4Id = paper4Id;
 		this.examQuestion4 = examQuestion4;
 		this.paper4No = paper4No;
 		this.paper4Number = paper4Number;
-		this.paper4Qid = paper4Qid;
 		this.question4Answer = question4Answer;
 	}
 
 	/** full constructor */
 	public ExamPaper4(String paper4Id, ExamQuestion4 examQuestion4,
-			Integer paper4No, String paper4Number, Integer paper4Qid,
+			Integer paper4No, String paper4Number,
 			String question4Answer, Integer paper4Choice) {
 		this.paper4Id = paper4Id;
 		this.examQuestion4 = examQuestion4;
 		this.paper4No = paper4No;
 		this.paper4Number = paper4Number;
-		this.paper4Qid = paper4Qid;
 		this.question4Answer = question4Answer;
 		this.paper4Choice = paper4Choice;
 	}
@@ -74,14 +71,6 @@ public class ExamPaper4 implements java.io.Serializable {
 
 	public void setPaper4Number(String paper4Number) {
 		this.paper4Number = paper4Number;
-	}
-
-	public Integer getPaper4Qid() {
-		return this.paper4Qid;
-	}
-
-	public void setPaper4Qid(Integer paper4Qid) {
-		this.paper4Qid = paper4Qid;
 	}
 
 	public String getQuestion4Answer() {

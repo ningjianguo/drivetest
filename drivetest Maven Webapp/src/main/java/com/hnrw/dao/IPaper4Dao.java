@@ -33,4 +33,10 @@ public interface IPaper4Dao {
 	 * @return 做过的题数
 	 */
 	public int getselectedAnswerByPaper4Number(String paper4Number);
+	
+	/**
+	 * 删除科目四试卷
+	 * @param paperNumber 试卷编号
+	 */
+	public void deletePaper4(String paperNumber);
 }

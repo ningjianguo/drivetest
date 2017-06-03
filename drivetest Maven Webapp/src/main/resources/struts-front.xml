@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
-	<package name="main" namespace="/" extends="drivetest">
+	<package name="front" namespace="/" extends="drivetest">
 	
 		<!-- 进入首页 -->
 		<action name="index" class="indexAction" method="index">
 			<result name="success">/WEB-INF/index.jsp</result>
 			<interceptor-ref name="myLoginStack"></interceptor-ref>
 		</action>
+		
 		<!-- 用户登录 -->
-		<action name="login" class="userAction" method="userLogin"/>
+		<action name="login" class="userAction" method="userLogin">
+			<result name="success">/WEB-INF/admin/index.jsp</result>
+		</action>
 		
 		<!-- 用户登出 -->
 		<action name="loginOut" class="userAction" method="userOutLogin">
@@ -19,49 +22,123 @@
 		<!-- 用户注册 -->
 		<action name="registe" class="userAction" method="userRegiste"/>
 		
+		<!-- 前往personsetting.jsp界面 -->
+		<action name="personSetting" class="userAction" method="toPersonSettingJsp">
+			<interceptor-ref name="myLoginStack"></interceptor-ref>
+			<result name="success">/WEB-INF/personsetting.jsp</result>
+		</action>
+		
+		<!-- 用户信息更新 -->
+		<action name="updUserInfo" class="userAction" method="updateUserInfo">
+			<interceptor-ref name="myLoginStack"></interceptor-ref>
+		</action>
+		
 		<!-- 前往drivertest1.jsp -->
 		<action name="driverTest1" class="courseOneTestAction" method="toDriverTest1Jsp">
 			<interceptor-ref name="myLoginStack"></interceptor-ref>
 			<result name="success">/WEB-INF/drivertest1.jsp</result>
 		</action>
+		
 		<!-- 科目一试卷生成 -->
 		<action name="createPaperOne" class="courseOneTestAction" method="createOnePaper">
 			<interceptor-ref name="myLoginStack"></interceptor-ref>
 		</action>
+		
 		<!-- 科目一题目切换 -->
 		<action name="chooseOneAnswer" class="courseOneTestAction" method="chooseOneAnswer">
 			<interceptor-ref name="myLoginStack"></interceptor-ref>
 		</action>
+		
+		<!-- 提交科目一试卷 -->
 		<action name="submitPaper1" class="courseOneTestAction" method="submitPaper1">
 			<interceptor-ref name="myLoginStack"></interceptor-ref>
 		</action>
+		
+		<!-- 科目一试卷重考一次 -->
+		<action name="tempActionName" class="courseOneTestAction" method="againTest">
+			<interceptor-ref name="myLoginStack"></interceptor-ref>
+		</action>
+		<action name="againTest" class="gradeAction" method="againTest">
+			<interceptor-ref name="myLoginStack"></interceptor-ref>
+			<result name="success" type="redirectAction">
+				<param name="actionName">tempActionName</param>
+				<param name="paperNumber">${paperNumber}</param>
+			</result>
+		</action>
+		
 		<!-- 前往drivertest4.jsp -->
 		<action name="driverTest4" class="courseFourTestAction" method="toDriverTest4Jsp">
 			<interceptor-ref name="myLoginStack"></interceptor-ref>
 			<result name="success">/WEB-INF/drivertest4.jsp</result>
 		</action>
+		
 		<!-- 科目四试卷生成 -->
 		<action name="createPaperFour" class="courseFourTestAction" method="createOnePaper">
 			<interceptor-ref name="myLoginStack"></interceptor-ref>
 		</action>
+		
 		<!-- 科目四题目切换 -->
 		<action name="chooseOneAnswer4" class="courseFourTestAction" method="chooseOneAnswer">
 			<interceptor-ref name="myLoginStack"></interceptor-ref>
 		</action>
+		
+		<!-- 提交科目四试卷 -->
 		<action name="submitPaper4" class="courseFourTestAction" method="submitPaper4">
 			<interceptor-ref name="myLoginStack"></interceptor-ref>
 		</action>
+		
 		<!-- 前往test1review.jsp -->
 		<action name="test1Review" class="test1ReviewAction" method="toTest1ReviewJsp">
+			<interceptor-ref name="myLoginStack"></interceptor-ref>
 			<result name="success">/WEB-INF/test1review.jsp</result>
 		</action>
+		
 		<!-- 科一复习试卷生成 -->
 		<action name="createReviewPaper1" class="test1ReviewAction" method="createOnePaper">
 			<interceptor-ref name="myLoginStack"></interceptor-ref>
 		</action>
+		
 		<!-- 科一复习试卷题目切换 -->
 		<action name="chooseOneQuestion1" class="test1ReviewAction" method="chooseOneAnswer">
 			<interceptor-ref name="myLoginStack"></interceptor-ref>
 		</action>
+		
+		<!-- 收藏科目一试题 -->
+		<action name="collectOneQuestion1" class="test1ReviewAction" method="collectOrNotCollectQuestion1">
+			<interceptor-ref name="myLoginStack"></interceptor-ref>
+		</action>
+		
+		<!-- 前往test4review.jsp -->
+		<action name="test4Review" class="test4ReviewAction" method="toTest4ReviewJsp">
+			<interceptor-ref name="myLoginStack"></interceptor-ref>
+			<result name="success">/WEB-INF/test4review.jsp</result>
+		</action>
+		
+		<!-- 科四复习试卷生成 -->
+		<action name="createReviewPaper4" class="test4ReviewAction" method="createOnePaper">
+			<interceptor-ref name="myLoginStack"></interceptor-ref>
+		</action>
+		
+		<!-- 科四复习试卷题目切换 -->
+		<action name="chooseOneQuestion4" class="test4ReviewAction" method="chooseOneAnswer">
+			<interceptor-ref name="myLoginStack"></interceptor-ref>
+		</action>
+		
+		<!-- 收藏科目四试题 -->
+		<action name="collectOneQuestion4" class="test4ReviewAction" method="collectOrNotCollectQuestion4">
+			<interceptor-ref name="myLoginStack"></interceptor-ref>
+		</action>
+		
+		<!-- 前往mygrade.jsp -->
+		<action name="mygrade" class="gradeAction" method="toMygradeJsp">
+			<interceptor-ref name="myLoginStack"></interceptor-ref>
+			<result name="success">/WEB-INF/mygrade.jsp</result>
+		</action>
+		
+		<!-- 查询成绩信息 -->
+		<action name="loadAllGrade" class="gradeAction" method="loadDataToGrid">
+			<interceptor-ref name="myLoginStack"></interceptor-ref>
+		</action>
+		
 	</package>
 </struts>    

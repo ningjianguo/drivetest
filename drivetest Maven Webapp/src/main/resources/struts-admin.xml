@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="admin" namespace="/" extends="drivetest">
+		<!-- 进入首页 -->
+		<action name="aindex" class="aindexAction" method="index">
+			<result name="success">/WEB-INF/admin/index.jsp</result>
+			<interceptor-ref name="myLoginStack"></interceptor-ref>
+		</action> 
+		<action name="manageuser" class="aindexAction" method="toManageUser">
+			<result name="success">/WEB-INF/admin/manageuser.jsp</result>
+			<interceptor-ref name="myLoginStack"></interceptor-ref>
+		</action> 
+		<action name="managequestion1" class="aindexAction" method="toManageQuestion1">
+			<result name="success">/WEB-INF/admin/managequestion1.jsp</result>
+			<interceptor-ref name="myLoginStack"></interceptor-ref>
+		</action> 
+		<action name="managequestion4" class="aindexAction" method="toManageQuestion4">
+			<result name="success">/WEB-INF/admin/managequestion4.jsp</result>
+			<interceptor-ref name="myLoginStack"></interceptor-ref>
+		</action> 
+		<action name="loadAllStuInfos" class="userAction" method="loadAllStuInfos">
+			<interceptor-ref name="myLoginStack"></interceptor-ref>
+		</action>
+		<action name="deleteUser" class="userAction" method="delUsers">
+			<interceptor-ref name="myLoginStack"></interceptor-ref>
+		</action>
+		<action name="resetStuPsw" class="userAction" method="resetStuPsw">
+			<interceptor-ref name="myLoginStack"></interceptor-ref>
+		</action>
+		<action name="loadQuestion1" class="question1Action" method="loadQuestion1">
+			<interceptor-ref name="myLoginStack"></interceptor-ref>
+		</action>
+		<action name="addQuestion1" class="question1Action" method="addQuestion1">
+			<interceptor-ref name="myLoginStack"></interceptor-ref>
+		</action>
+		<action name="deleteQuestion1" class="question1Action" method="deleteQuestion1">
+			<interceptor-ref name="myLoginStack"></interceptor-ref>
+		</action>
+		<action name="editeQuestion1" class="question1Action" method="editeQuestion1">
+			<interceptor-ref name="myLoginStack"></interceptor-ref>
+		</action>
+		<action name="loadQuestion4" class="question4Action" method="loadQuestion4">
+			<interceptor-ref name="myLoginStack"></interceptor-ref>
+		</action>
+		<action name="addQuestion4" class="question4Action" method="addQuestion4">
+			<interceptor-ref name="myLoginStack"></interceptor-ref>
+		</action>
+		<action name="deleteQuestion4" class="question4Action" method="deleteQuestion4">
+			<interceptor-ref name="myLoginStack"></interceptor-ref>
+		</action>
+		<action name="editeQuestion4" class="question4Action" method="editeQuestion4">
+			<interceptor-ref name="myLoginStack"></interceptor-ref>
+		</action>
+	</package>
+</struts>    

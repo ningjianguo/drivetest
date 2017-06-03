@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<base href="<%=basePath%>"><head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Driver Test</title>
+    <title>老司机驾考系统</title>
     <%@include file="common.jsp" %>
 </head>
 <style>
@@ -40,7 +40,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					    <table style="text-align: center;" align="center">
 					    <tr>
 					    	<td colspan="2">
-					    	 <img src="assets/img/user.png" class="img-thumbnail" /><br/>
+					    	 <img src="../images/${user.userFilepath}" class="img-thumbnail" style="width:128px;height:128px;"/><br/>
 					    	</td>
 					    </tr>
 					    <tr>
@@ -88,7 +88,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 	<div class="col-md-12">
               		<fieldset>
 					    <legend>答题信息</legend>
-					    <div id="number" style="text-align: center; max-height: 170px;" class="row"></div>
+					    <div id="number" style="text-align: center; max-height: 100px;" class="row pre-scrollable"></div>
 					</fieldset>
               	</div>
                 </div>
@@ -184,10 +184,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	var errorItem = 0;//被选错答案个数
 	var paperNumber = "";//试卷编号
 	$(function(){
-		setInterval(function() {
-	    var now = (new Date()).toLocaleString();
-		    $('#current-time').text(now);
-		}, 1000);
 		$('#showWarning').on('hidden.bs.modal', function (e) {
 		  testTimeDown();
 		}); 
@@ -263,7 +259,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		var button = "<table align='center'><tr>";
 		for(var i = 1;i <= 100;i++){
 			button+="<td><button type='button' class='btn btn-default btn-sm' style='margin: 2px; width:43px;height:30px;'>"+i+"</button><td>";
-			if(i % 20 == 0){
+			if(i % 22 == 0){
 				i++;
 				if(i <= 100){
 					button+="</tr><tr><td><button type='button' class='btn btn-default btn-sm' style='margin: 2px;width:43px;height:30px;'>"+i+"</button><td>";
@@ -274,19 +270,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		$('#number').html(button);
 	}
 	//选择一项答案
-	function selectAnswer(answer,paper1Number,paper1Qid,chooseItem){
+	function selectAnswer(answer,paper1Number,paper1No,chooseItem){
 		$.ajax({
 			type:"post",
 			url:"chooseOneAnswer",
-			data:{"paper1Number":paper1Number,"paper1Qid":paper1Qid,"paper1Choice":chooseItem},
+			data:{"paper1Number":paper1Number,"paper1No":paper1No,"paper1Choice":chooseItem},
 			success:function(data){
 				if(answer == chooseItem){
-					$('#number').find('button').eq(paper1Qid-1).attr("class","btn btn-success btn-sm");
+					$('#number').find('button').eq(paper1No-1).attr("class","btn btn-success btn-sm");
 				}else{
 					if(++errorItem > 10){
 						preSubmitPaper1("您已答错了11题，成绩不合格。请交卷!");
 					}
-					$('#number').find('button').eq(paper1Qid-1).attr("class","btn btn-danger btn-sm");
+					$('#number').find('button').eq(paper1No-1).attr("class","btn btn-danger btn-sm");
 				}
 				
 				//加载题目信息
@@ -329,7 +325,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	}
 	//展示答案选项
 	function showAnswerItem(dataObj){
-		var title = "<h4 style='font-weight: bolder;'>"+dataObj[0].paper1Qid+"、"+dataObj[0].examQuestion1.question1Question+"</h4>";
+		var title = "<h4 style='font-weight: bolder;'>"+dataObj[0].paper1No+"、"+dataObj[0].examQuestion1.question1Question+"</h4>";
 				title += "<h4 style='margin-left: 20px;'>A、"+dataObj[0].examQuestion1.question1Item1+"</h4>";
 				title += "<h4 style='margin-left: 20px;'>B、"+dataObj[0].examQuestion1.question1Item2+"</h4>";
 				if(dataObj[0].examQuestion1.question1Item3 != ""){
@@ -345,11 +341,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					$('#image').html("");
 				}
 				//加载选项信息
-				var option = "<button type='button' onclick=\"selectAnswer(\'"+dataObj[0].question1Answer+"\',\'"+dataObj[0].paper1Number+"\',\'"+dataObj[0].paper1Qid+"\',1)\" class='btn btn-default btn-sm' style='margin-right: 20px;margin-left: 50px;'>A</button>";
-				option+="<button type='button' onclick=\"selectAnswer(\'"+dataObj[0].question1Answer+"\',\'"+dataObj[0].paper1Number+"\',\'"+dataObj[0].paper1Qid+"\',2)\" class='btn btn-default btn-sm' style='margin-right: 20px;'>B</button>";
+				var option = "<button type='button' onclick=\"selectAnswer(\'"+dataObj[0].question1Answer+"\',\'"+dataObj[0].paper1Number+"\',\'"+dataObj[0].paper1No+"\',1)\" class='btn btn-default btn-sm' style='margin-right: 20px;margin-left: 50px;'>A</button>";
+				option+="<button type='button' onclick=\"selectAnswer(\'"+dataObj[0].question1Answer+"\',\'"+dataObj[0].paper1Number+"\',\'"+dataObj[0].paper1No+"\',2)\" class='btn btn-default btn-sm' style='margin-right: 20px;'>B</button>";
 				if(dataObj[0].examQuestion1.question1Item3 != ""){
-					option+="<button type='button' onclick=\"selectAnswer(\'"+dataObj[0].question1Answer+"\',\'"+dataObj[0].paper1Number+"\',\'"+dataObj[0].paper1Qid+"\',3)\" class='btn btn-default btn-sm' style='margin-right: 20px;'>C</button>";
-					option+="<button type='button' onclick=\"selectAnswer(\'"+dataObj[0].question1Answer+"\',\'"+dataObj[0].paper1Number+"\',\'"+dataObj[0].paper1Qid+"\',4)\" class='btn btn-default btn-sm' style='margin-right: 20px;'>D</button>";
+					option+="<button type='button' onclick=\"selectAnswer(\'"+dataObj[0].question1Answer+"\',\'"+dataObj[0].paper1Number+"\',\'"+dataObj[0].paper1No+"\',3)\" class='btn btn-default btn-sm' style='margin-right: 20px;'>C</button>";
+					option+="<button type='button' onclick=\"selectAnswer(\'"+dataObj[0].question1Answer+"\',\'"+dataObj[0].paper1Number+"\',\'"+dataObj[0].paper1No+"\',4)\" class='btn btn-default btn-sm' style='margin-right: 20px;'>D</button>";
 				}
 				option+="<button type='button' class='btn btn-primary btn-sm' style='margin-left: 20px;' onclick='preSubmitPaper1()'>交卷</button>";
 				$('#option').html(option);

@@ -12,14 +12,9 @@
                 <comment>用户ID</comment>
             </column>
         </many-to-one>
-        <property name="collectionQid" type="java.lang.Integer">
-            <column name="collection_qid" not-null="true">
+        <property name="collectionQid" type="java.lang.String">
+            <column name="collection_qid" length="40" not-null="true">
                 <comment>试题ID</comment>
-            </column>
-        </property>
-        <property name="collectionType" type="java.lang.Integer">
-            <column name="collection_type" not-null="true">
-                <comment>试题类型:1科目一、4科目四</comment>
             </column>
         </property>
     </class>

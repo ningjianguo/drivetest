@@ -59,4 +59,9 @@ public class InfoServiceImpl implements IInfoService {
 		}
 		return null;
 	}
+
+	@Override
+	public void deletePaper(String paperNumber) {
+		
+	}
 }

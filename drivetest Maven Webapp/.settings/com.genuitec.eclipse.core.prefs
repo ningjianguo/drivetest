@@ -4,5 +4,5 @@ locCnt=1989
 pkgCnt=13
 sTime=2017\u5E744\u67085\u65E5 \u661F\u671F\u4E09 \u4E0B\u534810\u65F633\u520611\u79D2 CST
 srcCnt=3
-validator.Checked=src/main/webapp/WEB-INF/leftmenu.jsp,src/main/webapp/WEB-INF/common.jsp
+validator.Checked=src/main/webapp/WEB-INF/common.jsp,src/main/webapp/WEB-INF/leftmenu.jsp,src/main/resources/struts-front.xml
 validator.Unchecked=

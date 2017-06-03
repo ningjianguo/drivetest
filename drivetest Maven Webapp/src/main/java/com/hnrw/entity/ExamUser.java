@@ -9,9 +9,10 @@ public class ExamUser implements java.io.Serializable {
 	private String userId;
 	private String userAccountName;
 	private String userAccountPassword;
-	private String userRole;
+	private int  userRole;
 	private String userName;
 	private String userEmail;
+	private String userFilepath;
 	private Set examCollections = new HashSet(0);
 	private Set examInfos = new HashSet(0);
 
@@ -23,16 +24,17 @@ public class ExamUser implements java.io.Serializable {
 
 	/** minimal constructor */
 	public ExamUser(String userId, String userAccountName,
-			String userAccountPassword, String userRole) {
+			String userAccountPassword, int userRole,String userFilepath) {
 		this.userId = userId;
 		this.userAccountName = userAccountName;
 		this.userAccountPassword = userAccountPassword;
 		this.userRole = userRole;
+		this.userFilepath = userFilepath;
 	}
 
 	/** full constructor */
 	public ExamUser(String userId, String userAccountName,
-			String userAccountPassword, String userRole, String userName,
+			String userAccountPassword, int userRole, String userName,String userFilepath,
 			String userEmail, Set examCollections, Set examInfos) {
 		this.userId = userId;
 		this.userAccountName = userAccountName;
@@ -40,6 +42,7 @@ public class ExamUser implements java.io.Serializable {
 		this.userRole = userRole;
 		this.userName = userName;
 		this.userEmail = userEmail;
+		this.userFilepath = userFilepath;
 		this.examCollections = examCollections;
 		this.examInfos = examInfos;
 	}
@@ -70,11 +73,11 @@ public class ExamUser implements java.io.Serializable {
 		this.userAccountPassword = userAccountPassword;
 	}
 
-	public String getUserRole() {
+	public int getUserRole() {
 		return this.userRole;
 	}
 
-	public void setUserRole(String userRole) {
+	public void setUserRole(int userRole) {
 		this.userRole = userRole;
 	}
 
@@ -110,4 +113,11 @@ public class ExamUser implements java.io.Serializable {
 		this.examInfos = examInfos;
 	}
 
+	public String getUserFilepath() {
+		return userFilepath;
+	}
+
+	public void setUserFilepath(String userFilepath) {
+		this.userFilepath = userFilepath;
+	}
 }

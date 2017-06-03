@@ -5,14 +5,14 @@ public interface ICollectionDao {
 	/**
 	 * 判断题目是否被收藏 
 	 * @param questionId 题目ID
-	 * @return 已收藏:yes、未收藏:no
+	 * @return 已收藏:YES、未收藏:NO
 	 */
-	public String isCollected(int questionId);
+	public String isCollected(String questionId);
 	
 	/**
 	 * 收藏题目或取消收藏
 	 * @param questionId 题目ID
-	 * @return 已收藏:yes、未收藏:no
+	 * @return 已收藏:YES、未收藏:NO
 	 */
-	public String collectOrNotCollected(int questionId);
+	public String collectOrNotCollected(String questionId);
 }

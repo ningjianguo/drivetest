@@ -17,7 +17,7 @@
                 <comment>用户登录密码</comment>
             </column>
         </property>
-        <property name="userRole" type="java.lang.String">
+        <property name="userRole" type="java.lang.Integer">
             <column name="user_role" length="1" not-null="true">
                 <comment>用户角色(0:普通用户、1:管理员:)</comment>
             </column>
@@ -30,6 +30,11 @@
         <property name="userEmail" type="java.lang.String">
             <column name="user_email" length="32">
                 <comment>用户邮箱</comment>
+            </column>
+        </property>
+        <property name="userFilepath" type="java.lang.String">
+            <column name="user_filepath" length="50">
+                <comment>用户头像路径</comment>
             </column>
         </property>
         <set name="examCollections" inverse="true">

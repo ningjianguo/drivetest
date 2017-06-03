@@ -12,13 +12,8 @@
                 <comment>用户主键(外键)</comment>
             </column>
         </many-to-one>
-        <property name="infoNo" type="java.lang.Integer">
-            <column name="info_no" not-null="true">
-                <comment>序号</comment>
-            </column>
-        </property>
         <property name="paperNumber" type="java.lang.String">
-            <column name="paper_number" length="32" not-null="true">
+            <column name="paper_number" length="40" not-null="true">
                 <comment>试卷编号(paper1+paper4)</comment>
             </column>
         </property>
@@ -40,11 +35,6 @@
         <property name="infoType" type="java.lang.Integer">
             <column name="info_type" not-null="true">
                 <comment>考试类型(科一、科四)</comment>
-            </column>
-        </property>
-        <property name="infoStartEnd" type="java.lang.String">
-            <column name="info_startEnd" length="32">
-                <comment>考试结束时间</comment>
             </column>
         </property>
     </class>
